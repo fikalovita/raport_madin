@@ -49,6 +49,8 @@
 						</div>
 					</div>
 					<!-- end modal tambah guru -->
+					<input type="hidden" value="<?= $this->session->flashdata('pesan'); ?>" class="flash-data">
+					<?php $this->session->set_flashdata('pesan', ''); ?>
 					<div class="card mb-4">
 						<div class="card-header bg-success bg-opacity-25">
 							<i class="fas fa-table me-1"></i>
@@ -81,7 +83,7 @@
 													</button>
 													<ul class="dropdown-menu">
 														<li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square fa-2xs"></i> Ubah</a></li>
-														<li><a class="dropdown-item text-danger" href="#"><i class="fa-solid fa-trash fa-2xs"></i> Hapus</a></li>
+														<li><a class="dropdown-item text-danger hapus" href="<?= base_url('admin/hapus_guru/' . $value->id_guru) ?>"><i class="fa-solid fa-trash fa-2xs"></i> Hapus</a></li>
 													</ul>
 												</div>
 											</td>
