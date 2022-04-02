@@ -13,4 +13,9 @@ class M_admin extends CI_Model
         $this->db->from('guru');
         return $this->db->get();
     }
+    public function hapus_guru($id_guru)
+    {
+        $this->db->where('id_guru', $id_guru);
+        $this->db->delete('guru');
+    }
 }
