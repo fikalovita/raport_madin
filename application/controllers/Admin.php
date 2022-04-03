@@ -55,5 +55,25 @@ class Admin extends CI_Controller
 			'password_guru' => $password
 		];
 		$this->M_admin->tambah_guru($data);
+		$this->session->set_flashdata('pesan', 'ditambahkan');
+		redirect('admin/data_guru', 'refresh');
+	}
+	public function hapus_guru($id_guru)
+	{
+		$this->M_admin->hapus_guru($id_guru);
+		$this->session->set_flashdata('pesan', 'dihapus');
+		redirect('admin/data_guru', 'refresh');
+	}
+	public function detail_kelas()
+	{
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/detail_siswa');
+		$this->load->view('admin/layout/footer');
+	}
+	public function pindah_kelas()
+	{
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/pindah_kelas');
+		$this->load->view('admin/layout/footer');
 	}
 }
