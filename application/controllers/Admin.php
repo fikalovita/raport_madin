@@ -58,21 +58,12 @@ class Admin extends CI_Controller
 		$this->session->set_flashdata('pesan', 'ditambahkan');
 		redirect('admin/data_guru', 'refresh');
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> dd3e1d48249c8559e4c8a8fdfd92e0415231f82e
-=======
-
->>>>>>> dd3e1d48249c8559e4c8a8fdfd92e0415231f82e
 	public function hapus_guru($id_guru)
 	{
 		$this->M_admin->hapus_guru($id_guru);
 		$this->session->set_flashdata('pesan', 'dihapus');
 		redirect('admin/data_guru', 'refresh');
-<<<<<<< HEAD
-<<<<<<< HEAD
 	}
 	public function detail_kelas()
 	{
@@ -85,9 +76,5 @@ class Admin extends CI_Controller
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/pindah_kelas');
 		$this->load->view('admin/layout/footer');
-=======
->>>>>>> dd3e1d48249c8559e4c8a8fdfd92e0415231f82e
-=======
->>>>>>> dd3e1d48249c8559e4c8a8fdfd92e0415231f82e
 	}
 }
