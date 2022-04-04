@@ -14,4 +14,10 @@ class Guru extends CI_Controller
         $this->load->view('guru/profil_guru');
         $this->load->view('guru/layout/footer');
     }
+    public function penilaian()
+    {
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/penilaian');
+        $this->load->view('guru/layout/footer');
+    }
 }
