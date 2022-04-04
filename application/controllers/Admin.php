@@ -33,7 +33,8 @@ class Admin extends CI_Controller
 	public function data_kelas()
 	{
 		$data = [
-			'guru' => $this->M_admin->get_guru()->result()
+			'guru' => $this->M_admin->get_guru()->result(),
+			'kelas' => $this->M_admin->get_kelas()->result()
 		];
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/kelas', $data);
@@ -68,6 +69,10 @@ class Admin extends CI_Controller
 		$this->session->set_flashdata('pesan', 'dihapus');
 		redirect('admin/data_guru', 'refresh');
 	}
+	public function ubah_guru()
+	{
+		
+	}
 	public function detail_kelas()
 	{
 		$this->load->view('admin/layout/header');
@@ -80,18 +85,18 @@ class Admin extends CI_Controller
 		$this->load->view('admin/pindah_kelas');
 		$this->load->view('admin/layout/footer');
 	}
-	 public function tambah_kelas()
-	 {
-		 $nama_kelas = $this->input->post('nama_kelas');
-		 $guru = $this->input->post('guru');
+	public function tambah_kelas()
+	{
+		$nama_kelas = $this->input->post('nama_kelas');
+		$guru = $this->input->post('guru');
 
-		 $data = [
-			 'nama_kelas' => $nama_kelas,
-			 'id_guru' => $guru
-		 ];
+		$data = [
+			'nama_kelas' => $nama_kelas,
+			'id_guru' => $guru
+		];
 
-		 $this->M_admin->tambah_kelas($data);
+		$this->M_admin->tambah_kelas($data);
 		$this->session->set_flashdata('pesan', 'ditambahkan');
-		redirect('admin/data_guru', 'refresh');
-	 }
+		redirect('admin/data_kelas', 'refresh');
+	}
 }

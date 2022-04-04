@@ -23,4 +23,11 @@ class M_admin extends CI_Model
     {
         return $this->db->insert('kelas', $data);
     }
+    public function get_kelas()
+    {
+        $this->db->select('*');
+        $this->db->from('kelas');
+        $this->db->join('guru', 'guru.id_guru = kelas.id_guru');
+        return $this->db->get();
+    }
 }

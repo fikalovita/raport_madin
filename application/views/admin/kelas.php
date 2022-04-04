@@ -8,7 +8,7 @@
                                     <h5 class="modal-title" id="exampleModalLabel">Form Tambah Kelas</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form action="#" method="post">
+                                <form action="<?= base_url('admin/tambah_kelas') ?>" method="post">
                                     <div class="modal-body">
                                         <div class="container-fluid">
                                         </div>
@@ -34,7 +34,8 @@
                             </div>
                         </div>
                     </div>
-                    <!-- end modal tambah siswa -->
+                    <input type="hidden" value="<?= $this->session->flashdata('pesan'); ?>" class="flash-data">
+                    <?php $this->session->set_flashdata('pesan', ''); ?>
                     <div class="card mb-4 border border-2">
                         <div class="card-header bg-success bg-opacity-25">
                             <i class="fas fa-table me-1"></i>
@@ -44,27 +45,32 @@
                             <table id="tabel-kelas" class="table table-striped table-bordered table-responsive-lg">
                                 <thead>
                                     <tr class="text-center">
+                                        <th>#</th>
                                         <th>Nama Kelas</th>
                                         <th>Guru</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Donna Snider</td>
-                                        <td>Customer Support</td>
-                                        <td class="text-center">
-                                            <div class="dropdown ">
-                                                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Aksi
-                                                </button>
-                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                    <li><a class="dropdown-item" href="#">Hapus</a></li>
-                                                    <li><a class="dropdown-item" href="#">Ubah</a></li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php $no = 1 ?>
+                                    <?php foreach ($kelas as $key => $value) : ?>
+                                        <tr>
+                                            <th class="text-center"><?= $no++ ?></th>
+                                            <td class="text-center"><?= $value->nama_kelas ?></td>
+                                            <td><?= $value->nama_guru ?></td>
+                                            <td class="text-center">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Aksi
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square fa-2xs"></i> Ubah</a></li>
+                                                        <li><a class="dropdown-item text-danger hapus" href="<?= base_url('admin/hapus_guru/' . $value->id_kelas) ?>"><i class="fa-solid fa-trash fa-2xs"></i> Hapus</a></li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
