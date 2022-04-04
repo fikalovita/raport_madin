@@ -16,8 +16,11 @@ class Admin extends CI_Controller
 
 	public function data_siswa()
 	{
+		$data = [
+			'kelas' => $this->M_admin->get_kelas()->result()
+		];
 		$this->load->view('admin/layout/header');
-		$this->load->view('admin/data_siswa');
+		$this->load->view('admin/data_siswa', $data);
 		$this->load->view('admin/layout/footer');
 	}
 	public function data_guru()
@@ -71,7 +74,6 @@ class Admin extends CI_Controller
 	}
 	public function ubah_guru()
 	{
-		
 	}
 	public function detail_kelas()
 	{
@@ -92,7 +94,8 @@ class Admin extends CI_Controller
 
 		$data = [
 			'nama_kelas' => $nama_kelas,
-			'id_guru' => $guru
+			'id_guru' => $guru,
+			'tanggal_dibuat' => date('Y-m-d')
 		];
 
 		$this->M_admin->tambah_kelas($data);
