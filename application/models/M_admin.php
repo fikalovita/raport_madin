@@ -18,4 +18,9 @@ class M_admin extends CI_Model
         $this->db->where('id_guru', $id_guru);
         $this->db->delete('guru');
     }
+
+    public function tambah_kelas($data)
+    {
+        return $this->db->insert('kelas', $data);
+    }
 }

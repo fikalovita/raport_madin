@@ -8,7 +8,7 @@
                                     <h5 class="modal-title" id="exampleModalLabel">Form Tambah Kelas</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form>
+                                <form action="#" method="post">
                                     <div class="modal-body">
                                         <div class="container-fluid">
                                         </div>
@@ -18,11 +18,11 @@
                                         </div>
                                         <div class="mb-2">
                                             <label for="Kelas" class="form-label">Guru</label>
-                                            <select class="form-select" aria-label="Default select example">
+                                            <select class="form-select" aria-label="Default select example" name="guru">
                                                 <option selected>--Pilih Guru--</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
+                                                <?php foreach ($guru as $key => $value) : ?>
+                                                    <option value="<?= $value->id_guru ?>"><?= $value->nama_guru ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>

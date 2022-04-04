@@ -3,7 +3,6 @@
 						<button class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah Guru</button>
 						<a href="#" class="btn btn-sm btn-warning mb-3" role="button">Tambah Banyak</a>
 					</div>
-					<!-- modal tambah guru -->
 					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -48,7 +47,6 @@
 							</div>
 						</div>
 					</div>
-					<!-- end modal tambah guru -->
 					<input type="hidden" value="<?= $this->session->flashdata('pesan'); ?>" class="flash-data">
 					<?php $this->session->set_flashdata('pesan', ''); ?>
 					<div class="card mb-4">
