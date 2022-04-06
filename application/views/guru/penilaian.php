@@ -1,34 +1,13 @@
     <div class="container px-4 py-4">
         <ul class="nav nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" href="#home" role="tab" aria-controls="home" aria-selected="true">Kemampuan Baca</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Makhroj</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Tajwid</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tartil" href="#tartil" role="tab" aria-controls="contact" aria-selected="false">Tartil</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#pencapaian" href="#pencapaian" role="tab" aria-controls="contact" aria-selected="false">Pencapaian</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#murojaah" href="#murojaah" role="tab" aria-controls="contact" aria-selected="false">Muroja'ah</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#rotib" href="#rotib" role="tab" aria-controls="contact" aria-selected="false">Do'a & Rotib</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#tahsin" href="#tahsin" role="tab" aria-controls="contact" aria-selected="false">Tahsin</a>
+                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#kemampuan" href="#kemampuan" role="tab" aria-controls="home" aria-selected="true">Kemampuan Baca</a>
             </li>
         </ul>
         <div class="card">
             <div class="card-body">
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="tab-pane fade show active" id="kemampuan" role="tabpanel" aria-labelledby="kemampuan">
                         <div class="row">
                             <div class="col-md-6">
                                 <h5 class="card-title">Kemampuan Baca</h5>
@@ -66,34 +45,9 @@
                                     <td></td>
                                     <td><textarea name="deskripsi" class="form-control col-5"></textarea></td>
                                 </tr>
-
                             </tbody>
-
-
                         </table>
-
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="tartil">
-
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="pencapaian">
-
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="murojaah">
-
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="rotib">
-
-                    </div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="tahsin">
-
-                    </div>
+                    </div>  
                 </div>
             </div>
         </div>

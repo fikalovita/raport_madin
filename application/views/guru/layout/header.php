@@ -56,7 +56,7 @@
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link" href="<?= base_url('admin/data_siswa') ?>">
+                        <a class="nav-link" href="<?= base_url('guru/profil_guru') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Profil
                         </a>

@@ -80,12 +80,55 @@
 														Aksi
 													</button>
 													<ul class="dropdown-menu">
-														<li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square fa-2xs"></i> Ubah</a></li>
+														<li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ubah-guru<?= $value->id_guru ?>"><i class="fa-solid fa-pen-to-square fa-2xs"></i> Ubah</a></li>
 														<li><a class="dropdown-item text-danger hapus" href="<?= base_url('admin/hapus_guru/' . $value->id_guru) ?>"><i class="fa-solid fa-trash fa-2xs"></i> Hapus</a></li>
 													</ul>
 												</div>
 											</td>
 										</tr>
+										<div class="modal fade" id="ubah-guru<?= $value->id_guru ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="ubah-guru<?= $value->id_guru ?>">Form Tambah Guru</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+													</div>
+													<form action="<?= base_url('admin/ubah_guru') ?>" method="POST" id="form-tambah-guru">
+														<div class="modal-body">
+															<input type="hidden" name="id_guru" value="<?= $value->id_guru ?>">
+															<div class="mb-2 ">
+																<label for="nuptk" class="form-label">NUPTK/PegID</label>
+																<input type="text" class="form-control form-control-sm" id="nuptk" name="nuptk" aria-describedby="nisnvalidation" value="<?= $value->nuptk ?>" required>
+															</div>
+															<div class="mb-2">
+																<label for="nama" class="form-label">Nama Guru</label>
+																<input type="text" class="form-control form-control-sm" id="nama" name="nama" value="<?= $value->nama_guru ?>" required>
+															</div>
+															<div class="mb-2">
+																<label for="tempat_lahir" class="form-label">Tempat Lahir</label>
+																<input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= $value->tempat_lahir ?>" required>
+															</div>
+															<div class="mb-2">
+																<label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+																<input type="date" class="form-control form-control-sm" name="tgl_lahir" value="<?= $value->tgl_lahir ?>" required>
+															</div>
+															<div class="mb-2">
+																<label for="jabatan" class="form-label">Jabatan</label>
+																<input type="text" class="form-control form-control-sm" name="jabatan" value="<?= $value->jabatan ?>" required>
+															</div>
+															<div class="mb-2">
+																<label for="password" class="form-label">Password</label>
+																<input type="password" class="form-control form-control-sm" id="password" name="password" value="<?= $value->password_guru ?>" required>
+															</div>
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Tutup</button>
+															<button type="submit" class="btn btn-success btn-sm">simpan</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
 									<?php endforeach; ?>
 								</tbody>
 							</table>
