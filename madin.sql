@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2022 at 09:47 AM
+-- Generation Time: Apr 08, 2022 at 07:30 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -43,7 +43,7 @@ CREATE TABLE `guru` (
 --
 
 INSERT INTO `guru` (`id_guru`, `nuptk`, `nama_guru`, `foto_guru`, `tempat_lahir`, `tgl_lahir`, `jabatan`, `password_guru`) VALUES
-(5, '1234567', 'MUHAMMAD ABDUL CHALIM SHODIQ', 'user.jpg', 'LUMAJANG', '2022-04-13', 'guru tetap', '1234567');
+(10, '12345678', 'FITRI WULANSARI', 'user.jpg', 'LUMAJANG', '2022-04-15', 'guru tetap', '123');
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,9 @@ CREATE TABLE `kelas` (
 CREATE TABLE `nilai` (
   `id_nilai` int(11) NOT NULL,
   `id_siswa` int(11) NOT NULL,
-  `isi_nilai` varchar(20) NOT NULL
+  `tanggal_diupdate` date NOT NULL,
+  `id_pelajaran` int(11) NOT NULL,
+  `nilai` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -78,8 +80,8 @@ CREATE TABLE `nilai` (
 
 CREATE TABLE `pelajaran` (
   `id_pelajaran` int(11) NOT NULL,
-  `id_nilai` int(11) NOT NULL,
-  `nama_pelajaran` varchar(128) NOT NULL
+  `nama_pelajaran` varchar(128) NOT NULL,
+  `id_guru` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -98,7 +100,8 @@ CREATE TABLE `siswa` (
   `tanggal_lahir` datetime NOT NULL,
   `nama_ibu` varchar(100) NOT NULL,
   `alamat` varchar(100) NOT NULL,
-  `foto_siswa` varchar(128) NOT NULL
+  `foto_siswa` varchar(128) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -124,14 +127,15 @@ ALTER TABLE `kelas`
 --
 ALTER TABLE `nilai`
   ADD PRIMARY KEY (`id_nilai`),
-  ADD KEY `id_siswa` (`id_siswa`);
+  ADD KEY `id_siswa` (`id_siswa`),
+  ADD KEY `id_pelajaran` (`id_pelajaran`);
 
 --
 -- Indexes for table `pelajaran`
 --
 ALTER TABLE `pelajaran`
   ADD PRIMARY KEY (`id_pelajaran`),
-  ADD KEY `id_nilai` (`id_nilai`);
+  ADD KEY `id_guru` (`id_guru`);
 
 --
 -- Indexes for table `siswa`
@@ -148,13 +152,13 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `nilai`
@@ -166,13 +170,29 @@ ALTER TABLE `nilai`
 -- AUTO_INCREMENT for table `pelajaran`
 --
 ALTER TABLE `pelajaran`
-  MODIFY `id_pelajaran` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pelajaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `pelajaran`
+--
+ALTER TABLE `pelajaran`
+  ADD CONSTRAINT `pelajaran_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id_guru`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `siswa`
+--
+ALTER TABLE `siswa`
+  ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
