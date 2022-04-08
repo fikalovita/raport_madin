@@ -12,6 +12,7 @@ class M_admin extends CI_Model
         $this->db->from('siswa');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
         $this->db->join('guru', 'guru.id_guru = kelas.id_guru');
+        $this->db->where('status', 1);
         return $this->db->get();
     }
     public function get_guru()
@@ -102,5 +103,11 @@ class M_admin extends CI_Model
     {
         $this->db->where('id_siswa', $id_siswa);
         $this->db->update('siswa', $data);
+    }
+
+    public function ubah_kelas($data, $id_kelas)
+    {
+        $this->db->where('id_kelas', $id_kelas);
+        $this->db->update('kelas', $data);
     }
 }
