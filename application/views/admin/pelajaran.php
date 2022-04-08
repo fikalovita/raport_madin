@@ -95,7 +95,7 @@
 											<div class="modal-dialog">
 												<div class="modal-content">
 													<div class="modal-header">
-														<h5 class="modal-title" id="ubah-pelajaran<?= $value->id_pelajaran ?>">Form Edit pelajaran</h5>
+														<h5 class="modal-title" id="ubah-pelajaran<?= $value->id_pelajaran ?>">Form Edit Pelajaran</h5>
 														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 													</div>
 													<form action="<?= base_url('admin/ubah_pelajaran') ?>" method="POST" id="form-tambah-guru">

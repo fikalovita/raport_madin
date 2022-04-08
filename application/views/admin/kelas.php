@@ -64,7 +64,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li><a class="dropdown-item" href="#"><i class="fa-solid fa-pen-to-square fa-2xs"></i> Ubah</a></li>
-                                                        <li><a class="dropdown-item text-danger hapus" href="<?= base_url('admin/hapus_guru/' . $value->id_kelas) ?>"><i class="fa-solid fa-trash fa-2xs"></i> Hapus</a></li>
+                                                        <li><a class="dropdown-item text-danger hapus" href="<?= base_url('admin/hapus_kelas/' . $value->id_kelas) ?>"><i class="fa-solid fa-trash fa-2xs"></i> Hapus</a></li>
                                                     </ul>
                                                 </div>
                                             </td>

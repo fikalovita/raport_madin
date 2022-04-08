@@ -17,7 +17,7 @@ class Admin extends CI_Controller
 	public function data_siswa()
 	{
 		$data = [
-			'kelas' => $this->M_admin->get_kelas()->result()
+			'kelas' => $this->M_admin->get_kelas()
 		];
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/data_siswa', $data);
@@ -107,9 +107,21 @@ class Admin extends CI_Controller
 	}
 	public function pindah_kelas()
 	{
+		$data = [
+			'kelas' => $this->M_admin->get_all_siswa()->result()
+		];
 		$this->load->view('admin/layout/header');
-		$this->load->view('admin/pindah_kelas');
+		$this->load->view('admin/pindah_kelas', $data);
 		$this->load->view('admin/layout/footer');
+	}
+	public function aksi_pindah_kelas()
+	{
+		$kelas_baru = $this->input->post('nama_kelas');
+		$id_kelas = $this->input->post('id_siswa');
+		$data = [
+			'nama_kelas' => $kelas_baru
+		];
+		$this->M_admin->pindah_kelas($data, $id_kelas);
 	}
 	public function tambah_kelas()
 	{
@@ -186,7 +198,7 @@ class Admin extends CI_Controller
 	{
 		$id_guru = $this->input->get('guru');
 		$this->M_admin->hapus_pelajaran($id_pelajaran);
-		$this->session->set_flashdata('pesan', 'ditambahkan');
+		$this->session->set_flashdata('pesan', 'dihapus');
 		redirect('admin/pelajaran/?guru=' . $id_guru, 'refresh');
 	}
 
@@ -204,5 +216,11 @@ class Admin extends CI_Controller
 		$this->M_admin->ubah_pelajaran($data, $id_pelajaran);
 		$this->session->set_flashdata('pesan', 'ditambahkan');
 		redirect('admin/pelajaran/?guru=' . $id_guru, 'refresh');
+	}
+	public function hapus_kelas($id_kelas)
+	{
+		$this->M_admin->hapus_kelas($id_kelas);
+		$this->session->set_flashdata('pesan', 'dihapus');
+		redirect('admin/data_kelas', 'refresh');
 	}
 }
