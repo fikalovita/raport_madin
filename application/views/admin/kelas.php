@@ -19,7 +19,7 @@
                                             <label for="Kelas" class="form-label">Guru</label>
                                             <select class="form-select" aria-label="Default select example" name="guru">
                                                 <option selected>--Pilih Guru--</option>
-                                                <?php foreach ($guru as $key => $value) : ?>
+                                                <?php foreach ($guru->result() as $key => $value) : ?>
                                                     <option value="<?= $value->id_guru ?>"><?= $value->nama_guru ?></option>
                                                 <?php endforeach; ?>
                                             </select>
@@ -97,7 +97,7 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Tutup</button>
-                                                            <button type="submit" class="btn btn-success btn-sm">simpan</button>
+                                                            <button type="submit" class="btn btn-success btn-sm"> simpan</button>
                                                         </div>
                                                     </form>
                                                 </div>

@@ -37,12 +37,12 @@ class M_admin extends CI_Model
         $this->db->join('guru', 'guru.id_guru = kelas.id_guru');
         return $this->db->get();
     }
-
     public function tambah_siswa($data)
     {
-        return $this->db->insert('siswa', $data);
+        $this->db->insert('siswa', $data);
+        $id = $this->db->insert_id();
+        $this->db->query("INSERT INTO nilai (id_siswa) VALUES ($id)");
     }
-
     public function get_siswa($id_kelas)
     {
         $this->db->select('*');
@@ -50,7 +50,6 @@ class M_admin extends CI_Model
         $this->db->from('siswa');
         return $this->db->get();
     }
-
     public function tampil_pelajaran($id_guru)
     {
         $this->db->select('*');
@@ -62,7 +61,7 @@ class M_admin extends CI_Model
     }
     public function tambah_pelajaran($data)
     {
-        return $this->db->insert('pelajaran', $data);
+        $this->db->insert('pelajaran', $data);
     }
 
     public function hapus_pelajaran($id_pelajaran)
@@ -80,7 +79,6 @@ class M_admin extends CI_Model
             return false;
         }
     }
-
     public function ubah_pelajaran($data, $id_pelajaran)
     {
         $this->db->where('id_pelajaran', $id_pelajaran);
@@ -104,10 +102,8 @@ class M_admin extends CI_Model
         $this->db->where('id_siswa', $id_siswa);
         $this->db->update('siswa', $data);
     }
-
-    public function ubah_kelas($data, $id_kelas)
+    public function nilai_pelajaran($nisn_siswa)
     {
-        $this->db->where('id_kelas', $id_kelas);
-        $this->db->update('kelas', $data);
+        return $this->db->insert('nilai', $nisn_siswa);
     }
 }

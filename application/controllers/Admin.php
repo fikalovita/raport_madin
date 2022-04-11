@@ -180,6 +180,10 @@ class Admin extends CI_Controller
 			'nama_ibu' => $nama_ibu
 		];
 
+		$nisn_siswa = [
+			'nisn' => $nisn
+		];
+
 		$this->M_admin->tambah_siswa($data);
 		$this->session->set_flashdata('pesan', 'ditambahkan');
 		redirect('admin/detail_kelas/' . $id_kelas, 'refresh');
@@ -209,7 +213,7 @@ class Admin extends CI_Controller
 			'nama_pelajaran' => $pelajaran,
 		];
 
-		$this->M_admin->tambah_pelajaran($data);
+		$this->M_admin->tambah_pelajaran($data, $guru);
 		$this->session->set_flashdata('pesan', 'ditambahkan');
 		redirect('admin/pelajaran/?guru=' . $guru, 'refresh');
 	}

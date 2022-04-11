@@ -7,6 +7,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="tab-content" id="myTabContent">
+                    <!-- <form action="#" method="post"> -->
                     <div class="tab-pane fade show active" id="kemampuan" role="tabpanel" aria-labelledby="kemampuan">
                         <div class="row">
                             <div class="col-md-6">
@@ -27,27 +28,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <input type="number" class="form-control form-control-sm mt-3">
-                                    </td>
-                                    <td></td>
-                                    <td><textarea name="deskripsi" class="form-control col-5"></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td>
-                                        <input type="number" class="form-control form-control-sm mt-3">
-                                    </td>
-                                    <td></td>
-                                    <td><textarea name="deskripsi" class="form-control col-5"></textarea></td>
-                                </tr>
+                                <?php $no = 1 ?>
+                                <?php foreach ($nilai as $key => $value) : ?>
+                                    <tr>
+                                        <th class="text-center"><?= $no++ ?></th>
+                                        <td><?= $value->nama_siswa ?></td>
+                                        <td>
+                                            <input type="number" class="form-control form-control-sm mt-3">
+                                        </td>
+                                        <td><input type="text" disabled class="form-control p-3"></td>
+                                        <td><textarea name="deskripsi" class="form-control col-5"></textarea></td>
+                                    </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
-                    </div>  
+                    </div>
+                    <!-- </form> -->
                 </div>
             </div>
         </div>
