@@ -7,6 +7,9 @@ class Admin extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('M_admin');
+		// if (!$this->session->userdata('admin')) {
+		// 	redirect('login/admin');
+		// }
 	}
 
 	public function index()
@@ -65,7 +68,6 @@ class Admin extends CI_Controller
 		$this->session->set_flashdata('pesan', 'ditambahkan');
 		redirect('admin/data_guru', 'refresh');
 	}
-
 	public function hapus_guru($id_guru)
 	{
 		$this->M_admin->hapus_guru($id_guru);

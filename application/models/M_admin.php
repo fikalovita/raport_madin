@@ -40,8 +40,8 @@ class M_admin extends CI_Model
     public function tambah_siswa($data)
     {
         $this->db->insert('siswa', $data);
-        $id = $this->db->insert_id();
-        $this->db->query("INSERT INTO nilai (id_siswa) VALUES ($id)");
+        // $id = $this->db->insert_id();
+        // $this->db->query("INSERT INTO nilai (id_siswa) VALUES ($id)");
     }
     public function get_siswa($id_kelas)
     {
