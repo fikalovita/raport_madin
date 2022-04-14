@@ -5,14 +5,14 @@
                  Form Edit Profile
              </div>
              <div class="card-body">
-                 <form action="#" method="POST">
+                 <form action="<?= base_url('guru/ubah_profile') ?>" method="POST" enctype="multipart/form-data">
                      <input type="hidden" name="id_guru" value="<?= $this->session->userdata('id_guru') ?>">
+                     <input type="hidden" name="foto_lama" value="<?= $this->session->userdata('foto_guru') ?>">
                      <div class="row">
                          <div class="col-md-6">
                              <div class="mb-3">
                                  <label for="" class="form-label">Nama</label>
-                                 <input type="text" class="form-control form-control-sm" id="exampleInputtext1" aria-describedby="textHelp" name="
-                                 nama" value="<?= $this->session->userdata('nama_guru') ?>">
+                                 <input type="text" class="form-control form-control-sm" id="exampleInputtext1" aria-describedby="textHelp" name="nama" value="<?= $this->session->userdata('nama_guru') ?>">
                              </div>
                          </div>
                          <div class="col-md-6">
@@ -38,7 +38,7 @@
                          <label for="formFileSm" class="form-label">Foto</label>
                          <input class="form-control form-control-sm" id="formFileSm" type="file" name="foto_guru">
                      </div>
-                     <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
+                     <button type="submit" class="btn btn-sm btn-primary float-end">Simpan</button>
                  </form>
              </div>
          </div>

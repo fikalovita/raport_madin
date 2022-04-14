@@ -96,6 +96,8 @@ class Guru extends CI_Controller
         $tempat_lahir = $this->input->post('tempat_lahir');
         $tgl_lahir = $this->input->post('tgl_lahir');
         $foto_guru = $_FILES['foto_guru']['name'];
+        $id_guru = $this->input->post('id_guru');
+        $foto_lama = $this->input->post('foto_lama');
 
         if ($foto_guru) {
 
@@ -104,10 +106,14 @@ class Guru extends CI_Controller
             $this->load->library('upload', $config);
 
             if ($this->upload->do_upload('foto_guru')) {
+                $data = $this->M_admin->get_guru_byId($id_guru);
+                $foto = $data->foto_guru;
+                if ($foto != 'user.jpg') {
+                    $guru = './assets/uploads/' . $data->foto_guru;
+                    unlink($guru);
+                }
+
                 $new_foto = $this->upload->data('file_name');
-                $data = $this->M_admin->get_artikel_byId($id_artikel);
-                $foto = './assets/uploads/' . $data->foto;
-                unlink($foto);
             }
         } else {
 
@@ -116,7 +122,14 @@ class Guru extends CI_Controller
 
         $data = [
             'nama_guru' => $nama_guru,
-            'jaba'
+            'foto_guru' => $new_foto,
+            'tempat_lahir' => $tempat_lahir,
+            'tgl_lahir' => $tgl_lahir,
+            'jabatan' => $jabatan
+
         ];
+
+        $this->M_guru->update_guru($id_guru, $data);
+        $this->session->set_userdata($data);
     }
 }

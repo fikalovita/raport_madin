@@ -11,13 +11,13 @@
                         </div>
                         <div class="card-body text-center">
                             <div class="foto mb-4">
-                                <img width="30%" height="30%" class="rounded-circle border" src="<?= base_url('assets/assets/img/' . $this->session->userdata('foto_guru')) ?>" alt="">
+                                <img width="30%" height="30%" class="rounded-circle border" src="<?= base_url('assets/uploads/' . $this->session->userdata('foto_guru')) ?>" alt="">
                             </div>
                             <div class="biodata mb-4">
                                 <h5><?= $this->session->userdata('nama_guru') ?></h5>
                                 <small><?= $this->session->userdata('nuptk') ?></small>
                             </div>
-                            <a href="#" class="btn btn-sm btn-warning">Edit Profile</a>
+                            <a href="<?= base_url('guru/edit_profile') ?>" class="btn btn-sm btn-warning">Edit Profile</a>
                             <a href="#" class="btn btn-sm btn-success">View Profile</a>
                         </div>
                     </div>

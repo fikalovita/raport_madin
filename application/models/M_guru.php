@@ -41,4 +41,10 @@ class M_guru extends CI_Model
     {
         $this->db->update_batch('nilai', $data, 'nilai.id_siswa');
     }
+
+    public function update_guru($id_guru, $data)
+    {
+        $this->db->where('id_guru', $id_guru);
+        $this->db->update('guru', $data);
+    }
 }
