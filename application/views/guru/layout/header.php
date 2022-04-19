@@ -39,7 +39,7 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="<?= base_url('login/guru_logout') ?>">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -55,13 +55,17 @@
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link" href="<#">
+                        <a class="nav-link" href="#">
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Siswa
                         </a>
-                        <a class="nav-link" href="<#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        <a class="nav-link" href="#">
+                            <div class="sb-nav-link-icon"><i class="fas fa-arrow-down-short-wide"></i></div>
                             Tingkat
+                        </a>
+                        <a class="nav-link" href="<?= base_url('guru/presensi') ?>">
+                            <div class="sb-nav-link-icon"><i class="fas fa-diagram-project"></i></div>
+                            Absensi
                         </a>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>

@@ -86,7 +86,7 @@
                                   <div class="modal-dialog">
                                       <div class="modal-content">
                                           <div class="modal-header">
-                                              <h5 class="modal-title" id="ubah-nilai<?= $value->id_nilai ?>">Ubah Nilai</h5>
+                                              <h5 class="modal-title" id="ubah-nilai<?= $value->id_nilai ?>"><?= $value->nama_siswa ?></h5>
                                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                           </div>
                                           <form action="<?= base_url('guru/ubah_nilai') ?>" method="post">

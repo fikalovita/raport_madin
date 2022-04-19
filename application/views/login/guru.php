@@ -12,6 +12,8 @@
                                 <h3 class="text-center font-weight-light">Login</h3>
                             </div>
                             <div class="card-body">
+                                <?= $this->session->flashdata('msg'); ?>
+                                <?php $this->session->set_flashdata('msg', ''); ?>
                                 <form action="<?= base_url('login/aksi_login_guru') ?>" method="POST">
                                     <div class="form-floating mb-3">
                                         <input class="form-control" id="username" type="text" placeholder="NUPTK/PegID" name="username" />

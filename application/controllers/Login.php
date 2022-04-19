@@ -48,10 +48,13 @@ class Login extends CI_Controller
             $this->session->set_userdata($data);
             redirect('guru');
         } else {
-            $this->session->set_flashdata('pesan', '<div cl ass="alert alert-danger my-2" role="alert">
-				<strong>username dan password salah</strong>
-				</div>');
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Username dan Password salah Silahkan hubungi Admin Jika Lupa Password</div>');
             redirect('login');
         }
+    }
+    public function guru_logout()
+    {
+        $this->session->sess_destroy();
+        redirect('guru', 'refresh');
     }
 }

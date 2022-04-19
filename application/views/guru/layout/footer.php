@@ -16,6 +16,7 @@
          $('#tabel_guru').DataTable();
          $('#tabel-kelas').DataTable();
          $('#tabel_nilai').DataTable();
+         $('#tabel-presensi').DataTable();
      });
  </script>
  <script>

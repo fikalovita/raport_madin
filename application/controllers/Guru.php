@@ -189,4 +189,57 @@ class Guru extends CI_Controller
         $this->load->view('guru/presensi', $data);
         $this->load->view('guru/layout/footer');
     }
+
+    public function input_presensi()
+    {
+        $id_siswa = $this->input->post('id_siswa');
+        $id_kelas = $this->input->post('id_kelas');
+        $izin = $this->input->post('izin');
+        $sakit = $this->input->post('sakit');
+        $alpha = $this->input->post('alpha');
+
+        $data = [];
+
+        foreach ($id_siswa as $key => $value) {
+            $data[] = [
+                'id_siswa' => $id_siswa[$key],
+                'id_kelas' => $id_kelas[$key],
+                'izin' => $izin[$key],
+                'sakit' => $sakit[$key],
+                'alpha' => $alpha[$key]
+            ];
+        }
+
+        $this->db->insert_batch('presensi', $data);
+        $this->session->set_flashdata('pesan', 'disimpan');
+        redirect('guru/presensi', 'refresh');
+    }
+    public function view_presensi()
+    {
+        $data = [
+
+            'presensi' => $this->M_guru->get_presensi()->result()
+
+        ];
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/view_presensi', $data);
+        $this->load->view('guru/layout/footer');
+    }
+    public function ubah_presensi()
+    {
+        $id_presensi = $this->input->post('id_presensi');
+        $izin = $this->input->post('izin');
+        $sakit = $this->input->post('sakit');
+        $alpha = $this->input->post('alpha');
+
+        $data = [
+            'izin' => $izin,
+            'sakit' => $sakit,
+            'alpha' => $alpha
+        ];
+
+        $this->M_guru->update_presensi($id_presensi, $data);
+        $this->session->set_flashdata('pesan', 'diubah');
+        redirect('guru/view_presensi', 'refresh');
+    }
 }

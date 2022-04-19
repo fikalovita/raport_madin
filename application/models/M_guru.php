@@ -79,4 +79,19 @@ class M_guru extends CI_Model
 
         return $this->db->get();
     }
+    public function get_presensi()
+    {
+        $this->db->select('*');
+        $this->db->from('presensi');
+        $this->db->join('siswa', 'siswa.id_siswa = presensi.id_siswa');
+        $this->db->where('presensi.id_kelas', $this->session->userdata('id_kelas'));
+
+        return $this->db->get();
+    }
+    public function update_presensi($id_presensi, $data)
+    {
+        $this->db->where('id_presensi', $id_presensi);
+        $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
+        $this->db->update('presensi', $data);
+    }
 }
