@@ -39,7 +39,7 @@ class Guru extends CI_Controller
         $this->load->view('guru/list_pelajaran', $data);
         $this->load->view('guru/layout/footer');
     }
-    public function penilaian()
+    public function penilaian($id_pelajaran)
     {
         $data = [
             'pelajaran' => $this->M_guru->get_mapel()->result(),
@@ -47,6 +47,7 @@ class Guru extends CI_Controller
             'siswa' => $this->M_guru->get_siswa()->result(),
 
         ];
+        $id_pelajaran = ['id_pelajaran' => $id_pelajaran];
         $this->load->view('guru/layout/header');
         $this->load->view('guru/penilaian', $data);
         $this->load->view('guru/layout/footer');
@@ -71,22 +72,27 @@ class Guru extends CI_Controller
     {
         $id_guru = $this->input->post('id_guru');
         $id_pelajaran = $this->input->post('id_pelajaran');
+        $id_param = $this->input->post('id_param');
         $id_siswa = $this->input->post('id_siswa');
         $nilai = $this->input->post('nilai');
         $deskripsi = $this->input->post('deskripsi');
         $data = [];
+
+
         foreach ($id_siswa as $key => $value) {
             $data[] = [
                 'id_siswa' => $id_siswa[$key],
                 'id_pelajaran' => $id_pelajaran[$key],
                 'id_guru' => $id_guru[$key],
                 'nilai' => $nilai[$key],
-                'deskripsi' => $deskripsi[$key]
+                'deskripsi' => $deskripsi[$key],
+                'tanggal_diupdate' => date('Y-m-d'),
             ];
         }
-        var_dump($data);
 
         $this->db->insert_batch('nilai', $data);
+        $this->session->set_flashdata('pesan', 'disimpan');
+        redirect('guru/penilaian/' . $id_param, 'refresh');
     }
 
     public function ubah_profile()
@@ -131,5 +137,56 @@ class Guru extends CI_Controller
 
         $this->M_guru->update_guru($id_guru, $data);
         $this->session->set_userdata($data);
+    }
+    public function update_nilai()
+    {
+        $id_pelajaran = $this->uri->segment(3);
+        $data = [
+            'nilai' => $this->M_guru->get_nilai_pelajaran($id_pelajaran)->result()
+        ];
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/view_nilai', $data);
+        $this->load->view('guru/layout/footer');
+    }
+    public function ubah_nilai()
+    {
+        $id_nilai = $this->input->post('id_nilai');
+        $nilai = $this->input->post('nilai');
+        $deskripsi = $this->input->post('deskripsi');
+        $param = $this->input->post('param');
+
+        $data = [
+            'nilai' => $nilai,
+            'deskripsi' => $deskripsi
+
+        ];
+
+        $this->M_guru->update_nilai($id_nilai, $data);
+        $this->session->set_flashdata('pesan', 'diubah');
+        redirect('guru/update_nilai/' . $param, 'refresh');
+    }
+
+    public function kunci_nilai()
+    {
+        $id_pelajaran = $this->input->post('id_pelajaran');
+
+        $data = [
+            'kunci' => 1
+        ];
+
+        $this->M_guru->kunci_nilai($id_pelajaran, $data);
+        $this->session->set_flashdata('pesan', 'dikunci');
+        redirect('guru/update_nilai/' . $id_pelajaran, 'refresh');
+    }
+
+    public function presensi()
+    {
+        $data = [
+            'presensi' => $this->M_guru->presensi(),
+
+        ];
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/presensi', $data);
+        $this->load->view('guru/layout/footer');
     }
 }

@@ -21,7 +21,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success bg-gradient bg-opacity-80">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">TARBIYATUL AULAD</a>
+        <a class="navbar-brand ps-3" href="index.html">E-RAPORT</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
@@ -56,12 +56,12 @@
                         </a>
                         <div class="sb-sidenav-menu-heading">Menu</div>
                         <a class="nav-link" href="<#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Siswa
                         </a>
                         <a class="nav-link" href="<#">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Kelas
+                            Tingkat
                         </a>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>

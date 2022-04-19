@@ -1,19 +1,29 @@
     <div class="container px-4 py-4">
+        <input type="hidden" value="<?= $this->session->flashdata('pesan'); ?>" class="flash-data">
+        <?php $this->session->set_flashdata('pesan', ''); ?>
         <form action="<?= base_url('guru/input_nilai') ?>" method="POST">
             <div class="card">
-                <div class="card-body">
+                <div class="card-header">
                     <div class="row">
                         <div class="col-md-6 ">
                             <?php foreach ($pelajaran as $mapel) : ?>
-                                <h5><?= $mapel->nama_pelajaran ?></h5>
+                                <b><?= $mapel->nama_pelajaran ?></b>
                             <?php endforeach; ?>
                         </div>
+                        <div class="col-md-6 text-end">
+                            <a href="<?= base_url('guru/update_nilai/' . $this->uri->segment(3)) ?>" class="btn btn-sm btn-primary"><i class="fa-solid fa-sm fa-eye"></i> Lihat Nilai</a>
+                            <button type="submit" class="btn btn-sm btn-success"><i class="fa-solid fa-sm fa-floppy-disk"></i> Simpan</button>
+                        </div>
                     </div>
-                    <table class="table  table-bordered table-responsive-lg mt-3 table align-middle">
+                </div>
+                <div class="card-body">
+                    <table class="table  table-bordered table-responsive-lg mt-3 table align-middle table-hover">
                         <thead>
                             <tr class="text-center">
                                 <th class="col ">No</th>
                                 <th class=" col-5">Nama Siswa</th>
+                                <th class=" col-">Nilai</th>
+                                <th class=" col-5">Deskripsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -22,19 +32,16 @@
                                 <tr>
                                     <th class="text-center"><?= $no++ ?></th>
                                     <td><?= $siswa->nama_siswa ?></td>
-                                    <td><input type="number" name="nilai[]" id="nilai" class="form-control"></td>
+                                    <td><input type="number" min="70" max="100" required name="nilai[]" id="nilai" class="form-control"></td>
                                     <td><textarea name="deskripsi[]" id="deskripsi" cols="30" class="form-control"></textarea></td>
                                     <input type="hidden" name="id_siswa[]" id="id_siswa" value="<?= $siswa->id_siswa ?>" class="form-control">
                                     <input type="hidden" name="id_pelajaran[]" id="id_pelajaran" value="<?= $this->uri->segment(3) ?>" class="form-control">
                                     <input type="hidden" name="id_guru[]" id="id_guru" value="<?= $this->session->userdata('id_guru') ?>" class="form-control">
                                 </tr>
+                                <input type="hidden" name="id_param" id="id_pelajaran" value="<?= $this->uri->segment(3) ?>" class="form-control">
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                    <div class="col-md-12 ">
-                        <button type="submit" class="btn btn-sm btn-success float-end">Simpan</button>
-                    </div>
                 </div>
-            </div>
         </form>
     </div>
