@@ -55,6 +55,17 @@ class M_guru extends CI_Model
         $this->db->join('siswa', 'siswa.id_siswa = nilai.id_siswa');
         $this->db->where('id_pelajaran', $id_pelajaran);
         $this->db->where('id_guru', $this->session->userdata('id_guru'));
+        $this->db->where('kunci', 0);
+        return $this->db->get();
+    }
+    public function get_lihat_nilai($id_pelajaran)
+    {
+        $this->db->select('*');
+        $this->db->from('nilai');
+        $this->db->join('siswa', 'siswa.id_siswa = nilai.id_siswa');
+        $this->db->where('id_pelajaran', $id_pelajaran);
+        $this->db->where('id_guru', $this->session->userdata('id_guru'));
+        $this->db->where('kunci', 1);
         return $this->db->get();
     }
 
@@ -93,5 +104,16 @@ class M_guru extends CI_Model
         $this->db->where('id_presensi', $id_presensi);
         $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
         $this->db->update('presensi', $data);
+    }
+
+    public function get_nilai_kunci($id_pelajaran)
+    {
+        $this->db->select('*');
+        $this->db->from('nilai');
+        $this->db->where('kunci', 0);
+        $this->db->where('id_guru', $this->session->userdata('id_guru'));
+        $this->db->where('id_pelajaran', $id_pelajaran);
+
+        return $this->db->get();
     }
 }

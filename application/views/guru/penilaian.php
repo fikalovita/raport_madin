@@ -11,7 +11,11 @@
                             <?php endforeach; ?>
                         </div>
                         <div class="col-md-6 text-end">
-                            <a href="<?= base_url('guru/update_nilai/' . $this->uri->segment(3)) ?>" class="btn btn-sm btn-primary"><i class="fa-solid fa-sm fa-eye"></i> Lihat Nilai</a>
+                            <?php if ($nilai_kunci->num_rows() > 0) {
+                                echo '  <a href=" ' . base_url('guru/update_nilai/' . $this->uri->segment(3)) . '" class="btn btn-sm btn-primary"> <i class="fa-solid fa-sm fa-pen-to-square"></i> Edit Nilai</a>';
+                            } else {
+                                echo '  <a href=" ' . base_url('guru/lihat_nilai/' . $this->uri->segment(3)) . '" class="btn btn-sm btn-primary"> <i class="fa-solid fa-sm fa-eye"></i> Lihat Nilai</a>';
+                            }  ?>
                             <button type="submit" class="btn btn-sm btn-success"><i class="fa-solid fa-sm fa-floppy-disk"></i> Simpan</button>
                         </div>
                     </div>

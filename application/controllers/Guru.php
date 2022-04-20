@@ -46,6 +46,7 @@ class Guru extends CI_Controller
             'nilai' => $this->M_guru->get_nilai()->result(),
             'siswa' => $this->M_guru->get_siswa()->result(),
 
+            'nilai_kunci' => $this->M_guru->get_nilai_kunci($id_pelajaran)
         ];
         $id_pelajaran = ['id_pelajaran' => $id_pelajaran];
         $this->load->view('guru/layout/header');
@@ -148,6 +149,16 @@ class Guru extends CI_Controller
         $this->load->view('guru/view_nilai', $data);
         $this->load->view('guru/layout/footer');
     }
+    public function lihat_nilai()
+    {
+        $id_pelajaran = $this->uri->segment(3);
+        $data = [
+            'nilai' => $this->M_guru->get_lihat_nilai($id_pelajaran)->result()
+        ];
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/lihat_nilai', $data);
+        $this->load->view('guru/layout/footer');
+    }
     public function ubah_nilai()
     {
         $id_nilai = $this->input->post('id_nilai');
@@ -176,7 +187,7 @@ class Guru extends CI_Controller
 
         $this->M_guru->kunci_nilai($id_pelajaran, $data);
         $this->session->set_flashdata('pesan', 'dikunci');
-        redirect('guru/update_nilai/' . $id_pelajaran, 'refresh');
+        redirect('guru/penilaian/' . $id_pelajaran, 'refresh');
     }
 
     public function presensi()

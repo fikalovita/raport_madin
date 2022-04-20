@@ -16,7 +16,7 @@
                                   <div class="modal-body">
                                       <div class="alert alert-danger" role="alert">
                                           <h4 class="alert-heading">Perhatian!</h4>
-                                          <p>Mengunci nilai maka anda tidak akan bisa mengubah nilai </p>
+                                          <p>Mengunci nilai maka tombol <b>Edit Nilai</b> akan hilang </p>
                                       </div>
                                   </div>
                                   <div class="modal-footer">
