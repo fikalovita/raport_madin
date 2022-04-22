@@ -40,7 +40,6 @@
                               <th class="col-">Nilai</th>
                               <th class="col-">Predikat</th>
                               <th class="col-3">Deskripsi</th>
-
                               <th class="col-2">Aksi</th>
 
                           </tr>

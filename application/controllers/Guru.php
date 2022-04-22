@@ -253,4 +253,19 @@ class Guru extends CI_Controller
         $this->session->set_flashdata('pesan', 'diubah');
         redirect('guru/view_presensi', 'refresh');
     }
+    public function data_siswa()
+    {
+        $data = [
+            'siswa' => $this->M_guru->get_siswa()
+        ];
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/siswa', $data);
+        $this->load->view('guru/layout/footer');
+    }
+
+    public function kunci_absensi()
+    {
+        
+    }
+  
 }

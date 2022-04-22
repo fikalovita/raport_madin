@@ -19,6 +19,7 @@ class M_guru extends CI_Model
     {
         $this->db->select('*');
         $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
+        $this->db->where('aktif', 0);
         $this->db->from('siswa');
         return $this->db->get();
     }

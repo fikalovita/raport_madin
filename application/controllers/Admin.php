@@ -171,26 +171,105 @@ class Admin extends CI_Controller
 		$tgl_lahir = $this->input->post('tgl_lahir');
 		$nama_ibu = $this->input->post('nama_ibu');
 		$id_kelas = $this->input->post('id_kelas');
+		$foto_siswa = $_FILES['foto_siswa']['name'];
+		if ($foto_siswa = '') {
+		} else {
+			$config['upload_path'] = './assets/uploads';
+			$config['allowed_types'] = 'jpg|jpeg|png|gif';
+			$config['detect_mime']     = TRUE;
+			$this->load->library('upload', $config);
+			if (!$this->upload->do_upload('foto_siswa')) {
+
+				$foto_siswa = 'user.jpg';
+			} else {
+				$foto_siswa = $this->upload->data('file_name');
+			}
+		}
 		$data = [
 			'id_kelas' => $id_kelas,
 			'nisn' => $nisn,
 			'nism' => $nism,
 			'nama_siswa' => $nama_siswa,
 			'alamat' => $alamat,
+			'foto_siswa' => $foto_siswa,
 			'tempat_lahir' => $tempat_lahir,
 			'tanggal_lahir' => $tgl_lahir,
 			'nama_ibu' => $nama_ibu
 		];
 
-		$nisn_siswa = [
-			'nisn' => $nisn
-		];
 
 		$this->M_admin->tambah_siswa($data);
 		$this->session->set_flashdata('pesan', 'ditambahkan');
 		redirect('admin/detail_kelas/' . $id_kelas, 'refresh');
 	}
 
+	public function ubah_siswa()
+	{
+		$nisn = $this->input->post('nisn');
+		$nism = $this->input->post('nism');
+		$nama_siswa = $this->input->post('nama_siswa');
+		$alamat = $this->input->post('alamat');
+		$tempat_lahir = $this->input->post('tempat_lahir');
+		$tgl_lahir = $this->input->post('tgl_lahir');
+		$nama_ibu = $this->input->post('nama_ibu');
+		$id_kelas = $this->input->post('id_kelas');
+		$foto_siswa = $_FILES['foto_siswa']['name'];
+		$foto_lama = $this->input->post('foto_lama');
+		$id_siswa = $this->input->post('id_siswa');
+
+		if ($foto_siswa) {
+
+			$config['upload_path'] = './assets/uploads';
+			$config['allowed_types'] = 'jpg|jpeg|png|gif|webp';
+			$this->load->library('upload', $config);
+
+			if ($this->upload->do_upload('foto_siswa')) {
+				$data = $this->M_admin->get_siswa_byId($id_siswa);
+				$foto = $data->foto_siswa;
+				if ($foto != 'user.png') {
+					$foto = './assets/uploads/' . $data->foto_siswa;
+					unlink($foto);
+				}
+
+				$new_foto = $this->upload->data('file_name');
+			}
+		} else {
+
+			$new_foto = $foto_lama;
+		};
+
+		$data = [
+			'id_kelas' => $id_kelas,
+			'nisn' => $nisn,
+			'nism' => $nism,
+			'nama_siswa' => $nama_siswa,
+			'alamat' => $alamat,
+			'foto_siswa' => $new_foto,
+			'tempat_lahir' => $tempat_lahir,
+			'tanggal_lahir' => $tgl_lahir,
+			'nama_ibu' => $nama_ibu
+		];
+		$this->M_admin->ubah_siswa($data, $id_siswa);
+		$this->session->set_flashdata('pesan', 'diubah');
+		redirect('admin/detail_kelas/' . $id_kelas, 'refresh');
+	}
+	public function hapus_siswa($id_siswa)
+	{
+		$data = $this->M_admin->get_siswa_byId($id_siswa);
+		$foto = $data->foto_siswa;
+		$id_siswa  = array('id_siswa' => $id_siswa);
+		if ($foto != 'user.jpg') {
+			$foto = './assets/uploads/' . $data->foto_siswa;
+			unlink($foto);
+		}
+
+		$id_kelas = $data->id_kelas;
+
+		$this->M_admin->hapus_siswa($id_siswa);
+
+		$this->session->set_flashdata('pesan', 'dihapus');
+		redirect('admin/detail_kelas/' . $id_kelas, 'refresh');
+	}
 	public function pelajaran()
 	{
 
@@ -249,4 +328,6 @@ class Admin extends CI_Controller
 		$this->session->set_flashdata('pesan', 'dihapus');
 		redirect('admin/data_kelas', 'refresh');
 	}
+	
+	
 }

@@ -49,10 +49,14 @@
 					</div>
 					<input type="hidden" value="<?= $this->session->flashdata('pesan'); ?>" class="flash-data">
 					<?php $this->session->set_flashdata('pesan', ''); ?>
-					<div class="card mb-4">
+					<div class="card mb-4 p-0">
 						<div class="card-header bg-success bg-opacity-25">
-							<i class="fas fa-table me-1"></i>
-							<b>Data Guru</b>
+							<div class="row">
+								<div class="col-md-6">
+									<i class="fas fa-table me-1"></i>
+									<b>Data Guru</b>
+								</div>
+							</div>
 						</div>
 						<div class="card-body">
 							<table id="tabel_guru" class="table table-striped table-responsive-lg table-bordered">
@@ -69,7 +73,7 @@
 								<tbody>
 									<?php foreach ($guru as $key => $value) : ?>
 										<tr>
-											<td class="text-center"><img width="40px" height="40px" src="<?= base_url('assets/assets/img/' . $value->foto_guru) ?>" alt="" class="rounded-circle"></td>
+											<td class="text-center"><img width="40px" height="40px" src="<?= base_url('assets/uploads/' . $value->foto_guru) ?>" alt="" class="rounded-circle"></td>
 											<td><?= $value->nuptk ?></td>
 											<td><?= $value->nama_guru ?></td>
 											<td><?= $value->jabatan ?></td>

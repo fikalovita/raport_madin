@@ -12,7 +12,6 @@ class M_admin extends CI_Model
         $this->db->from('siswa');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
         $this->db->join('guru', 'guru.id_guru = kelas.id_guru');
-        $this->db->where('status', 1);
         return $this->db->get();
     }
     public function get_guru()
@@ -105,5 +104,25 @@ class M_admin extends CI_Model
     public function nilai_pelajaran($nisn_siswa)
     {
         return $this->db->insert('nilai', $nisn_siswa);
+    }
+    public function get_siswa_byId($id_siswa)
+    {
+        $result = $this->db->where('id_siswa', $id_siswa)->get('siswa');
+
+        if ($result->num_rows() > 0) {
+            return $result->row();
+        } else {
+            return false;
+        }
+    }
+    public function ubah_siswa($data, $id_siswa)
+    {
+        $this->db->where('id_siswa', $id_siswa);
+        $this->db->update('siswa', $data);
+    }
+    public function hapus_siswa($id_siswa)
+    {
+        $this->db->where($id_siswa);
+        $this->db->delete('siswa');
     }
 }
