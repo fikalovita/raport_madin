@@ -8,7 +8,26 @@
                      <b>List Presensi</b>
                  </div>
                  <div class="col-md-6 text-end">
-                     <a href="#" class="btn btn-sm btn-danger"><i class="fa-solid fa-sm fa-lock"></i> Kunci</a>
+                     <a href="#" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#kunci2"><i class="fa-solid fa-sm fa-lock"></i> Kunci</a>
+                 </div>
+                 <div class="modal fade" id="kunci2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog">
+                         <div class="modal-content">
+                             <div class="modal-body">
+                                 <div class="alert alert-danger" role="alert">
+                                     <h4 class="alert-heading">Perhatian!</h4>
+                                     <p>Mengunci nilai maka tombol <b>Edit Absensi</b> akan hilang </p>
+                                 </div>
+                             </div>
+                             <div class="modal-footer">
+                                 <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                 <form action="<?= base_url('guru/kunci_absensi') ?>" method="POST">
+                                     <button type="submit" class="btn btn-sm btn-danger">Kunci</button>
+                                     <input type="hidden" value="<?= $this->uri->segment(3) ?>" name="id_pelajaran">
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
                  </div>
              </div>
          </div>
@@ -43,7 +62,6 @@
                                  </button></td>';
                                 }
                                 ?>
-
                          </tr>
                          <div class="modal fade" id="edit-presensi<?= $value->id_presensi ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                              <div class="modal-dialog">

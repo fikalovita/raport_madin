@@ -88,7 +88,6 @@ class M_guru extends CI_Model
         $this->db->select('*');
         $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
         $this->db->from('siswa');
-
         return $this->db->get();
     }
     public function get_presensi()
@@ -115,6 +114,24 @@ class M_guru extends CI_Model
         $this->db->where('id_guru', $this->session->userdata('id_guru'));
         $this->db->where('id_pelajaran', $id_pelajaran);
 
+        return $this->db->get();
+    }
+    public function kunci_absensi($data)
+    {
+        $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
+        $this->db->update('presensi', $data);
+    }
+    public function tingkatan($data, $id_siswa)
+    {
+        $this->db->where('id_siswa', $id_siswa);
+        $this->db->update('siswa', $data);
+    }
+    public function get_kunci_presensi()
+    {
+        $this->db->select('*');
+        $this->db->from('presensi');
+        $this->db->where('kunci', 0);
+        $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
         return $this->db->get();
     }
 }

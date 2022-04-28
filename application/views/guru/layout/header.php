@@ -50,16 +50,16 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Guru</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="<?= base_url('guru/index') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Dashboard
                         </a>
                         <div class="sb-sidenav-menu-heading">Menu</div>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="<?= base_url('guru/data_siswa') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Siswa
                         </a>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="<?= base_url('guru/tingkatan_siswa') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-arrow-down-short-wide"></i></div>
                             Tingkat
                         </a>
@@ -75,8 +75,7 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
                                 <a class="nav-link" href="<?= base_url('guru/list_pelajaran') ?>">Input Nilai</a>
-                                <a class="nav-link" href="<?= base_url('#') ?>">Rekap Nilai</a>
-                                <a class="nav-link" href="<?= base_url('#') ?>">Cetak </a>
+                                <a class="nav-link" href="<?= base_url('guru/cetak_nilai') ?>">Cetak </a>
                             </nav>
                         </div>
                     </div>

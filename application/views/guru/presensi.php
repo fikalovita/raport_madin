@@ -9,7 +9,11 @@
                          Input Presensi
                      </div>
                      <div class="col-md-6 text-end">
-                         <a href="<?= base_url('guru/view_presensi') ?>" class="btn btn-sm btn-primary"> <i class="fa-solid fa-sm fa-eye"></i> Lihat Presensi</a>
+                         <?php if ($kunci_presensi->num_rows() > 0) {
+                                echo ' <a href="' . base_url('guru/view_presensi') . '" class="btn btn-sm btn-primary"> <i class="fa-solid fa-sm fa-pen-to-square"></i> Edit Presensi</a>';
+                            } else {
+                                echo '<a href="' . base_url('guru/lihat_presensi') . '" class="btn btn-sm btn-primary"> <i class="fa-solid fa-sm fa-eye"></i> Lihat Presensi</a>';
+                            } ?>
                          <button class="btn btn-sm btn-success"><i class="fa-solid fa-sm fa-floppy-disk"></i> Simpan</button>
                      </div>
                  </div>

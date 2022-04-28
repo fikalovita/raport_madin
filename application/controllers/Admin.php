@@ -328,6 +328,6 @@ class Admin extends CI_Controller
 		$this->session->set_flashdata('pesan', 'dihapus');
 		redirect('admin/data_kelas', 'refresh');
 	}
-	
+
 	
 }

@@ -8,7 +8,7 @@
                           List Nilai
                       </div>
                       <div class="col-6 text-end">
-                          <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#kunci"><i class="fa-solid fa-sm fa-lock"></i> Kunci</button>
+                          <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#kunci"><i class=" fa-solid fa-sm fa-lock"></i> Kunci</button>
                       </div>
                       <div class="modal fade" id="kunci" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog">

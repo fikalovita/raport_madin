@@ -194,6 +194,7 @@ class Guru extends CI_Controller
     {
         $data = [
             'presensi' => $this->M_guru->presensi(),
+            'kunci_presensi' => $this->M_guru->get_kunci_presensi()
 
         ];
         $this->load->view('guru/layout/header');
@@ -262,10 +263,49 @@ class Guru extends CI_Controller
         $this->load->view('guru/siswa', $data);
         $this->load->view('guru/layout/footer');
     }
+    public function tingkatan_siswa()
+    {
+        $data = ['siswa' => $this->M_guru->get_siswa()];
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/tingkat', $data);
+        $this->load->view('guru/layout/footer');
+    }
+    public function cetak()
+    {
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/cetak_nilai');
+        $this->load->view('guru/layout/footer');
+    }
 
     public function kunci_absensi()
     {
-        
+        $data = [
+            'kunci' => 1
+        ];
+
+        $this->M_guru->kunci_absensi($data);
+        $this->session->set_flashdata('pesan', 'dikunci');
+        redirect('guru/presensi/' . 'refresh');
     }
-  
+    public function aksi_tingkatan()
+    {
+        $id_siswa = $this->input->post('id_siswa');
+        $tingkat = $this->input->post('tingkat');
+        $data = [
+            'status' => $tingkat
+        ];
+
+        $this->M_guru->tingkatan($data, $id_siswa);
+        $this->session->set_flashdata('pesan', 'disimpan');
+        redirect('guru/view_presensi', 'refresh');
+    }
+    public function lihat_presensi()
+    {
+        $data = [
+            'presensi' => $this->M_guru->get_presensi()->result()
+        ];
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/lihat_presensi', $data);
+        $this->load->view('guru/layout/footer');
+    }
 }
