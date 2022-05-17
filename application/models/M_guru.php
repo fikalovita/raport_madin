@@ -134,4 +134,17 @@ class M_guru extends CI_Model
         $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
         return $this->db->get();
     }
+    public function cetak()
+    {
+        $this->db->select('*');
+        $this->db->from('nilai');
+        $this->db->join('siswa', 'siswa.id_siswa = nilai.id_siswa');
+        $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
+        return $this->db->get();
+    }
+
+    public function FunctionName()
+    {
+        # code...
+    }
 }

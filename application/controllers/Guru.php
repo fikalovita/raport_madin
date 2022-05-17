@@ -56,8 +56,7 @@ class Guru extends CI_Controller
     public function cetak_nilai()
     {
         $data = [
-            'nilai' => $this->M_guru->get_nilai()->result(),
-
+            'nilai_cetak' => $this->M_guru->cetak()->result()
         ];
         $this->load->view('guru/layout/header');
         $this->load->view('guru/cetak_nilai', $data);
@@ -307,5 +306,10 @@ class Guru extends CI_Controller
         $this->load->view('guru/layout/header');
         $this->load->view('guru/lihat_presensi', $data);
         $this->load->view('guru/layout/footer');
+    }
+    public function view_cetak()
+    {
+
+        $this->load->view('guru/cetak');
     }
 }
