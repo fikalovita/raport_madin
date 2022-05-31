@@ -137,14 +137,19 @@ class M_guru extends CI_Model
     public function cetak()
     {
         $this->db->select('*');
-        $this->db->from('nilai');
-        $this->db->join('siswa', 'siswa.id_siswa = nilai.id_siswa');
         $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
+        $this->db->where('aktif', 0);
+        $this->db->from('siswa');
         return $this->db->get();
     }
 
-    public function FunctionName()
+    public function cetak_raport($id_siswa)
     {
-        # code...
+        $this->db->select('*');
+        $this->db->from('nilai');
+        $this->db->join('siswa', 'siswa.id_siswa = nilai.id_siswa');
+        $this->db->join('pelajaran', 'pelajaran.id_pelajaran = nilai.id_pelajaran ');
+        $this->db->where('nilai.id_siswa', $id_siswa);
+        return $this->db->get();
     }
 }

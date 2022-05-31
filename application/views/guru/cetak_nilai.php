@@ -22,7 +22,7 @@
               <td><?= $value->nisn ?></td>
               <td class="text-center"><img width="40px" height="40px" class="rounded-circle bordered" src="<?= base_url('assets/uploads/' . $value->foto_siswa) ?>" alt=""></td>
               <td><?= $value->nama_siswa ?></td>
-              <td class="text-center"><button type="button" class="btn btn-primary btn-sm"><i class="fa-solid fa-sm fa-print"></i> Cetak</button></td>
+              <td class="text-center"><a href="<?= base_url('guru/view_cetak/' . $value->id_siswa) ?>" class="btn btn-primary btn-sm"><i class="fa-solid fa-sm fa-print"></i> Cetak</a></td>
             </tr>
           <?php endforeach; ?>
         </tbody>

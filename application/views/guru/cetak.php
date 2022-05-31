@@ -36,16 +36,30 @@
                     <th>Angka</th>
                     <th>Predikat</th>
                     <th class="col">Deskripsi</th>
-                </tr>   
+                </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th>1</th>
-                    <td class="text-start">aajjhk</td>
-                    <td>sanj</td>
-                    <td>asjh</td>
-                    <td>asjh</td>
-                </tr>
+                <?php $no = 1 ?>
+                <?php foreach ($nilai as $key => $value) : ?>
+                    <tr>
+                        <th class="text-center"><?= $no++ ?></th>
+                        <td class="text-start"><?= $value->nama_pelajaran ?></td>
+                        <td class="text-center"><?= $value->nilai ?></td>
+                        <td class="text-center">
+                            <?php if ($value->nilai >= 90) {
+                                echo 'A';
+                            } elseif ($value->nilai >= 80 && $value->nilai <= 89) {
+                                echo 'B';
+                            } else {
+                                echo 'C';
+                            }
+                            ?>
+                        </td>
+                        <td class="text-center"><?= $value->deskripsi ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
                 <tr>
                     <th colspan="2" class="text-center table-secondary">Jumlah Nilai</th>
                     <th colspan=" 3" class="text-center"><b>80</b></th>
@@ -54,7 +68,7 @@
                     <th colspan="2" class="text-center table-secondary">Rata-rata</th>
                     <th colspan=" 3" class="text-center"><b>80</b></th>
                 </tr>
-            </tbody>
+            </tfoot>
         </table>
     </div>
 </body>
