@@ -18,7 +18,7 @@ class Guru extends CI_Controller
     }
     public function index()
     {
-        $this->load->view('guru/layout/header');
+        $this->load->view('guru/layout/');
         $this->load->view('guru/dashboard');
         $this->load->view('guru/layout/footer');
     }
