@@ -16,14 +16,16 @@
             <h5>RAPORT TILAWATI DAN TAHFIDZ</h5>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <p>Nama :</p>
-                <p>Jilid :</p>
-            </div>
-            <div class="col-md-6">
-                <p>Nama :</p>
-                <p>Jilid :</p>
-            </div>
+            <?php foreach ($siswa as $key => $value) : ?>
+                <div class="col-md-6">
+                    <p>Nama : <?= $value->nama_siswa ?> </p>
+                    <p>Jilid :</p>
+                </div>
+                <div class="col-md-6">
+                    <p>Nama :</p>
+                    <p>Jilid :</p>
+                </div>
+            <?php endforeach; ?>
         </div>
         <table class="table table-bordered table-sm ">
             <thead class="table-secondary">

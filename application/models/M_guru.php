@@ -152,4 +152,11 @@ class M_guru extends CI_Model
         $this->db->where('nilai.id_siswa', $id_siswa);
         return $this->db->get();
     }
+    public function get_siswa_id($id_siswa)
+    {
+        $this->db->select('*');
+        $this->db->where('id_siswa', $id_siswa);
+        $this->db->from('siswa');
+        return $this->db->get();
+    }
 }

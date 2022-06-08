@@ -273,12 +273,11 @@ class Admin extends CI_Controller
 	public function pelajaran()
 	{
 
-		$id_guru = $this->input->get('guru');
 		$data =  [
-			'tampil' => $this->M_admin->tampil_pelajaran($id_guru)->result(),
-			'guru' => $this->M_admin->get_guru()->result()
-		];
+			'tampil' => $this->M_admin->tampil_pelajaran()->result(),
+			'kelas' => $this->M_admin->get_all_kelas()->result()
 
+		];
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/pelajaran', $data);
 		$this->load->view('admin/layout/footer');
@@ -287,16 +286,17 @@ class Admin extends CI_Controller
 	public function tambah_pelajaran()
 	{
 		$pelajaran = $this->input->post('pelajaran');
-		$guru = $this->input->post('guru');
+		$kelas = $this->input->post('kelas');
 
 		$data = [
-			'id_guru' => $guru,
 			'nama_pelajaran' => $pelajaran,
+			'id_kelas' => $kelas
 		];
 
-		$this->M_admin->tambah_pelajaran($data, $guru);
+
+		$this->M_admin->tambah_pelajaran($data, $kelas);
 		$this->session->set_flashdata('pesan', 'ditambahkan');
-		redirect('admin/pelajaran/?guru=' . $guru, 'refresh');
+		redirect('admin/pelajaran/', 'refresh');
 	}
 
 	public function hapus_pelajaran($id_pelajaran)
@@ -329,5 +329,26 @@ class Admin extends CI_Controller
 		redirect('admin/data_kelas', 'refresh');
 	}
 
-	
+	public function mengajar()
+	{
+		$kelas = $this->input->post('kelas');
+		$data = [
+			'kelas' => $this->M_admin->get_all_kelas(),
+			'guru' => $this->M_admin->get_guru(),
+			'mengajar' => $this->M_admin->get_mengajar($kelas)
+		];
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/mengajar', $data);
+		$this->load->view('admin/layout/footer');
+	}
+
+	public function ubah_mengajar()
+	{
+		$guru = $this->input->post('guru');
+		$id_mengajar = $this->input->post('id_mengajar');
+		$data = ['id_guru' => $guru];
+		$this->M_admin->ubah_mengajar($data, $id_mengajar);
+		$this->session->set_flashdata('pesan', 'disimpan');
+		redirect("admin/mengajar", 'refresh');
+	}
 }

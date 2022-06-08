@@ -41,7 +41,6 @@ class Login extends CI_Controller
                 'jabatan' => $user['jabatan'],
                 'password' => $user['password'],
                 'id_kelas' => $user['id_kelas'],
-                'id_pelajaran' => $user['id_pelajaran'],
                 'guru' => TRUE
             ];
 
@@ -60,6 +59,5 @@ class Login extends CI_Controller
 
     public function login_admin()
     {
-        
     }
 }

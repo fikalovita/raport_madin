@@ -311,8 +311,10 @@ class Guru extends CI_Controller
     {
         $id_siswa = $this->uri->segment(3);
         $data = [
-            'nilai' => $this->M_guru->cetak_raport($id_siswa)->result()
+            'nilai' => $this->M_guru->cetak_raport($id_siswa)->result(),
+            'siswa' => $this->M_guru->get_siswa_id($id_siswa)->result()
         ];
+
         $this->load->view('guru/cetak', $data);
     }
 }
