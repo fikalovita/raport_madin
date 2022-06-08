@@ -275,9 +275,9 @@ class Admin extends CI_Controller
 	}
 	public function pelajaran()
 	{
-
+		$kelas = $this->input->get('kelas');
 		$data =  [
-			'tampil' => $this->M_admin->tampil_pelajaran()->result(),
+			'tampil' => $this->M_admin->tampil_pelajaran($kelas)->result(),
 			'kelas' => $this->M_admin->get_all_kelas()->result()
 
 		];
@@ -295,11 +295,9 @@ class Admin extends CI_Controller
 			'nama_pelajaran' => $pelajaran,
 			'id_kelas' => $kelas
 		];
-
-
 		$this->M_admin->tambah_pelajaran($data, $kelas);
 		$this->session->set_flashdata('pesan', 'ditambahkan');
-		redirect('admin/pelajaran/', 'refresh');
+		redirect('admin/pelajaran?kelas=' . $kelas, 'refresh');
 	}
 
 	public function hapus_pelajaran($id_pelajaran)
@@ -334,7 +332,7 @@ class Admin extends CI_Controller
 
 	public function mengajar()
 	{
-		$kelas = $this->input->post('kelas');
+		$kelas = $this->input->get('kelas');
 		$data = [
 			'kelas' => $this->M_admin->get_all_kelas(),
 			'guru' => $this->M_admin->get_guru(),
@@ -347,6 +345,34 @@ class Admin extends CI_Controller
 
 	public function ubah_mengajar()
 	{
-		
+		$guru = $this->input->post('guru');
+		$id_pelajaran = $this->input->post('id_pelajaran');
+		$id_kelas = $this->input->post('id_kelas');
+		$data = [];
+		foreach ($id_pelajaran as $key => $value) {
+			$data[] = [
+				'id_pelajaran' => $id_pelajaran[$key],
+				'id_guru' => $guru[$key]
+			];
+		}
+
+		$this->db->update_batch('mengajar', $data, 'id_pelajaran');
+		$this->session->set_flashdata('pesan', 'disimpan');
+		redirect('admin/mengajar?kelas=' . $id_kelas . '', 'refresh');
+	}
+
+	public function hapus_ajar($id_mengajar)
+	{
+		$id_mengajar = $this->uri->segment(3);
+		$id_kelas = $this->input->get('id_kelas');
+		// var_dump($id_kelas);
+		// die();
+		$data = [
+			'id_guru' => ""
+		];
+
+		$this->M_admin->hapus_ajar($data, $id_mengajar);
+		$this->session->set_flashdata('pesan', 'dihapus');
+		redirect('admin/mengajar?kelas=' . $id_kelas . '', 'refresh');
 	}
 }

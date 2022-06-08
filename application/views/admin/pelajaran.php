@@ -1,9 +1,27 @@
 				<div class="container-fluid px-4 py-4">
 					<div class="text-start">
 						<div class="row">
-							<div class="col-md-8">
+							<div class="col-md-2">
 								<button class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#tambah-pelajaran">Tambah Pelajaran</button>
 							</div>
+							<div class="col-md-10 mb-2">
+								<form action="<?= base_url('admin/pelajaran') ?>">
+									<div class="row float-end">
+										<div class="col-sm-8 p-1">
+											<select class="form-select" aria-label="Default select example " name="kelas">
+												<option selected>--Piih Kelas--</option>
+												<?php foreach ($kelas as $key => $value) : ?>
+													<option value="<?= $value->id_kelas ?>"><?= $value->nama_kelas ?></option>
+												<?php endforeach; ?>
+											</select>
+										</div>
+										<div class="col-md-2 p-1">
+											<button class="btn btn-primary"><i class="fa-solid fa-filter fa-sm"></i></button>
+										</div>
+									</div>
+								</form>
+							</div>
+
 						</div>
 					</div>
 					<div class="modal fade" id="tambah-pelajaran" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -52,6 +70,7 @@
 										<tr class="text-center">
 											<th>#</th>
 											<th>Pelajaran</th>
+											<th>Kelas</th>
 											<th>Aksi</th>
 										</tr>
 									</thead>
@@ -61,7 +80,8 @@
 											<tr>
 												<th class="text-center col-1"><?= $no++ ?></th>
 												<td class="col-4"><?= $value->nama_pelajaran ?></td>
-												<td class="col-4"><a src="#" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> Edit Pelajaran</a></td>
+												<td class="col-4 text-center"><?= $value->nama_kelas ?></td>
+												<td class="col-4 text-center"><a src="#" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> Edit Pelajaran</a></td>
 											</tr>
 											<div class="modal fade" id="ubah-pelajaran<?= $value->id_pelajaran ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 												<div class="modal-dialog">
@@ -94,5 +114,5 @@
 								</table>
 							</div>
 						</div>
-					</form>z
+					</form>
 				</div>

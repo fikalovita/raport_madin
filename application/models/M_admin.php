@@ -49,10 +49,12 @@ class M_admin extends CI_Model
         $this->db->from('siswa');
         return $this->db->get();
     }
-    public function tampil_pelajaran()
+    public function tampil_pelajaran($kelas)
     {
         $this->db->select('*');
         $this->db->from('pelajaran');
+        $this->db->join('kelas', 'kelas.id_kelas = pelajaran.id_kelas');
+        $this->db->where('pelajaran.id_kelas', $kelas);
         return $this->db->get();
     }
     public function tambah_pelajaran($data, $kelas)
@@ -140,6 +142,18 @@ class M_admin extends CI_Model
         return $this->db->get();
     }
     public function ubah_mengajar($data, $id_mengajar)
+    {
+        $this->db->where('id_mengajar', $id_mengajar);
+        $this->db->update('mengajar', $data);
+    }
+    public function get_mengajar_all()
+    {
+        $this->db->select('*');
+        $this->db->from('mengajar');
+        return $this->db->get();
+    }
+
+    public function hapus_ajar($data, $id_mengajar)
     {
         $this->db->where('id_mengajar', $id_mengajar);
         $this->db->update('mengajar', $data);

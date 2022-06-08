@@ -2,7 +2,7 @@
                     <input type="hidden" value="<?= $this->session->flashdata('pesan'); ?>" class="flash-data">
                     <?php $this->session->set_flashdata('pesan', ''); ?>
                     <div class="col-md-8 mb-3">
-                        <form action="<?= base_url('admin/mengajar') ?>" method="POST">
+                        <form action="<?= base_url('admin/mengajar/') ?>" method="get">
                             <div class="row">
                                 <div class="col-md-4 p-1">
                                     <select class="form-select" aria-label="Default select example" name="kelas">
@@ -18,13 +18,14 @@
                             </div>
                         </form>
                     </div>
-                    <div class="card mb-4 border border-2">
-                        <div class="card-header bg-success bg-opacity-25">
-                            <i class="fas fa-table me-1"></i>
-                            <b>Data Mengajar</b>
-                        </div>
-                        <div class="card-body">
-                            <form action="<?= base_url('admin/ubah_mengajar') ?>" method="post">
+                    <form action="<?= base_url('admin/ubah_mengajar') ?>" method="post">
+                        <div class="card mb-4 border border-2">
+                            <div class="card-header bg-success bg-opacity-25">
+                                <i class="fas fa-table me-1"></i>
+                                <b>Data Mengajar</b>
+                                <button class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-floppy-disk fa-sm"></i> Simpan</button>
+                            </div>
+                            <div class="card-body">
                                 <table class="table table-striped table-bordered table-responsive-lg">
                                     <thead>
                                         <tr class="text-center">
@@ -40,27 +41,37 @@
                                             <tr>
                                                 <th class="text-center"><?= $no++ ?></th>
                                                 <td><?= $ajar->nama_pelajaran ?></td>
-                                                <td><select class="form-select" aria-label="Default select example" name="guru">
+                                                <td>
+                                                    <select class="form-select" aria-label="Default select example" name="guru[]">
                                                         <option value="">--Pilih Guru--</option>
-                                                        <?php foreach ($guru->result() as $key => $value) : ?>
-                                                            <option value="1"><?= $value->nama_guru ?></option>
-                                                        <?php endforeach; ?>
+                                                        <?php foreach ($guru->result() as $key => $value) {
+                                                            if ($ajar->id_guru == $value->id_guru) {
+                                                                echo '<option value="' . $value->id_guru . '"selected>' . $value->nama_guru . '</option>';
+                                                            } else {
+                                                                echo '<option value="' . $value->id_guru . '">' . $value->nama_guru . '</option>';
+                                                            }
+                                                        }
+                                                        ?>
+
                                                     </select>
                                                 </td>
-                                                <input type="hidden" name="id_mengajar" value="<?= $ajar->id_mengajar ?>">
-                                                <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i> Hapus Ajar</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                                <div>
-                                    <button class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-floppy-disk fa-sm"></i> Simpan</button>
-                                </div>
+                                                <input type="hidden" name="id_mengajar[]" value="<?= $ajar->id_mengajar ?>">
+                                                <input type="hidden" name="id_pelajaran[]" value="<?= $ajar->id_pelajaran ?>">
+                                                <input type="hidden" name="id_kelas" value="<?= $ajar->id_kelas ?>">
+                    </form>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <form action="<?= base_url('admin/hapus_ajar/' . $ajar->id_mengajar) ?>" method="get">
+                                <input type="hidden" name="id_kelas" value="<?= $ajar->id_kelas ?>">
+                                <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash-can"></i> Hapus Ajar</button>
                             </form>
                         </div>
-                    </div>
+                    </td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+                </table>
+
+                </div>
+                </div>
                 </div>
