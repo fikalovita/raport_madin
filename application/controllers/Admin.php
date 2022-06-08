@@ -14,7 +14,10 @@ class Admin extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('admin/template');
+
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/dashboard');
+		$this->load->view('admin/layout/footer');
 	}
 
 	public function data_siswa()
