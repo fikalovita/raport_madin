@@ -56,6 +56,11 @@ class Login extends CI_Controller
         $this->session->sess_destroy();
         redirect('guru', 'refresh');
     }
+    public function admin_logout()
+    {
+        $this->session->sess_destroy();
+        redirect('guru', 'refresh');
+    }
 
     public function login_admin()
     {
