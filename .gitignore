@@ -32,4 +32,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 application/views/welcome_message.php
 application/views/welcome_message.php
 application/config/database.php
-
+application/config/config.php
