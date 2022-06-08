@@ -61,7 +61,7 @@
 											<tr>
 												<th class="text-center col-1"><?= $no++ ?></th>
 												<td class="col-4"><?= $value->nama_pelajaran ?></td>
-												<td class="col-4"><button class="btn btn-warning btn-sm">Edit</button></td>
+												<td class="col-4"><button class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> Edit Pelajaran</button></td>
 											</tr>
 											<div class="modal fade" id="ubah-pelajaran<?= $value->id_pelajaran ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 												<div class="modal-dialog">
