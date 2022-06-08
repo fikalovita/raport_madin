@@ -347,11 +347,6 @@ class Admin extends CI_Controller
 
 	public function ubah_mengajar()
 	{
-		$guru = $this->input->post('guru');
-		$id_mengajar = $this->input->post('id_mengajar');
-		$data = ['id_guru' => $guru];
-		$this->M_admin->ubah_mengajar($data, $id_mengajar);
-		$this->session->set_flashdata('pesan', 'disimpan');
-		redirect("admin/mengajar", 'refresh');
+		
 	}
 }
