@@ -81,34 +81,33 @@
 												<th class="text-center col-1"><?= $no++ ?></th>
 												<td class="col-4"><?= $value->nama_pelajaran ?></td>
 												<td class="col-4 text-center"><?= $value->nama_kelas ?></td>
-												<td class="col-4 text-center"><a src="#" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i> Edit Pelajaran</a></td>
-											</tr>
-											<div class="modal fade" id="ubah-pelajaran<?= $value->id_pelajaran ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<h5 class="modal-title" id="ubah-pelajaran<?= $value->id_pelajaran ?>">Form Edit Pelajaran</h5>
-															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-														</div>
-														<form action="<?= base_url('admin/ubah_pelajaran') ?>" method="POST" id="form-tambah-guru">
-															<div class="modal-body">
-																<div class="container-fluid">
-																</div>
-																<div class="mb-2 ">
-																	<input type="hidden" name="id_guru" value="<?= $value->id_guru ?>">
-																	<input type="hidden" name="id_pelajaran" value="<?= $value->id_pelajaran ?>">
+												<td class="col-4 text-center">
+													<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-pelajaran<?= $value->id_pelajaran ?>">
+														Launch demo modal
+													</button>
+												</td>
+												<div class="modal fade" id="edit-pelajaran<?= $value->id_pelajaran ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="edit-pelajaran<?= $value->id_pelajaran ?>">Modal title</h5>
+																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+															</div>
+															<form action="<?= base_url('admin/edit_pelajaran') ?>">
+																<div class="modal-body">
 																	<label for="pelajaran" class="form-label">Nama Pelajaran</label>
-																	<input type="text" class="form-control form-control-sm" id="pelajaran" name="pelajaran" aria-describedby="nisnvalidation" value="<?= $value->nama_pelajaran ?>" required>
+																	<input type="text" class="form-control form-control-sm" id="pelajaran" name="pelajaran" aria-describedby="nisnvalidation" placeholder="nama pelajaran" value="<?= $value->nama_pelajaran ?>" required>
+																	<input type="hidden" name="id_pelajaran" value="<?= $value->id_pelajaran ?>">
 																</div>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Tutup</button>
-																<button type="submit" class="btn btn-success btn-sm">simpan</button>
-															</div>
-														</form>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+																	<button type="submit" class="btn btn-primary">Save changes</button>
+																</div>
+															</form>
+														</div>
 													</div>
 												</div>
-											</div>
+											</tr>
 										<?php endforeach; ?>
 									</tbody>
 								</table>

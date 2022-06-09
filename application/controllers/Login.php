@@ -17,7 +17,7 @@ class Login extends CI_Controller
 
     public function admin()
     {
-        $this->load->view('login/layout//header');
+        $this->load->view('login/layout/header');
         $this->load->view('login/admin');
         $this->load->view('login/layout/footer');
     }
@@ -64,5 +64,25 @@ class Login extends CI_Controller
 
     public function login_admin()
     {
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+
+        $user = $this->M_login->login_admin($username, $password)->row_array();
+
+        if ($user) {
+
+            $data = [
+                'nama_admin' => $user['nama_admin'],
+                'username' => $user['username'],
+                'password' => $user['password'],
+                'admin' => TRUE
+            ];
+
+            $this->session->set_userdata($data);
+            redirect('admin');
+        } else {
+            $this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Username dan Password salah Silahkan hubungi Admin Jika Lupa Password</div>');
+            redirect('login/admin');
+        }
     }
 }

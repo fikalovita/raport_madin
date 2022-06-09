@@ -7,9 +7,9 @@ class Admin extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('M_admin');
-		// if (!$this->session->userdata('admin')) {
-		// 	redirect('login/admin');
-		// }
+		if (!$this->session->userdata('admin')) {
+			redirect('login/admin');
+		}
 	}
 
 	public function index()
@@ -308,9 +308,9 @@ class Admin extends CI_Controller
 		redirect('admin/pelajaran/?guru=' . $id_guru, 'refresh');
 	}
 
-	public function ubah_pelajaran()
+	public function edit_pelajaran()
 	{
-		$id_guru = $this->input->post('id_guru');
+		$id_kelas = $this->input->post('id_kelas');
 		$id_pelajaran = $this->input->post('id_pelajaran');
 		$pelajaran = $this->input->post('pelajaran');
 
@@ -320,8 +320,9 @@ class Admin extends CI_Controller
 		];
 
 		$this->M_admin->ubah_pelajaran($data, $id_pelajaran);
-		$this->session->set_flashdata('pesan', 'ditambahkan');
-		redirect('admin/pelajaran/?guru=' . $id_guru, 'refresh');
+		die();
+		$this->session->set_flashdata('pesan', 'disimpan');
+		redirect('admin/pelajaran?kelas=' . $id_kelas, 'refresh');
 	}
 	public function hapus_kelas($id_kelas)
 	{
@@ -374,5 +375,11 @@ class Admin extends CI_Controller
 		$this->M_admin->hapus_ajar($data, $id_mengajar);
 		$this->session->set_flashdata('pesan', 'dihapus');
 		redirect('admin/mengajar?kelas=' . $id_kelas . '', 'refresh');
+	}
+	public function nilai()
+	{
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/nilai');
+		$this->load->view('admin/layout/footer');
 	}
 }

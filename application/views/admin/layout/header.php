@@ -61,18 +61,27 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Data Siswa
                         </a>
-                        <a <?= ($this->uri->segment(2) == 'data_guru' ? 'class="nav-link active"' : '') ?> class="nav-link" href=" <?= base_url('admin/data_guru') ?> ">
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-person-chalkboard"></i></div>
                             Guru
-                        </a>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-people-roof"></i></div>
-                            Kelas
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
+                                <a <?= ($this->uri->segment(2) == 'data_guru' ? 'class="nav-link active"' : '') ?> class="nav-link" href=" <?= base_url('admin/data_guru') ?> ">Data Guru</a>
+                                <a <?= ($this->uri->segment(2) == 'mengajar' ? 'class="nav-link active"' : '') ?> class="nav-link" href=" <?= base_url('admin/mengajar') ?> ">Mengajar</a>
+                                <a <?= ($this->uri->segment(2) == 'nilai' ? 'class="nav-link active"' : '') ?> class="nav-link" href=" <?= base_url('admin/nilai') ?> ">Nilai</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#kelas" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-people-roof"></i></div>
+                            Kelas
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="kelas" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
                                 <a <?= ($this->uri->segment(2) == 'data_kelas' ? 'class="nav-link active"' : '') ?> class="nav-link" href="<?= base_url('admin/data_kelas') ?>">Data Kelas</a>
+                                <a <?= ($this->uri->segment(2) == 'pelajaran' ? 'class="nav-link active"' : '') ?> class="nav-link" href="<?= base_url('admin/pelajaran') ?>">Pelajaran</a>
                                 <a <?= ($this->uri->segment(2) == 'pindah_kelas' ? 'class="nav-link active"' : '') ?> class="nav-link" href="<?= base_url('admin/pindah_kelas') ?>">Pindah Kelas </a>
                             </nav>
                         </div>

@@ -32,7 +32,7 @@
                      <tbody>
                          <?php $no = 1 ?>
                          <?php foreach ($presensi->result() as $key => $value) : ?>
-                             <tr>
+                             <tr> bv b nhj
                                  <input type="hidden" name="id_siswa[]" value="<?= $value->id_siswa ?>">
                                  <input type="hidden" name="id_kelas[]" value="<?= $this->session->userdata('id_kelas') ?>">
                                  <th class="col-1 text-center"><?= $no++ ?></th>

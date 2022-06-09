@@ -27,8 +27,9 @@ class M_guru extends CI_Model
     public function get_pelajaran()
     {
         $this->db->select('*');
+        $this->db->from('mengajar');
+        $this->db->join('pelajaran', 'pelajaran.id_pelajaran = mengajar.id_pelajaran');
         $this->db->where('id_guru', $this->session->userdata('id_guru'));
-        $this->db->from('pelajaran');
         return $this->db->get();
     }
     public function get_mapel()
