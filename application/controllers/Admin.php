@@ -2,6 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 require 'vendor/autoload.php';
 
+use PhpOffice\PhpSpreadsheet\Calculation\TextData\Format;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
@@ -521,6 +522,7 @@ class Admin extends CI_Controller
 			// die();
 			$this->M_admin->siswa_excel($data);
 			unlink('./assets/uploads/' . $file);
+			$this->session->set_flashdata('pesan', 'ditambahkan');
 			redirect('admin/detail_kelas/' . $id_kelas);
 		}
 	}
