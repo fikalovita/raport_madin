@@ -79,11 +79,6 @@ class M_admin extends CI_Model
             return false;
         }
     }
-    public function ubah_pelajaran($data, $id_pelajaran)
-    {
-        $this->db->where('id_pelajaran', $id_pelajaran);
-        $this->db->update('pelajaran', $data);
-    }
 
     public function ubah_guru($data, $id_guru)
     {
@@ -198,5 +193,11 @@ class M_admin extends CI_Model
         $this->db->select('*');
         $this->db->from('pelajaran');
         return $this->db->get();
+    }
+
+    public function ubah_pelajaran($data, $id_pelajaran)
+    {
+        $this->db->where('id_pelajaran',$id_pelajaran);
+        $this->db->update('pelajaran', $data);
     }
 }

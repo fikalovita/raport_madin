@@ -315,22 +315,6 @@ class Admin extends CI_Controller
 		redirect('admin/pelajaran/?guru=' . $id_guru, 'refresh');
 	}
 
-	public function edit_pelajaran()
-	{
-		$id_kelas = $this->input->post('id_kelas');
-		$id_pelajaran = $this->input->post('id_pelajaran');
-		$pelajaran = $this->input->post('pelajaran');
-
-		$data = [
-
-			'nama_pelajaran' => $pelajaran
-		];
-
-		$this->M_admin->ubah_pelajaran($data, $id_pelajaran);
-		die();
-		$this->session->set_flashdata('pesan', 'disimpan');
-		redirect('admin/pelajaran?kelas=' . $id_kelas, 'refresh');
-	}
 	public function hapus_kelas($id_kelas)
 	{
 		$this->M_admin->hapus_kelas($id_kelas);
@@ -416,5 +400,17 @@ class Admin extends CI_Controller
 	}
 	public function buka_kunci()
 	{
+	}
+
+	public function ubah_pelajaran()
+	{
+		$pelajaran = $this->input->post('nama_pelajaran');
+		$id_pelajaran = $this->input->post('id_pelajaran');
+
+		$data = [
+			'nama_pelajaran' => $pelajaran
+		];
+
+		$this->M_admin->ubah_pelajaran($data, $id_pelajaran);
 	}
 }
