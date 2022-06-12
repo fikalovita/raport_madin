@@ -14,7 +14,7 @@
                                   <form action="<?= base_url('admin/siswa_excel') ?>" method="post" enctype="multipart/form-data">
                                       <div class="modal-body">
                                           <div class="input-group mb-3">
-                                              <input type="file" class="form-control" id="inputGroupFile02" name="excel" required>
+                                              <input type="file" class="form-control" id="inputGroupFile02" name="excel" accept=".xlsx, .xls" required>
                                               <input type="hidden" class="form-control" id="inputGroupFile02" name="id_kelas" value="<?= $this->uri->segment(3) ?>">
                                               <label class="input-group-text" for="inputGroupFile02">Browse</label>
                                           </div>
