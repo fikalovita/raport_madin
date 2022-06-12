@@ -14,18 +14,16 @@
                     <tr class="text-center">
                         <th>#</th>
                         <th>Nama Guru</th>
-                        <th>Kelas</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    <?php foreach ($kelas as $key => $value) : ?>
+                    <?php foreach ($siswa as $key => $value) : ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $value->nama_guru ?></td>
-                            <td><?= $value->nama_kelas ?></td>
-                            <td class="text-center"><a href="<?= base_url('admin/detail_nilai/' . $value->id_kelas) ?>" type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i> Lihat Nilai</a></td>
+                            <td><?= $value->nama_siswa ?></td>
+                            <td class="text-center"><a href="<?= base_url('admin/nilai_siswa/' . $value->id_siswa) ?>" type="button" class="btn btn-success btn-sm">Lihat Nilai</a></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

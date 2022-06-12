@@ -15,8 +15,15 @@ class Admin extends CI_Controller
 	public function index()
 	{
 
+		$data = [
+			'guru' => $this->M_admin->get_guru()->num_rows(),
+			'kelas' => $this->M_admin->kelas()->num_rows(),
+			'siswa' => $this->M_admin->siswa()->num_rows(),
+			'pelajaran' => $this->M_admin->pelajaran()->num_rows()
+		];
+
 		$this->load->view('admin/layout/header');
-		$this->load->view('admin/dashboard');
+		$this->load->view('admin/dashboard', $data);
 		$this->load->view('admin/layout/footer');
 	}
 
@@ -378,8 +385,36 @@ class Admin extends CI_Controller
 	}
 	public function nilai()
 	{
+		$data = [
+			'kelas' => $this->M_admin->get_all_kelas()->result()
+		];
 		$this->load->view('admin/layout/header');
-		$this->load->view('admin/nilai');
+		$this->load->view('admin/nilai', $data);
 		$this->load->view('admin/layout/footer');
+	}
+
+	public function detail_nilai($id_kelas)
+	{
+		$id_kelas = $this->uri->segment(3);
+		$data = [
+			'siswa' => $this->M_admin->list_siswa_kelas($id_kelas)->result()
+		];
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/detail_nilai', $data);
+		$this->load->view('admin/layout/footer');
+	}
+	public function nilai_siswa($id_siswa)
+	{
+		$id_siswa = $this->uri->segment(3);
+		$data = [
+			'nilai' => $this->M_admin->get_nilai_siswa($id_siswa)->result()
+
+		];
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/nilai_siswa', $data);
+		$this->load->view('admin/layout/footer');
+	}
+	public function buka_kunci()
+	{
 	}
 }

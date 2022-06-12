@@ -130,6 +130,7 @@ class M_admin extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('kelas');
+        $this->db->join('guru', 'guru.id_guru = kelas.id_guru');
         return $this->db->get();
     }
 
@@ -150,12 +151,52 @@ class M_admin extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('mengajar');
+        $this->db->join('pelajaran', 'pelajaran.id_pelajaran = mengajar.id_pelajaran');
         return $this->db->get();
     }
-
     public function hapus_ajar($data, $id_mengajar)
     {
         $this->db->where('id_mengajar', $id_mengajar);
         $this->db->update('mengajar', $data);
+    }
+
+    public function list_siswa_kelas($id_kelas)
+    {
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->where('siswa.id_kelas', $id_kelas);
+        return $this->db->get();
+    }
+
+    public function get_nilai_siswa($id_siswa)
+    {
+        $this->db->select('*');
+        $this->db->from('pelajaran');
+        $this->db->join('nilai', 'nilai.id_pelajaran = pelajaran.id_pelajaran');
+        $this->db->join('mengajar', 'mengajar.id_pelajaran = pelajaran.id_pelajaran');
+        $this->db->where('nilai.id_siswa', $id_siswa);
+        $this->db->where('kunci', 1);
+        return $this->db->get();
+    }
+
+    public function kelas()
+    {
+        $this->db->select('*');
+        $this->db->from('kelas');
+        return $this->db->get();
+    }
+
+    public function siswa()
+    {
+        $this->db->select('*');
+        $this->db->from('siswa');
+        return $this->db->get();
+    }
+
+    public function pelajaran()
+    {
+        $this->db->select('*');
+        $this->db->from('pelajaran');
+        return $this->db->get();
     }
 }
