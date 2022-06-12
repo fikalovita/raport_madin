@@ -3,7 +3,7 @@
                       <a href="#" class="btn btn-sm btn-warning mb-3" role="button" data-bs-toggle="modal" data-bs-target="#tambah-banyak">Tambah Banyak</a>
                       <button class="btn btn-danger btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#import"><i class="fa-solid fa-file-import fa-sm"></i> Import Excel</button>
                       <div class="modal fade" id="import" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
+                          <div class="modal-dialog modal-lg">
                               <div class="modal-content">
                                   <div class="modal-header">
                                       <div>
