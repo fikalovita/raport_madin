@@ -1,6 +1,55 @@
                   <div class="container px-4 py-4">
                       <button class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#tambah_siswa">Tambah Siswa</button>
-                      <a href="#" class="btn btn-sm btn-warning mb-3" role="button">Tambah Banyak</a>
+                      <a href="#" class="btn btn-sm btn-warning mb-3" role="button" data-bs-toggle="modal" data-bs-target="#tambah-banyak">Tambah Banyak</a>
+                      <button class="btn btn-danger btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#import"><i class="fa-solid fa-file-import fa-sm"></i> Import Excel</button>
+                      <div class="modal fade" id="import" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <div>
+                                          <h5 class="modal-title" id="import">Import Excel</h5>
+                                      </div>
+                                      <a href="<?= base_url('admin/download_template_siswa') ?>" class="btn btn-success btn-sm"><i class="fa-solid fa-download"></i> Template Excel</a>
+                                  </div>
+                                  <form action="<?= base_url('admin/siswa_excel') ?>" method="post" enctype="multipart/form-data">
+                                      <div class="modal-body">
+                                          <div class="input-group mb-3">
+                                              <input type="file" class="form-control" id="inputGroupFile02" name="excel">
+                                              <input type="hidden" class="form-control" id="inputGroupFile02" name="id_kelas" value="<?= $this->uri->segment(3) ?>">
+                                              <label class="input-group-text" for="inputGroupFile02">Browse</label>
+                                          </div>
+
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Tutup</button>
+                                          <button type="submit" class="btn btn-success btn-sm">Upload</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="modal fade" id="tambah-banyak" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="tambah-banyak">Tambah Siswa</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <form action="<?= base_url('admin/banyak_siswa/' . $this->uri->segment(3)) ?>" method="post">
+                                      <div class="modal-body">
+                                          <div class="mb-3">
+                                              <label for="jumlah" class="form-label">Jumlah Input</label>
+                                              <input type="number" class="form-control" name="jumlah" placeholder="jumlah input">
+                                          </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Tutup</button>
+                                          <button type="submit" class="btn btn-success btn-sm">Lanjut</button>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
                       <div class="modal fade" id="tambah_siswa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                           <div class="modal-dialog modal-lg">
                               <div class="modal-content">

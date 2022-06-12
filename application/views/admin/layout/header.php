@@ -89,7 +89,7 @@
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    Start Bootstrap
+                    <?= $this->session->userdata('nama_admin') ?>
                 </div>
             </nav>
         </div>

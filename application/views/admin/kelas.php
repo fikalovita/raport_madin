@@ -1,5 +1,26 @@
                 <div class="container px-4 py-4">
                     <button class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah Kelas</button>
+                    <button class="btn btn-sm btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#tambah_banyak">Tambah Banyak</button>
+                    <div class="modal fade" id="tambah_banyak" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Banyak</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="<?= base_url('admin/banyak_kelas') ?>" method="POST">
+                                    <div class="modal-body">
+                                        <label for="exampleInputEmail1" class="form-label">Jumlah Input</label>
+                                        <input type="number" class="form-control form-control-sm" placeholder="masukkan jumlah input" name="jumlah" aria-describedby="emailHelp">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="submit" class="btn btn-success btn-sm">Lanjut</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">

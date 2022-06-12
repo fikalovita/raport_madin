@@ -59,7 +59,7 @@
 							</div>
 						</div>
 						<div class="card-body">
-							<table id="tabel_guru" class="table table-striped table-responsive-lg table-bordered">
+							<table id="tabel_guru" class="table table-striped table-responsive table-bordered">
 								<thead>
 									<tr class="text-center">
 										<th>Foto</th>
@@ -110,7 +110,7 @@
 															</div>
 															<div class="mb-2">
 																<label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-																<input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?= $value->tempat_lahir ?>" required>
+																<input type="text" class="form-control form-control-sm" id="tempat_lahir" name="tempat_lahir" value="<?= $value->tempat_lahir ?>" required>
 															</div>
 															<div class="mb-2">
 																<label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>

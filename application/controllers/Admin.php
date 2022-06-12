@@ -1,5 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class Admin extends CI_Controller
 {
@@ -19,7 +24,9 @@ class Admin extends CI_Controller
 			'guru' => $this->M_admin->get_guru()->num_rows(),
 			'kelas' => $this->M_admin->kelas()->num_rows(),
 			'siswa' => $this->M_admin->siswa()->num_rows(),
-			'pelajaran' => $this->M_admin->pelajaran()->num_rows()
+			'pelajaran' => $this->M_admin->pelajaran()->num_rows(),
+			'info' => $this->M_admin->get_info()->result()
+
 		];
 
 		$this->load->view('admin/layout/header');
@@ -412,5 +419,114 @@ class Admin extends CI_Controller
 		];
 
 		$this->M_admin->ubah_pelajaran($data, $id_pelajaran);
+	}
+	public function banyak_siswa()
+	{
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/banyak_siswa');
+		$this->load->view('admin/layout/footer');
+	}
+
+	public function aksi_banyak_siswa()
+	{
+		$id_kelas = $this->input->post('id_kelas');
+		$nama_siswa = $this->input->post('nama_siswa');
+		$nisn = $this->input->post('nisn');
+		$tempat_lahir = $this->input->post('tempat_lahir');
+		$tanggal_lahir = $this->input->post('tanggal_lahir');
+		$data = [];
+		foreach ($nisn as $key => $value) {
+			$data[] = [
+				'id_kelas' => $id_kelas[$key],
+				'nisn' => $nisn[$key],
+				'nama_siswa' => $nama_siswa[$key],
+				'tempat_lahir' => $tempat_lahir[$key],
+				'tanggal_lahir' => $tanggal_lahir[$key]
+			];
+		}
+		$this->db->insert_batch('siswa', $data);
+		$this->session->set_flashdata('pesan', 'disimpan');
+		redirect('admin/detail_kelas/' . $this->input->post('id_kelas2'), 'refresh');
+	}
+
+	public function info()
+	{
+		$id_info = $this->input->post('id_info');
+		$isi_info = $this->input->post('text');
+
+		$data = [
+			'isi_info' => $isi_info
+		];
+
+		$this->M_admin->update_info($data, $id_info);
+		redirect('admin', 'refresh');
+	}
+
+	public function banyak_kelas()
+	{
+		$data = [
+			'guru' => $this->M_admin->get_guru()->result()
+		];
+		$this->load->view('admin/layout/header');
+		$this->load->view('admin/banyak_kelas', $data);
+		$this->load->view('admin/layout/footer');
+	}
+
+	public function aksi_banyak_kelas()
+	{
+		$kelas = $this->input->post('kelas');
+		$guru = $this->input->post('guru');
+
+		$data = [];
+
+		foreach ($kelas as $key => $value) {
+			$data[] = [
+				'nama_kelas' => $kelas[$key],
+				'id_guru' => $guru[$key],
+				'tanggal_dibuat' => date('Y-m-d')
+
+			];
+		}
+		$this->db->insert_batch('kelas', $data);
+		$this->session->set_flashdata('pesan', 'ditambahkan');
+		redirect('admin/data_kelas', 'refresh');
+	}
+	public function siswa_excel()
+	{
+		$id_kelas = $this->input->post('id_kelas');
+		$file = $_FILES['excel']['name'];
+		$config['upload_path'] = './assets/uploads';
+		$config['allowed_types'] = 'xlsx|xls';
+		$config['detect_mime']     = TRUE;
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload('excel')) {
+		} else {
+			$file = $this->upload->data('file_name');
+			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			$spreadsheet = $reader->load('./assets/uploads/' . $file);
+
+			$sheet = $spreadsheet->getActiveSheet()->toArray();
+			for ($i = 1; $i < count($sheet); $i++) {
+				$data[] = [
+					'id_kelas' => $id_kelas,
+					'nisn' => $sheet[$i]['0'],
+					'nama_siswa' => $sheet[$i]['1'],
+					'tempat_lahir' => $sheet[$i]['2'],
+					'tanggal_lahir' => $sheet[$i]['3'],
+
+
+				];
+			}
+			// print_r($data);
+			// die();
+			$this->M_admin->siswa_excel($data);
+			unlink('./assets/uploads/' . $file);
+			redirect('admin/detail_kelas/' . $id_kelas);
+		}
+	}
+
+	public function download_template_siswa()
+	{
+		force_download('./assets/uploads/template_siswa.xlsx', NULL);
 	}
 }

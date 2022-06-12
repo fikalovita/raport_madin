@@ -197,7 +197,25 @@ class M_admin extends CI_Model
 
     public function ubah_pelajaran($data, $id_pelajaran)
     {
-        $this->db->where('id_pelajaran',$id_pelajaran);
+        $this->db->where('id_pelajaran', $id_pelajaran);
         $this->db->update('pelajaran', $data);
+    }
+
+    public function get_info()
+    {
+        $this->db->select('*');
+        $this->db->from('info');
+        return $this->db->get();
+    }
+
+    public function update_info($data, $id_info)
+    {
+        $this->db->where('id_info', $id_info);
+        $this->db->update('info', $data);
+    }
+
+    public function siswa_excel($data)
+    {
+        return $this->db->insert_batch('siswa', $data);
     }
 }

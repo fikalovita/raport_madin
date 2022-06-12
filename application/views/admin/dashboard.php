@@ -88,12 +88,18 @@
         </div>
     </div>
     <div class="m-2"></div>
-    <div class="card">
-        <h5 class="card-header">Featured</h5>
-        <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+    <form action="<?= base_url('admin/info') ?>" method="POST" enctype="multipart/form-data">
+        <div class="card">
+            <div class="card-header">
+                <b><i class="fa-solid fa-bullhorn"></i> Info</b>
+            </div>
+            <div class="card-body">
+                <?php foreach ($info as $key => $value) : ?>
+                    <textarea name="text" id="editor" cols="30" rows="10"><?= $value->isi_info ?></textarea>
+                    <input type="hidden" name="id_info" value="<?= $value->id_info ?>">
+                    <button type="submit" class="btn btn-primary btn-sm mt-3 float-end"><i class="fa-solid fa-floppy-disk"></i> Simpan</button>
+                <?php endforeach; ?>
+            </div>
         </div>
-    </div>
+    </form>
 </div>

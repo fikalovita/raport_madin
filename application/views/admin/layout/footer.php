@@ -25,6 +25,14 @@
  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
  <script src="<?= base_url('assets/sweetAlert.js') ?>"></script>
  <script src="<?= base_url('assets/form_validation.js') ?>"></script>
+ <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+ <script>
+     ClassicEditor
+         .create(document.querySelector('#editor'))
+         .catch(error => {
+             console.error(error);
+         });
+ </script>
  </body>
 
  </html>
