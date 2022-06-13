@@ -518,8 +518,6 @@ class Admin extends CI_Controller
 
 				];
 			}
-			// print_r($data);
-			// die();
 			$this->M_admin->siswa_excel($data);
 			unlink('./assets/uploads/' . $file);
 			$this->session->set_flashdata('pesan', 'ditambahkan');
@@ -530,5 +528,42 @@ class Admin extends CI_Controller
 	public function download_template_siswa()
 	{
 		force_download('./assets/uploads/template_siswa.xlsx', NULL);
+	}
+
+	public function guru_excel()
+	{
+		$file = $_FILES['excel']['name'];
+		$config['upload_path'] = './assets/uploads';
+		$config['allowed_types'] = 'xlsx|xls';
+		$config['detect_mime']     = TRUE;
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload('excel')) {
+		} else {
+			$file = $this->upload->data('file_name');
+			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			$spreadsheet = $reader->load('./assets/uploads/' . $file);
+
+			$sheet = $spreadsheet->getActiveSheet()->toArray();
+			for ($i = 1; $i < count($sheet); $i++) {
+				$data[] = [
+					'nuptk' => $sheet[$i]['0'],
+					'nama_guru' => $sheet[$i]['1'],
+					'tempat_lahir' => $sheet[$i]['2'],
+					'tgl_lahir' => $sheet[$i]['3'],
+					'jabatan' => $sheet[$i]['4'],
+					'password_guru' => $sheet[$i]['5'],
+
+
+				];
+			}
+			$this->M_admin->guru_excel($data);
+			unlink('./assets/uploads/' . $file);
+			$this->session->set_flashdata('pesan', 'ditambahkan');
+			redirect('admin/data_guru');
+		}
+	}
+	public function download_template_guru()
+	{
+		force_download('./assets/uploads/template_guru.xlsx', NULL);
 	}
 }

@@ -218,4 +218,8 @@ class M_admin extends CI_Model
     {
         return $this->db->insert_batch('siswa', $data);
     }
+    public function guru_excel($data)
+    {
+        return $this->db->insert_batch('guru', $data);
+    }
 }
