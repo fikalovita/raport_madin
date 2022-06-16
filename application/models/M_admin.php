@@ -175,7 +175,6 @@ class M_admin extends CI_Model
         $this->db->join('nilai', 'nilai.id_pelajaran = pelajaran.id_pelajaran');
         $this->db->join('mengajar', 'mengajar.id_pelajaran = pelajaran.id_pelajaran');
         $this->db->where('nilai.id_siswa', $id_siswa);
-        $this->db->where('kunci', 1);
         return $this->db->get();
     }
 
@@ -226,5 +225,10 @@ class M_admin extends CI_Model
     public function guru_excel($data)
     {
         return $this->db->insert_batch('guru', $data);
+    }
+    public function buka_kunci($id_nilai, $data)
+    {
+        $this->db->where('id_nilai', $id_nilai);
+        $this->db->update('nilai', $data);
     }
 }

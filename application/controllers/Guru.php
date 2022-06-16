@@ -3,6 +3,11 @@
 use function PHPSTORM_META\map;
 
 defined('BASEPATH') or exit('No direct script access allowed');
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Guru extends CI_Controller
 {
@@ -319,5 +324,14 @@ class Guru extends CI_Controller
         ];
 
         $this->load->view('guru/cetak', $data);
+    }
+    public function template_excel()
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Hello World !');
+
+        $writer = new Xlsx($spreadsheet);
+        $writer->save('hello world.xlsx');
     }
 }

@@ -38,8 +38,35 @@
                                 ?>
                             </td>
                             <td><?= $value->deskripsi ?></td>
-                            <td class="text-center"><a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-unlock-keyhole fa-sm"></i> Buka Kunci</a></td>
+                            <td class="text-center">
+                                <?php if ($value->kunci == 0) {
+                                    echo '<button type="button" href=" ' . base_url('admin/buka_kunci/' . $value->id_nilai) . '. " class="btn btn-primary btn-sm" disabled><i class="fa-solid fa-unlock-keyhole fa-sm"></i> Buka Kunci</button>';
+                                } else {
+                                    echo '<a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#buka-kunci' . $value->id_nilai . '"><i class="fa-solid fa-unlock-keyhole fa-sm"></i> Buka Kunci</a>';
+                                } ?>
+
+                            </td>
                         </tr>
+                        <div class="modal fade" id="buka-kunci<?= $value->id_nilai ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="buka-kunci<?= $value->id_nilai ?>">Perhatian!!</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="alert alert-danger" role="alert">
+                                            <i class="fa-solid fa-circle-question"></i>
+                                            Anda yakin untuk membuka kunci untuk nilai ini ?
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                                        <a href="<?= base_url('admin/buka_kunci/' . $value->id_nilai) ?>" type="button" class="btn btn-primary">Ya,Buka kunci</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <?php endforeach; ?>
                 </tbody>
             </table>

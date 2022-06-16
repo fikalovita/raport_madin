@@ -59,14 +59,17 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="m-3"></div>
-            <div class="card">
-                <h5 class="card-header">Informasi</h5>
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="mt-3">
+                    <div class="card">
+                        <h5 class="card-header">Informasi</h5>
+                        <div class="card-body">
+                            <div class="alert alert-success" role="alert">
+                                <?php foreach ($info as $key => $value) : ?>
+                                    <?= $value->isi_info ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

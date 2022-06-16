@@ -16,6 +16,7 @@
                             } else {
                                 echo '  <a href=" ' . base_url('guru/lihat_nilai/' . $this->uri->segment(3)) . '" class="btn btn-sm btn-primary"> <i class="fa-solid fa-sm fa-eye"></i> Lihat Nilai</a>';
                             }  ?>
+                            <a href="<?= site_url('guru/template_excel') ?>" class="btn btn-sm btn-danger"><i class="fa-solid fa-sm fa-file-import"></i> Import Excel</a>
                             <button type="submit" class="btn btn-sm btn-success"><i class="fa-solid fa-sm fa-floppy-disk"></i> Simpan</button>
                         </div>
                     </div>

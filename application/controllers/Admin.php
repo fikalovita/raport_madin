@@ -174,7 +174,7 @@ class Admin extends CI_Controller
 			'nama_kelas' => $nama_kelas,
 		];
 
-		$this->M_admin->ubah_kelas( $id_kelas,$data);
+		$this->M_admin->ubah_kelas($id_kelas, $data);
 		$this->session->set_flashdata('pesan', 'diubah');
 		redirect('admin/data_kelas', 'refresh');
 	}
@@ -329,7 +329,6 @@ class Admin extends CI_Controller
 		$this->session->set_flashdata('pesan', 'dihapus');
 		redirect('admin/data_kelas', 'refresh');
 	}
-
 	public function mengajar()
 	{
 		$kelas = $this->input->get('kelas');
@@ -406,8 +405,15 @@ class Admin extends CI_Controller
 		$this->load->view('admin/nilai_siswa', $data);
 		$this->load->view('admin/layout/footer');
 	}
-	public function buka_kunci()
+	public function buka_kunci($id_nilai)
 	{
+
+		$data = [
+			'kunci' => 0
+		];
+
+		$this->M_admin->buka_kunci($id_nilai, $data);
+		$this->session->set_flashdata('pesan', 'dikunci');
 	}
 
 	public function ubah_pelajaran()
@@ -563,6 +569,4 @@ class Admin extends CI_Controller
 	{
 		force_download('./assets/uploads/template_guru.xlsx', NULL);
 	}
-	
-	
 }

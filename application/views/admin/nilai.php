@@ -25,7 +25,9 @@
                             <td><?= $no++ ?></td>
                             <td><?= $value->nama_guru ?></td>
                             <td><?= $value->nama_kelas ?></td>
-                            <td class="text-center"><a href="<?= base_url('admin/detail_nilai/' . $value->id_kelas) ?>" type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i> Lihat Nilai</a></td>
+                            <td class="text-center">
+                                <a href="<?= base_url('admin/detail_nilai/' . $value->id_kelas) ?>" type="button" class="btn btn-success btn-sm"><i class="fa-solid fa-eye"></i> Lihat Nilai</a>
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
