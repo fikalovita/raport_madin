@@ -6,8 +6,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 require 'vendor/autoload.php';
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Writer\Xls;
 
 class Guru extends CI_Controller
 {
@@ -325,13 +326,70 @@ class Guru extends CI_Controller
 
         $this->load->view('guru/cetak', $data);
     }
-    public function template_excel()
+    public function template_excel($id_pelajaran)
     {
+        $nilai = $this->M_guru->get_siswa()->result_array();
+        $nama_file = $this->M_guru->get_mapel()->result();
+        // var_dump($nilai);
+        // die();
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Hello World !');
+        $sheet->setCellValue('A1', 'NISN');
+        $sheet->setCellValue('B1', 'Nama Siswa');
+        $sheet->setCellValue('C1', 'Nilai');
+        $sheet->setCellValue('D1', 'Deskripsi');
+        $start = 2;
+        foreach ($nilai as $value) {
+            $sheet->setCellValue('A' . $start, $value['nisn']);
+            $sheet->setCellValue('B' . $start, $value['nama_siswa']);
+            $sheet->setCellValue('F' . $start, $value['id_siswa']);
+            $start++;
+        };
 
-        $writer = new Xlsx($spreadsheet);
-        $writer->save('hello world.xlsx');
+        foreach ($nama_file as $key => $value) {
+            $filename = $value->nama_pelajaran;
+        }
+
+        // var_dump($filename);
+        // die();
+        $writer = new Xls($spreadsheet);
+        header("Content-Type:   application/vnd.ms-excel");
+        header('Content-Disposition: attachment; filename= ".' . $filename . '".xls  ');
+        header("Cache-Control: max-age= 0", false);
+        $writer->save('php://output');
+    }
+    public function import_excel()
+    {
+        $file = $_FILES['excel']['name'];
+        $config['upload_path'] = './assets/uploads';
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['detect_mime']     = TRUE;
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload('excel')) {
+        } else {
+            $file = $this->upload->data('file_name');
+            if ($config['allowed_types'] === 'xlsx') {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            } else {
+
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            }
+            $spreadsheet = $reader->load('./assets/uploads/' . $file);
+            $sheet = $spreadsheet->getActiveSheet()->toArray();
+            for ($i = 1; $i < count($sheet); $i++) {
+                $data[] = [
+                    'nilai' => $sheet[$i]['2'],
+                    'deskripsi' => $sheet[$i]['3'],
+                    'id_pelajaran' => $this->input->post('id_pelajaran'),
+                    'tanggal_diupdate' => date('Y-m-d'),
+                    'id_guru' => $this->session->userdata('id_guru'),
+                    'id_siswa' => $sheet[$i]['5'],
+                ];
+            }
+            $this->M_guru->nilai_excel($data);
+            unlink('./assets/uploads/' . $file);
+            $this->session->set_flashdata('pesan', 'diupload');
+            redirect('guru/penilaian/' . $this->input->post('id_pelajaran'), 'refresh');
+        }
     }
 }

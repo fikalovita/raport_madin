@@ -160,4 +160,8 @@ class M_guru extends CI_Model
         $this->db->from('siswa');
         return $this->db->get();
     }
+    public function nilai_excel($data)
+    {
+        return $this->db->insert_batch('nilai', $data);
+    }
 }
