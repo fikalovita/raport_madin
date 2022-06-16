@@ -18,8 +18,11 @@ class Guru extends CI_Controller
     }
     public function index()
     {
+        $data = [
+            'info' => $this->M_admin->get_info()->result()
+        ];
         $this->load->view('guru/layout/header');
-        $this->load->view('guru/dashboard');
+        $this->load->view('guru/dashboard', $data);
         $this->load->view('guru/layout/footer');
     }
     public function profil_guru()

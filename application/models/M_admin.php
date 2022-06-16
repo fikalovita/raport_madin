@@ -91,6 +91,11 @@ class M_admin extends CI_Model
         $this->db->where('id_kelas', $id_kelas);
         $this->db->delete('kelas');
     }
+    public function ubah_kelas($id_kelas, $data)
+    {
+        $this->db->where('id_kelas', $id_kelas);
+        $this->db->update('kelas', $data);
+    }
 
     public function pindah_kelas($data, $id_siswa)
     {

@@ -174,7 +174,7 @@ class Admin extends CI_Controller
 			'nama_kelas' => $nama_kelas,
 		];
 
-		$this->M_admin->ubah_kelas($data, $id_kelas);
+		$this->M_admin->ubah_kelas( $id_kelas,$data);
 		$this->session->set_flashdata('pesan', 'diubah');
 		redirect('admin/data_kelas', 'refresh');
 	}
@@ -542,7 +542,6 @@ class Admin extends CI_Controller
 			$file = $this->upload->data('file_name');
 			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			$spreadsheet = $reader->load('./assets/uploads/' . $file);
-
 			$sheet = $spreadsheet->getActiveSheet()->toArray();
 			for ($i = 1; $i < count($sheet); $i++) {
 				$data[] = [
@@ -552,8 +551,6 @@ class Admin extends CI_Controller
 					'tgl_lahir' => $sheet[$i]['3'],
 					'jabatan' => $sheet[$i]['4'],
 					'password_guru' => $sheet[$i]['5'],
-
-
 				];
 			}
 			$this->M_admin->guru_excel($data);
@@ -566,4 +563,6 @@ class Admin extends CI_Controller
 	{
 		force_download('./assets/uploads/template_guru.xlsx', NULL);
 	}
+	
+	
 }
