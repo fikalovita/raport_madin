@@ -332,10 +332,13 @@ class Admin extends CI_Controller
 	public function mengajar()
 	{
 		$kelas = $this->input->get('kelas');
+		// $mengajar = $this->M_admin->get_mengajar($kelas)->result();
+		// var_dump($mengajar);
+		// die();
 		$data = [
-			'kelas' => $this->M_admin->get_all_kelas(),
+			'kelas' => $this->M_admin->kelas(),
 			'guru' => $this->M_admin->get_guru(),
-			'mengajar' => $this->M_admin->get_mengajar($kelas)
+			'mengajar' => $this->M_admin->get_mengajar($kelas)->result()
 		];
 		$this->load->view('admin/layout/header');
 		$this->load->view('admin/mengajar', $data);
@@ -345,17 +348,17 @@ class Admin extends CI_Controller
 	public function ubah_mengajar()
 	{
 		$guru = $this->input->post('guru');
-		$id_pelajaran = $this->input->post('id_pelajaran');
+		$id_mengajar = $this->input->post('id_mengajar');
 		$id_kelas = $this->input->post('id_kelas');
 		$data = [];
-		foreach ($id_pelajaran as $key => $value) {
+		foreach ($id_mengajar as $key => $value) {
 			$data[] = [
-				'id_pelajaran' => $id_pelajaran[$key],
+				'id_mengajar' => $id_mengajar[$key],
 				'id_guru' => $guru[$key]
 			];
 		}
 
-		$this->db->update_batch('mengajar', $data, 'id_pelajaran');
+		$this->db->update_batch('mengajar', $data, 'id_mengajar');
 		$this->session->set_flashdata('pesan', 'disimpan');
 		redirect('admin/mengajar?kelas=' . $id_kelas . '', 'refresh');
 	}
@@ -586,14 +589,14 @@ class Admin extends CI_Controller
 			$sheet = $spreadsheet->getActiveSheet()->toArray();
 			for ($i = 1; $i < count($sheet); $i++) {
 				$data1[] = [
-					'id_pelajaran' => $sheet[$i]['0'],
+					'kode_pelajaran' => $sheet[$i]['0'],
 					'nama_pelajaran' => $sheet[$i]['1'],
 					'id_kelas' => $id_kelas,
 				];
 			}
 			for ($i = 1; $i < count($sheet); $i++) {
 				$data2[] = [
-					'id_pelajaran' => $sheet[$i]['0'],
+					'kode_pelajaran' => $sheet[$i]['0'],
 					'id_kelas' => $id_kelas,
 				];
 			}

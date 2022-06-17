@@ -137,7 +137,7 @@ class M_admin extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('mengajar');
-        $this->db->join('pelajaran', 'pelajaran.id_pelajaran = mengajar.id_pelajaran');
+        $this->db->join('pelajaran', 'pelajaran.kode_pelajaran = mengajar.kode_pelajaran');
         $this->db->where('mengajar.id_kelas', $kelas);
         return $this->db->get();
     }

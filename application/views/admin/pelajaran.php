@@ -29,9 +29,7 @@
 								</div>
 							</div>
 							<div class="col-md-8 mb-2">
-								<?php foreach ($kelas as $key => $value) : ?>
-									<form action="<?= base_url('admin/pelajaran/' . $value->id_kelas) ?>" method="post">
-									<?php endforeach; ?>
+								<form action="<?= base_url('admin/pelajaran/' . $this->input->post('kelas')) ?>" method="post">
 									<div class="row float-end">
 										<div class="col-sm-8 p-1">
 											<select class="form-select" aria-label="Default select example " name="kelas">
@@ -45,7 +43,7 @@
 											<button class="btn btn-primary"><i class="fa-solid fa-filter fa-sm"></i></button>
 										</div>
 									</div>
-									</form>
+								</form>
 							</div>
 						</div>
 					</div>
