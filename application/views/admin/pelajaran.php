@@ -1,11 +1,37 @@
 				<div class="container-fluid px-4 py-4">
 					<div class="text-start">
 						<div class="row">
-							<div class="col-md-2">
+							<div class="col-md-4">
 								<button class="btn btn-sm btn-success mb-3" data-bs-toggle="modal" data-bs-target="#tambah-pelajaran">Tambah Pelajaran</button>
+								<button class="btn btn-sm btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#import-excel"><i class="fa-solid fa-file-import fa-sm"></i> Import Excel</button>
 							</div>
-							<div class="col-md-10 mb-2">
-								<form action="<?= base_url('admin/pelajaran') ?>">
+							<div class="modal fade" id="import-excel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="import-excel">Upload Excel</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<form action="<?= base_url('admin/pelajaran_excel') ?>" method="POST" enctype="multipart/form-data">
+											<div class="modal-body">
+												<div class="input-group mb-3">
+													<input type="file" class="form-control" id="inputGroupFile02" name="excel">
+													<input type="hidden" class="form-control" id="inputGroupFile02" name="id_kelas" value="<?= $this->uri->segment(3) ?>">
+													<label class="input-group-text" for="inputGroupFile02">Upload</label>
+												</div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-danger btn-sm" data-bs-dismiss="modal">Tutup</button>
+												<button type="submit" class="btn btn-success btn-sm">Upload</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-8 mb-2">
+								<?php foreach ($kelas as $key => $value) : ?>
+									<form action="<?= base_url('admin/pelajaran/' . $value->id_kelas) ?>" method="post">
+									<?php endforeach; ?>
 									<div class="row float-end">
 										<div class="col-sm-8 p-1">
 											<select class="form-select" aria-label="Default select example " name="kelas">
@@ -19,7 +45,7 @@
 											<button class="btn btn-primary"><i class="fa-solid fa-filter fa-sm"></i></button>
 										</div>
 									</div>
-								</form>
+									</form>
 							</div>
 						</div>
 					</div>

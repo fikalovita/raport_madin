@@ -288,9 +288,9 @@ class Admin extends CI_Controller
 		$this->session->set_flashdata('pesan', 'dihapus');
 		redirect('admin/detail_kelas/' . $id_kelas, 'refresh');
 	}
-	public function pelajaran()
+	public function pelajaran($kelas = null)
 	{
-		$kelas = $this->input->get('kelas');
+		$kelas = $this->input->post('kelas');
 		$data =  [
 			'tampil' => $this->M_admin->tampil_pelajaran($kelas)->result(),
 			'kelas' => $this->M_admin->get_all_kelas()->result()
@@ -568,5 +568,39 @@ class Admin extends CI_Controller
 	public function download_template_guru()
 	{
 		force_download('./assets/uploads/template_guru.xlsx', NULL);
+	}
+
+	public function pelajaran_excel()
+	{
+		$id_kelas = $this->input->post('id_kelas');
+		$file = $_FILES['excel']['name'];
+		$config['upload_path'] = './assets/uploads';
+		$config['allowed_types'] = 'xlsx|xls';
+		$config['detect_mime']     = TRUE;
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload('excel')) {
+		} else {
+			$file = $this->upload->data('file_name');
+			$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+			$spreadsheet = $reader->load('./assets/uploads/' . $file);
+			$sheet = $spreadsheet->getActiveSheet()->toArray();
+			for ($i = 1; $i < count($sheet); $i++) {
+				$data1[] = [
+					'id_pelajaran' => $sheet[$i]['0'],
+					'nama_pelajaran' => $sheet[$i]['1'],
+					'id_kelas' => $id_kelas,
+				];
+			}
+			for ($i = 1; $i < count($sheet); $i++) {
+				$data2[] = [
+					'id_pelajaran' => $sheet[$i]['0'],
+					'id_kelas' => $id_kelas,
+				];
+			}
+			$this->M_admin->pelajaran_excel($data1, $data2);
+			unlink('./assets/uploads/' . $file);
+			$this->session->set_flashdata('pesan', 'ditambahkan');
+			redirect('admin/pelajaran/' . $id_kelas, 'refresh');
+		}
 	}
 }

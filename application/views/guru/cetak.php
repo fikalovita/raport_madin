@@ -1,34 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-
-<body>
+</head><body>
     <div class="container">
-        <img src="<?= base_url('assets/kop.png') ?>" alt="">
-        <div class="text-center mt-2">
-            <h5>RAPORT TILAWATI DAN TAHFIDZ</h5>
-        </div>
+        <img src="http://localhost:8080/madin/assets/kop.png" alt="">
+        <div class="text-center mt-2"><h5>RAPORT TILAWATI DAN TAHFIDZ</h5></div>
         <div class="row">
             <?php foreach ($siswa as $key => $value) : ?>
-                <div class="col-md-6">
-                    <p>Nama : <?= $value->nama_siswa ?> </p>
-                    <p>Jilid :</p>
-                </div>
-                <div class="col-md-6">
-                    <p>Nama :</p>
-                    <p>Jilid :</p>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        <table class="table table-bordered table-sm ">
-            <thead class="table-secondary">
+                <div class="col-md-6"><p>Nama : <?= $value->nama_siswa ?> </p><p>Jilid :</p></div>
+                <div class="col-md-6"><p>Nama :</p><p>Jilid :</p></div>
+            <?php endforeach; ?></div>
+        <table class="table table-bordered table-sm "><thead class="table-secondary">
                 <tr>
                     <th rowspan="2" class="col-1 align-middle">No</th>
                     <th rowspan="2" class="col- align-middle">Muatan Pelajaran</th>
@@ -39,8 +25,7 @@
                     <th>Predikat</th>
                     <th class="col">Deskripsi</th>
                 </tr>
-            </thead>
-            <tbody>
+            </thead><tbody>
                 <?php $no = 1 ?>
                 <?php foreach ($nilai as $key => $value) : ?>
                     <tr>
@@ -60,8 +45,7 @@
                         <td class="text-center"><?= $value->deskripsi ?></td>
                     </tr>
                 <?php endforeach; ?>
-            </tbody>
-            <tfoot>
+            </tbody><tfoot>
                 <tr>
                     <th colspan="2" class="text-center table-secondary">Jumlah Nilai</th>
                     <th colspan=" 3" class="text-center"><b>80</b></th>
@@ -70,9 +54,5 @@
                     <th colspan="2" class="text-center table-secondary">Rata-rata</th>
                     <th colspan=" 3" class="text-center"><b>80</b></th>
                 </tr>
-            </tfoot>
-        </table>
-    </div>
-</body>
-
-</html>
+            </tfoot></table>
+</body></html>

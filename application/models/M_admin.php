@@ -49,19 +49,18 @@ class M_admin extends CI_Model
         $this->db->from('siswa');
         return $this->db->get();
     }
-    public function tampil_pelajaran($kelas)
+    public function tampil_pelajaran()
     {
         $this->db->select('*');
         $this->db->from('pelajaran');
         $this->db->join('kelas', 'kelas.id_kelas = pelajaran.id_kelas');
-        $this->db->where('pelajaran.id_kelas', $kelas);
+        $this->db->where('pelajaran.id_kelas', $this->uri->segment(3));
         return $this->db->get();
     }
     public function tambah_pelajaran($data, $kelas)
     {
         $this->db->insert('pelajaran', $data);
-        $id_pelajaran = $this->db->insert_id();
-        $this->db->query("INSERT INTO mengajar (id_pelajaran, id_kelas) VALUES ($id_pelajaran, $kelas)");
+        $this->db->query("INSERT INTO mengajar (id_kelas) VALUES ($kelas)");
     }
 
     public function hapus_pelajaran($id_pelajaran)
@@ -225,6 +224,11 @@ class M_admin extends CI_Model
     public function guru_excel($data)
     {
         return $this->db->insert_batch('guru', $data);
+    }
+    public function pelajaran_excel($data, $data2)
+    {
+        $this->db->insert_batch('pelajaran', $data);
+        $this->db->insert_batch('mengajar', $data2);
     }
     public function buka_kunci($id_nilai, $data)
     {

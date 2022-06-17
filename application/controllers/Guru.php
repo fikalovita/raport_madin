@@ -4,11 +4,11 @@ use function PHPSTORM_META\map;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 require 'vendor/autoload.php';
-
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;
+
 
 class Guru extends CI_Controller
 {
@@ -64,6 +64,7 @@ class Guru extends CI_Controller
     }
     public function cetak_nilai()
     {
+
         $data = [
             'nilai_cetak' => $this->M_guru->cetak()->result()
         ];
@@ -278,12 +279,6 @@ class Guru extends CI_Controller
         $this->load->view('guru/tingkat', $data);
         $this->load->view('guru/layout/footer');
     }
-    public function cetak()
-    {
-        $this->load->view('guru/layout/header');
-        $this->load->view('guru/cetak_nilai');
-        $this->load->view('guru/layout/footer');
-    }
 
     public function kunci_absensi()
     {
@@ -318,20 +313,21 @@ class Guru extends CI_Controller
     }
     public function view_cetak()
     {
+
         $id_siswa = $this->uri->segment(3);
         $data = [
             'nilai' => $this->M_guru->cetak_raport($id_siswa)->result(),
             'siswa' => $this->M_guru->get_siswa_id($id_siswa)->result()
         ];
-
-        $this->load->view('guru/cetak', $data);
+        $html = $this->load->view('guru/cetak', $data, true);
+        $mpdf = new \Mpdf\Mpdf();
+        $mpdf->WriteHTML(utf8_encode($html));
+        $mpdf->Output();
     }
-    public function template_excel($id_pelajaran)
+    public function template_excel()
     {
         $nilai = $this->M_guru->get_siswa()->result_array();
         $nama_file = $this->M_guru->get_mapel()->result();
-        // var_dump($nilai);
-        // die();
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setCellValue('A1', 'NISN');
@@ -349,9 +345,6 @@ class Guru extends CI_Controller
         foreach ($nama_file as $key => $value) {
             $filename = $value->nama_pelajaran;
         }
-
-        // var_dump($filename);
-        // die();
         $writer = new Xls($spreadsheet);
         header("Content-Type:   application/vnd.ms-excel");
         header('Content-Disposition: attachment; filename= ".' . $filename . '".xls  ');
