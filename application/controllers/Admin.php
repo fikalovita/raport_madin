@@ -348,17 +348,17 @@ class Admin extends CI_Controller
 	public function ubah_mengajar()
 	{
 		$guru = $this->input->post('guru');
-		$id_mengajar = $this->input->post('id_mengajar');
+		$id_pelajaran = $this->input->post('id_pelajaran');
 		$id_kelas = $this->input->post('id_kelas');
 		$data = [];
-		foreach ($id_mengajar as $key => $value) {
+		foreach ($id_pelajaran as $key => $value) {
 			$data[] = [
-				'id_mengajar' => $id_mengajar[$key],
+				'kode_pelajaran' => $id_pelajaran[$key],
 				'id_guru' => $guru[$key]
 			];
 		}
 
-		$this->db->update_batch('mengajar', $data, 'id_mengajar');
+		$this->db->update_batch('mengajar', $data, 'kode_pelajaran');
 		$this->session->set_flashdata('pesan', 'disimpan');
 		redirect('admin/mengajar?kelas=' . $id_kelas . '', 'refresh');
 	}
