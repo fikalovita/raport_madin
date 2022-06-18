@@ -19,11 +19,10 @@
             <?php foreach ($siswa as $key => $value) : ?>
                 <div class="col-md-6">
                     <p>Nama : <?= $value->nama_siswa ?> </p>
-                    <p>Jilid :</p>
+                    <p>Jilid : <?= $value->nama_kelas ?></p>
                 </div>
                 <div class="col-md-6">
-                    <p>Nama :</p>
-                    <p>Jilid :</p>
+                    <p>Guru : <?= $value->nama_guru ?></p>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -34,7 +33,7 @@
                     <th rowspan="2" class="col- align-middle">Muatan Pelajaran</th>
                     <th colspan="3" class="col- text-center">Nilai</th>
                 </tr>
-                <tr>
+                <tr class="text-center">
                     <th>Angka</th>
                     <th>Predikat</th>
                     <th class="col">Deskripsi</th>
@@ -71,6 +70,41 @@
                     <th colspan=" 3" class="text-center"><b><?= round($total / $rata) ?></b></th>
                 </tr>
             </tfoot>
+        </table>
+        <?php foreach ($siswa as $key => $value) : ?>
+            <div>
+                <b>Status = <?php
+                            if ($value->status == 1) {
+                                echo 'Naik Jilid';
+                            } elseif ($value->status == 2) {
+                                echo 'Tetap';
+                            } else {
+                                echo 'Turun';
+                            }
+
+                            ?></b>
+            </div><br><br><br>
+        <?php endforeach; ?>
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <td class="text-center">
+                        <b>Kepala Madin</b><br><br><br><br>
+                        <b>(Siti Chodijah, S.Pd)</b>
+
+
+
+
+                    <td class="text-center">
+                        <b>Wali Kelas</b><br><br><br><br>
+                        <b>(___________________)</b>
+
+
+
+
+                    </td>
+                </tr>
+            </tbody>
         </table>
 </body>
 

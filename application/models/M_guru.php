@@ -156,8 +156,10 @@ class M_guru extends CI_Model
     public function get_siswa_id($id_siswa)
     {
         $this->db->select('*');
-        $this->db->where('id_siswa', $id_siswa);
         $this->db->from('siswa');
+        $this->db->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
+        $this->db->join('guru', 'kelas.id_guru = guru.id_guru');
+        $this->db->where('id_siswa', $id_siswa);
         return $this->db->get();
     }
     public function nilai_excel($data)
