@@ -4,6 +4,7 @@ use function PHPSTORM_META\map;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 require 'vendor/autoload.php';
+
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
@@ -300,7 +301,7 @@ class Guru extends CI_Controller
 
         $this->M_guru->tingkatan($data, $id_siswa);
         $this->session->set_flashdata('pesan', 'disimpan');
-        redirect('guru/view_presensi', 'refresh');
+        redirect('guru/tingkatan_siswa', 'refresh');
     }
     public function lihat_presensi()
     {
@@ -317,12 +318,14 @@ class Guru extends CI_Controller
         $id_siswa = $this->uri->segment(3);
         $data = [
             'nilai' => $this->M_guru->cetak_raport($id_siswa)->result(),
-            'siswa' => $this->M_guru->get_siswa_id($id_siswa)->result()
+            'siswa' => $this->M_guru->get_siswa_id($id_siswa)->result(),
+            'total' => $this->M_guru->jumlah_nilai($id_siswa)->row()->total,
+            'rata' => $this->M_guru->rata($id_siswa)->num_rows()
         ];
-        $html = $this->load->view('guru/cetak', $data, true);
-        $mpdf = new \Mpdf\Mpdf();
-        $mpdf->WriteHTML(utf8_encode($html));
-        $mpdf->Output();
+
+        // var_dump($total);
+        // die();
+        $this->load->view('guru/cetak', $data);
     }
     public function template_excel()
     {

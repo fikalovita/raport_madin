@@ -61,7 +61,7 @@
                         </a>
                         <a class="nav-link" href="<?= base_url('guru/tingkatan_siswa') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-arrow-down-short-wide"></i></div>
-                            Tingkat
+                            Kenaikan
                         </a>
                         <a class="nav-link" href="<?= base_url('guru/presensi') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-diagram-project"></i></div>

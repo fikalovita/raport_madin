@@ -28,7 +28,7 @@ class M_guru extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('mengajar');
-        $this->db->join('pelajaran', 'pelajaran.id_pelajaran = mengajar.id_pelajaran');
+        $this->db->join('pelajaran', 'pelajaran.kode_pelajaran = mengajar.kode_pelajaran');
         $this->db->where('id_guru', $this->session->userdata('id_guru'));
         return $this->db->get();
     }
@@ -163,5 +163,20 @@ class M_guru extends CI_Model
     public function nilai_excel($data)
     {
         return $this->db->insert_batch('nilai', $data);
+    }
+    public function jumlah_nilai($id_siswa)
+    {
+        // return $query =  $this->db->query("select sum(nilai) as total FROM nilai where id_siswa = '.$id_siswa.'");
+        $this->db->select_sum('nilai', 'total');
+        $this->db->from('nilai');
+        $this->db->where('id_siswa', $id_siswa);
+        return $this->db->get();
+    }
+    public function rata($id_siswa)
+    {
+        $this->db->select('*');
+        $this->db->from('nilai');
+        $this->db->where('id_siswa', $id_siswa);
+        return $this->db->get();
     }
 }
