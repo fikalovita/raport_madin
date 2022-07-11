@@ -59,7 +59,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Siswa
                         </a>
-                        <a class="nav-link" href="<?= base_url('guru/tingkatan_siswa') ?>">
+                        <a class="nav-link" href="<?= base_url('guru/jilid') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-shapes"></i></div>
                             Jilid
                         </a>
