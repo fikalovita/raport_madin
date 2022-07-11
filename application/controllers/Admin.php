@@ -332,12 +332,10 @@ class Admin extends CI_Controller
 	public function mengajar()
 	{
 		$kelas = $this->input->get('kelas');
-		// $mengajar = $this->M_admin->get_mengajar($kelas)->result();
-		// var_dump($mengajar);
-		// die();
 		$data = [
 			'kelas' => $this->M_admin->kelas(),
-			'guru' => $this->M_admin->get_guru(),
+			'guru' => $this->M_admin->guru_kelas(),
+			'pelajaran' => $this->M_admin->get_pelajaran(),
 			'mengajar' => $this->M_admin->get_mengajar($kelas)->result()
 		];
 		$this->load->view('admin/layout/header');

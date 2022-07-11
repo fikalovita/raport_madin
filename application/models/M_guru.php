@@ -18,9 +18,9 @@ class M_guru extends CI_Model
     public function get_siswa()
     {
         $this->db->select('*');
-        $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
-        $this->db->where('aktif', 0);
         $this->db->from('siswa');
+        $this->db->where('aktif', 0);
+        $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
         return $this->db->get();
     }
 
@@ -55,7 +55,8 @@ class M_guru extends CI_Model
         $this->db->select('*');
         $this->db->from('nilai');
         $this->db->join('siswa', 'siswa.id_siswa = nilai.id_siswa');
-        $this->db->where('id_pelajaran', $id_pelajaran);
+        $this->db->join('pelajaran', 'pelajaran.id_pelajaran = nilai.id_pelajaran');
+        $this->db->where('nilai.id_pelajaran', $id_pelajaran);
         $this->db->where('id_guru', $this->session->userdata('id_guru'));
         $this->db->where('kunci', 0);
         return $this->db->get();
@@ -65,7 +66,8 @@ class M_guru extends CI_Model
         $this->db->select('*');
         $this->db->from('nilai');
         $this->db->join('siswa', 'siswa.id_siswa = nilai.id_siswa');
-        $this->db->where('id_pelajaran', $id_pelajaran);
+        $this->db->join('pelajaran', 'pelajaran.id_pelajaran = nilai.id_pelajaran');
+        $this->db->where('nilai.id_pelajaran', $id_pelajaran);
         $this->db->where('id_guru', $this->session->userdata('id_guru'));
         $this->db->where('kunci', 1);
         return $this->db->get();
@@ -179,6 +181,56 @@ class M_guru extends CI_Model
         $this->db->select('*');
         $this->db->from('nilai');
         $this->db->where('id_siswa', $id_siswa);
+        return $this->db->get();
+    }
+
+    public function get_jilid()
+    {
+        $this->db->select('*');
+        $this->db->from('jilid');
+
+        return $this->db->get();
+    }
+    public function siswa_jilid()
+    {
+        $this->db->select('*');
+        $this->db->from('jilid');
+        return $this->db->get();
+    }
+    public function jilid()
+    {
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->join('jilid', 'jilid.id_jilid = siswa.id_jilid');
+        $this->db->where('aktif', 0);
+        $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
+        return $this->db->get();
+    }
+    public function tambah_jilid($data, $id_siswa)
+    {
+        $this->db->where('id_siswa', $id_siswa);
+        $this->db->update('siswa', $data);
+    }
+
+    public function hapus_jilid($data, $id_siswa)
+    {
+        $this->db->where('id_siswa', $id_siswa);
+        $this->db->update('siswa', $data);
+    }
+    public function presensi_excel($data)
+    {
+        return $this->db->insert_batch('presensi', $data);
+    }
+    public function tambah_catatan($data)
+    {
+        return $this->db->insert_batch('catatan', $data);
+    }
+    public function get_catatan()
+    {
+        $this->db->select('*');
+        $this->db->from('catatan');
+        $this->db->join('siswa', 'siswa.id_siswa = catatan.id_siswa');
+        $this->db->where('siswa.id_kelas', $this->db->session('id_kelas'));
         return $this->db->get();
     }
 }

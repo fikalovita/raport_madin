@@ -29,8 +29,8 @@
         <table class="table table-bordered table-sm ">
             <thead class="table-secondary">
                 <tr>
-                    <th rowspan="2" class="col-1 align-middle">No</th>
-                    <th rowspan="2" class="col- align-middle">Muatan Pelajaran</th>
+                    <th rowspan="2" class="col-1 align-middle text-center">No</th>
+                    <th rowspan="2" class="col- align-middle text-center">Muatan Pelajaran</th>
                     <th colspan="3" class="col- text-center">Nilai</th>
                 </tr>
                 <tr class="text-center">
@@ -51,12 +51,143 @@
                                 echo 'A';
                             } elseif ($value->nilai >= 80 && $value->nilai <= 89) {
                                 echo 'B';
-                            } else {
+                            } elseif ($value->nilai >= 70 && $value->nilai <= 79) {
                                 echo 'C';
+                            } else {
+                                echo 'D';
                             }
+
                             ?>
                         </td>
-                        <td class="text-center"><?= $value->deskripsi ?></td>
+                        <td>
+                            <?php
+                            $pelajaran = $value->nama_pelajaran;
+                            $nilai = $value->nilai;
+                            switch ($pelajaran) {
+                                case 'Kemampuan Baca':
+                                    if ($nilai >= 90) {
+                                        echo 'Sangat baik dalam membaca ayat Al-quran/Tilawati';
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo 'Baik dalam membaca ayat Al-quran/Tilawati';
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo 'Cukup baik dalam membaca ayat Al-quran/Tilawati';
+                                    } else {
+                                        echo 'Kurang dalam membaca ayat Al-quran/Tilawati';
+                                    }
+                                    break;
+
+                                case 'Makhroj':
+                                    if ($nilai >= 90) {
+                                        echo 'Sangat baik dalam melafalkan Makhorijul Huruf';
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo 'Baik dalam melafalkan Makhorijul Huruf';
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo 'Cukup baik dalam melafalkan Makhorijul Huruf';
+                                    } else {
+                                        echo 'Kurang  dalam melafalkan Makhorijul Huruf';
+                                    }
+                                    break;
+                                case 'Tajwid':
+                                    if ($nilai >= 90) {
+                                        echo 'Sangat baik dalam memahami bacaan tajwid';
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo 'Baik dalam memahami bacaan tajwid';
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo 'Cukup baik dalam memahami bacaan tajwid';
+                                    } else {
+                                        echo 'Kurang dalam memahami bacaan tajwid';
+                                    }
+                                    break;
+                                case 'Tartil':
+                                    if ($nilai >= 90) {
+                                        echo "Sangat baik dalam mentartilkan ayat al-qur’an";
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo " Baik dalam mentartilkan ayat al-qur’an";
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo " Cukup baik dalam mentartilkan ayat al-qur’an";
+                                    } else {
+                                        echo "Kurang dalam mentartilkan ayat al-qur’an";
+                                    }
+                                    break;
+                                case 'Ghorib musykilat':
+                                    if ($nilai >= 90) {
+                                        echo "Sangat baik dalam menerapkan bacaan ghorib musykilat";
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo 'Baik dalam menerapkan bacaan ghorib musykilat';
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo 'Cukup baik dalam menerapkan bacaan ghorib musykilat';
+                                    } else {
+                                        echo 'Kurang dalam menerapkan bacaan ghorib musykilat';
+                                    }
+                                    break;
+                                case 'Pencapaian Target Hafalan':
+                                    if ($nilai >= 90) {
+                                        echo 'Sangat baik dalam memenuhi kriteria target hafalan ';
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo 'Baik dalam memenuhi kriteria target hafalan';
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo 'Cukup baik dalam memenuhi kriteria target hafalan';
+                                    } else {
+                                        echo 'Kurang  dalam memenuhi kriteria target hafalan';
+                                    }
+                                    break;
+                                case 'Muraja’ah':
+                                    if ($nilai >= 90) {
+                                        echo 'Sangat baik dalam mengulang hafalan';
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo 'Baik dalam mengulang hafalan';
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo 'Cukup baik dalam mengulang hafalan';
+                                    } else {
+                                        echo 'Kurang  dalam mengulang hafalan';
+                                    }
+                                    break;
+                                case "Do'a dan Rotibul Haddad":
+                                    if ($nilai >= 90) {
+                                        echo 'Sangat baik dalam keseharian membaca do’a dan rotibul haddad';
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo 'Baik dalam keseharian membaca do’a dan rotibul haddad';
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo 'Cukup baik dalam keseharian membaca do’a dan rotibul haddad';
+                                    } else {
+                                        echo 'Kurang  dalam keseharian membaca do’a dan rotibul haddad';
+                                    }
+                                    break;
+                                case "Akhlak":
+                                    if ($nilai >= 90) {
+                                        echo 'Sangat baik dalam menerapkan akhlak yang baik ';
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo 'Baik dalam menerapkan akhlak yang baik ';
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo 'Cukup baik dalam menerapkan akhlak yang baik ';
+                                    } else {
+                                        echo 'Kurang  dalam menerapkan akhlak yang baik f';
+                                    }
+                                    break;
+                                case "Tadris":
+                                    if ($nilai >= 90) {
+                                        echo 'Sangat baik dalam membaca, mempelajari, dan mengakaji bacaan al-qur’an';
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo 'Baik dalam membaca, mempelajari, dan mengakaji bacaan al-qur’an';
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo 'Cukup baik dalam membaca, mempelajari, dan mengakaji bacaan al-qur’an';
+                                    } else {
+                                        echo 'Kurang dalam membaca, mempelajari, dan mengakaji bacaan al-qur’an';
+                                    }
+                                    break;
+                                case "Tahsinul Khot":
+                                    if ($nilai >= 90) {
+                                        echo 'Sangat baik dalam penulisan huruf bahasa atau abjad dalam bahasa arab';
+                                    } elseif ($nilai >= 80 && $nilai <= 89) {
+                                        echo 'Baik dalam penulisan huruf bahasa atau abjad dalam bahasa arab';
+                                    } elseif ($nilai >= 70 && $nilai <= 79) {
+                                        echo 'Cukup baik dalam penulisan huruf bahasa atau abjad dalam bahasa arab';
+                                    } else {
+                                        echo 'Kurang dalam penulisan huruf bahasa atau abjad dalam bahasa arab';
+                                    }
+                                    break;
+                            } ?>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -73,39 +204,30 @@
         </table>
         <?php foreach ($siswa as $key => $value) : ?>
             <div>
-                <b>Status = <?php
-                            if ($value->status == 1) {
-                                echo 'Naik Jilid';
-                            } elseif ($value->status == 2) {
-                                echo 'Tetap';
-                            } else {
-                                echo 'Turun';
-                            }
-
-                            ?></b>
-            </div><br><br><br>
+                <b>Status =</b>
+            </div><br>
         <?php endforeach; ?>
+        <div style="border:2px solid; padding:8%; width:40%; border-radius:20px; word-wrap: break-word;">
+            jhghgjhghjggjgjhgjhfhfhgfhgfhgfhgfhgfhgfhgfhgfhgfhg
+        </div>
         <table class="table table-borderless">
             <tbody>
                 <tr>
                     <td class="text-center">
-                        <b>Kepala Madin</b><br><br><br><br>
-                        <b>(Siti Chodijah, S.Pd)</b>
-
-
-
-
+                        <b>Orang Tua</b><br><br><br><br>
+                        <b>(........................)</b>
                     <td class="text-center">
                         <b>Wali Kelas</b><br><br><br><br>
-                        <b>(___________________)</b>
-
-
-
-
-                    </td>
+                        <b>(<?= $this->session->userdata('nama_guru') ?>)</b>
+                    </td><br>
                 </tr>
             </tbody>
         </table>
+        <div class="text-center">
+            <b>Mengetahui</b><br><br>
+            <b>Kepala Madin</b><br><br><br><br>
+            <b>(...........................)</b>
+        </div>
 </body>
 
 </html>

@@ -60,6 +60,10 @@
                             Siswa
                         </a>
                         <a class="nav-link" href="<?= base_url('guru/tingkatan_siswa') ?>">
+                            <div class="sb-nav-link-icon"><i class="fas fa-shapes"></i></div>
+                            Jilid
+                        </a>
+                        <a class="nav-link" href="<?= base_url('guru/tingkatan_siswa') ?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-arrow-down-short-wide"></i></div>
                             Kenaikan
                         </a>
@@ -74,6 +78,7 @@
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="<?= base_url('guru/catatan') ?>">Catatan Wali Kelas</a>
                                 <a class="nav-link" href="<?= base_url('guru/list_pelajaran') ?>">Input Nilai</a>
                                 <a class="nav-link" href="<?= base_url('guru/cetak_nilai') ?>">Cetak </a>
                             </nav>

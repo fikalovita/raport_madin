@@ -275,7 +275,11 @@ class Guru extends CI_Controller
     }
     public function tingkatan_siswa()
     {
-        $data = ['siswa' => $this->M_guru->get_siswa()];
+        $data = [
+            'siswa' => $this->M_guru->get_siswa()->result(),
+            'jilid' => $this->M_guru->Jilid()->result(),
+            'jilid_siswa' => $this->M_guru->siswa_jilid()->result()
+        ];
         $this->load->view('guru/layout/header');
         $this->load->view('guru/tingkat', $data);
         $this->load->view('guru/layout/footer');
@@ -344,7 +348,6 @@ class Guru extends CI_Controller
             $sheet->setCellValue('F' . $start, $value['id_siswa']);
             $start++;
         };
-
         foreach ($nama_file as $key => $value) {
             $filename = $value->nama_pelajaran;
         }
@@ -387,5 +390,135 @@ class Guru extends CI_Controller
             $this->session->set_flashdata('pesan', 'diupload');
             redirect('guru/penilaian/' . $this->input->post('id_pelajaran'), 'refresh');
         }
+    }
+    public function jilid()
+    {
+        $data = [
+            'siswa' => $this->M_guru->get_siswa(),
+            'jilid' => $this->M_guru->siswa_jilid()->result()
+        ];
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/jilid', $data);
+        $this->load->view('guru/layout/footer');
+    }
+    public function tambah_jilid()
+    {
+        $jilid = $this->input->post('jilid');
+        $id_siswa = $this->input->post('id_siswa');
+        $data = [
+            'id_jilid' => $jilid
+        ];
+
+        $this->M_guru->tambah_jilid($data, $id_siswa);
+        $this->session->set_flashdata('pesan', 'disimpan');
+        redirect('guru/jilid/', 'refresh');
+    }
+
+    public function hapus_jilid($id_siswa)
+    {
+        $data = [
+            'id_jilid' => 0
+        ];
+
+        $this->M_guru->hapus_jilid($data, $id_siswa);
+        $this->session->set_flashdata('pesan', 'dihapus');
+        redirect('guru/jilid/', 'refresh');
+    }
+
+    public function template_presensi()
+    {
+        $nilai = $this->M_guru->get_siswa()->result_array();
+        $filename = 'Template Presensi';
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Id Siswa');
+        $sheet->setCellValue('B1', 'NISN');
+        $sheet->setCellValue('C1', 'Nama Siswa');
+        $sheet->setCellValue('D1', 'Sakit');
+        $sheet->setCellValue('E1', 'Izin');
+        $sheet->setCellValue('F1', 'Alpha');
+        $start = 2;
+        foreach ($nilai as $value) {
+            $sheet->setCellValue('A' . $start, $value['id_siswa']);
+            $sheet->setCellValue('B' . $start, $value['nisn']);
+            $sheet->setCellValue('C' . $start, $value['nama_siswa']);
+            $start++;
+        };
+
+        $writer = new Xls($spreadsheet);
+        header("Content-Type:   application/vnd.ms-excel");
+        header('Content-Disposition: attachment; filename= ".' . $filename . '".xls  ');
+        header("Cache-Control: max-age= 0", false);
+        $writer->save('php://output');
+    }
+
+    public function import_presensi()
+    {
+        $file = $_FILES['excel']['name'];
+        $config['upload_path'] = './assets/uploads';
+        $config['allowed_types'] = 'xlsx|xls';
+        $config['detect_mime']     = TRUE;
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload('excel')) {
+        } else {
+            $file = $this->upload->data('file_name');
+            if ($config['allowed_types'] === 'xlsx') {
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+            } else {
+
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+            }
+            $spreadsheet = $reader->load('./assets/uploads/' . $file);
+            $sheet = $spreadsheet->getActiveSheet()->toArray();
+            for ($i = 1; $i < count($sheet); $i++) {
+                $data[] = [
+                    'id_siswa' => $sheet[$i]['0'],
+                    'id_kelas' => $this->session->userdata('id_kelas'),
+                    'sakit' => $sheet[$i]['3'],
+                    'izin' => $sheet[$i]['4'],
+                    'alpha' => $sheet[$i]['5']
+
+                ];
+            }
+            $this->M_guru->presensi_excel($data);
+            unlink('./assets/uploads/' . $file);
+            $this->session->set_flashdata('pesan', 'diupload');
+            redirect('guru/presensi/', 'refresh');
+        }
+    }
+    public function catatan()
+    {
+        $data = [
+            'siswa' => $this->M_guru->get_siswa()->result(),
+        ];
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/catatan', $data);
+        $this->load->view('guru/layout/footer');
+    }
+    public function tambah_catatan()
+    {
+        $catatan = $this->input->post('catatan');
+        $id_siswa = $this->input->post('id_siswa');
+        $data = [];
+        foreach ($id_siswa as $key => $value) {
+            $data[] = [
+                'id_siswa' => $id_siswa[$key],
+                'isi_catatan' => $catatan[$key]
+            ];
+        }
+
+        $this->M_guru->tambah_catatan($data);
+        $this->session->set_flashdata('pesan', 'disimpan');
+        redirect('guru/catatan/', 'refresh');
+    }
+
+    public function edit_catatan()
+    {
+        $data = [
+            'catatan' => $this->M_guru->get_catatan()->result()
+        ];
+        $this->load->view('guru/layout/header');
+        $this->load->view('guru/edit_catatan', $data);
+        $this->load->view('guru/layout/footer');
     }
 }

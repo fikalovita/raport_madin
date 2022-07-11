@@ -16,7 +16,7 @@
                 </thead>
                 <tbody>
                     <?php $no = 1 ?>
-                    <?php foreach ($siswa->result() as $key => $value) : ?>
+                    <?php foreach ($jilid as $key => $value) : ?>
                         <tr>
                             <th class="text-center"><?= $no++ ?></th>
                             <td><?= $value->nisn ?></td>
@@ -28,11 +28,11 @@
                                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#tingkatan"><i class="fa-solid fa-sm fa-check-double"></i> Pilih Tingkat</button>
                                 </div>';
                                 } elseif ($value->status == 1) {
-                                    echo '<span class="badge rounded-pill bg-success">Naik</span>';
+                                    echo '<span class="badge rounded-pill bg-success">Naik ' . $value->nama_jilid . '</span>';
                                 } elseif ($value->status == 2) {
-                                    echo '<span class="badge rounded-pill bg-warning">Tetap</span>';
+                                    echo '<span class="badge rounded-pill bg-warning">Tetap  ' . $value->nama_jilid . '</span>';
                                 } else {
-                                    echo '<span class="badge rounded-pill bg-danger">Turun</span>';
+                                    echo '<span class="badge rounded-pill bg-danger">Turun  ' . $value->nama_jilid . '</span>';
                                 }
                                 ?>
                                 <div class="modal fade" id="tingkatan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -50,6 +50,12 @@
                                                         <option value="1">Naik</option>
                                                         <option value="2">Tetap</option>
                                                         <option value="3">Turun</option>
+                                                    </select>
+                                                    <select class="form-select" aria-label="Default select example" name="jilid">
+                                                        <option selected>--Pilih Jilid--</option>
+                                                        <?php foreach ($jilid_siswa as $key => $j) : ?>
+                                                            <option value="<?= $j->id_jilid ?>"><?= $j->nama_jilid ?></option>
+                                                        <?php endforeach; ?>
                                                     </select>
                                                 </div>
                                                 <div class="modal-footer">

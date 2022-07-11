@@ -63,7 +63,7 @@
                         </form>
                     </td>
                     </tr>
-                    <input type="hidden" name="id_kelas" value="<?= $ajar->id_kelas ?>">
+
                     <input type="hidden" name="id_mengajar[]" value="<?= $ajar->id_mengajar ?>">
                     <input type="hidden" name="id_pelajaran[]" value="<?= $ajar->kode_pelajaran ?>">
                 <?php endforeach; ?>

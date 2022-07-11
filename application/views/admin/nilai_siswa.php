@@ -32,12 +32,23 @@
                                     echo 'A';
                                 } elseif ($value->nilai >= 80 && $value->nilai <= 89) {
                                     echo 'B';
-                                } else {
+                                } elseif ($value->nilai >= 70 && $value->nilai <= 79) {
                                     echo 'C';
+                                } else {
+                                    echo 'D';
                                 }
+
                                 ?>
                             </td>
-                            <td><?= $value->deskripsi ?></td>
+                            <td>
+                                        <?php
+                                        $namaPelajaran = $value->nama_pelajaran;
+                                        $nilai = $value->nilai;
+                                        if ($namaPelajaran == 'Kemampuan Baca' && $value->nilai >= 90) {
+                                            echo 'Sangat baik dalam membaca ayat Al-quran/Tilawati';
+                                        }
+                                        ?>
+                            </td>
                             <td class="text-center">
                                 <?php if ($value->kunci == 0) {
                                     echo '<button type="button" href=" ' . base_url('admin/buka_kunci/' . $value->id_nilai) . '. " class="btn btn-primary btn-sm" disabled><i class="fa-solid fa-unlock-keyhole fa-sm"></i> Buka Kunci</button>';
