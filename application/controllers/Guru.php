@@ -403,11 +403,15 @@ class Guru extends CI_Controller
     {
         $jilid = $this->input->post('jilid');
         $id_siswa = $this->input->post('id_siswa');
-        $data = [
-            'id_jilid' => $jilid
-        ];
+        $data = [];
+        foreach ($id_siswa as $key => $value) {
+            $data[] = [
+                'id_jilid' => $jilid[$key],
+                'id_siswa' => $id_siswa[$key]
+            ];
+        }
 
-        $this->M_guru->tambah_jilid($data, $id_siswa);
+        $this->db->update_batch('siswa', $data, 'id_siswa');
         $this->session->set_flashdata('pesan', 'disimpan');
         redirect('guru/jilid/', 'refresh');
     }

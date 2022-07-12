@@ -43,7 +43,7 @@
                                             }
                                             ?>
                                         </select>
-                                        <input type="hidden" name="id_siswa" value="<?= $siswa->id_siswa ?>">
+                                        <input type="hidden" name="id_siswa[]" value="<?= $siswa->id_siswa ?>">
                                     </td>
                                     <td class="text-center"><a href="<?= base_url('guru/hapus_jilid/' . $siswa->id_siswa) ?>" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Hapus Jilid </a></td>
                                 </tr>

@@ -206,11 +206,6 @@ class M_guru extends CI_Model
         $this->db->where('id_kelas', $this->session->userdata('id_kelas'));
         return $this->db->get();
     }
-    public function tambah_jilid($data, $id_siswa)
-    {
-        $this->db->where('id_siswa', $id_siswa);
-        $this->db->update('siswa', $data);
-    }
 
     public function hapus_jilid($data, $id_siswa)
     {
