@@ -32,14 +32,7 @@
                                     <td>
                                         <select class="form-select" name="jilid">
                                             <option value="">--Pilih Jilid--</option>
-                                            <?php foreach ($jilid as $key => $value) {
-                                                if ($value->id_jilid === $siswa->id_jilid) {
-                                                    echo '<option value=" ' . $value->id_jilid . '" selected> ' . $value->nama_jilid . '</option>';
-                                                } else {
-                                                    echo '<option value=" ' . $value->id_jilid . '">' . $value->nama_jilid . '</option>';
-                                                }
-                                            }
-                                            ?>
+                                            
                                         </select>
                                         <input type="hidden" name="id_siswa" value="<?= $siswa->id_siswa ?>">
                                     </td>
