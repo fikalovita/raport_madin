@@ -50,7 +50,6 @@
                                 <th class="col ">No</th>
                                 <th class=" col-5">Nama Siswa</th>
                                 <th class=" col-">Nilai</th>
-                                <th class=" col-5">Deskripsi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -60,7 +59,6 @@
                                     <th class="text-center"><?= $no++ ?></th>
                                     <td><?= $siswa->nama_siswa ?></td>
                                     <td><input type="number" min="60" max="100" name="nilai[]" id="nilai" class="form-control" required></td>
-                                    <td><textarea name="deskripsi[]" id="deskripsi" cols="30" class="form-control"></textarea></td>
                                     <input type="hidden" name="id_siswa[]" id="id_siswa" value="<?= $siswa->id_siswa ?>" class="form-control">
                                     <input type="hidden" name="id_pelajaran[]" id="id_pelajaran" value="<?= $this->uri->segment(3) ?>" class="form-control">
                                     <input type="hidden" name="id_guru[]" id="id_guru" value="<?= $this->session->userdata('id_guru') ?>" class="form-control">

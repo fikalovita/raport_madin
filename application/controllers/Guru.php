@@ -86,7 +86,6 @@ class Guru extends CI_Controller
         $id_param = $this->input->post('id_param');
         $id_siswa = $this->input->post('id_siswa');
         $nilai = $this->input->post('nilai');
-        $deskripsi = $this->input->post('deskripsi');
         $data = [];
 
 
@@ -96,7 +95,6 @@ class Guru extends CI_Controller
                 'id_pelajaran' => $id_pelajaran[$key],
                 'id_guru' => $id_guru[$key],
                 'nilai' => $nilai[$key],
-                'deskripsi' => $deskripsi[$key],
                 'tanggal_diupdate' => date('Y-m-d'),
             ];
         }
