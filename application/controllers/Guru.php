@@ -393,7 +393,7 @@ class Guru extends CI_Controller
     {
         $data = [
             'siswa' => $this->M_guru->get_siswa(),
-            'jilid' => $this->M_guru->siswa_jilid()->result()
+            'jilid' => $this->M_guru->siswa_jilid()
         ];
         $this->load->view('guru/layout/header');
         $this->load->view('guru/jilid', $data);

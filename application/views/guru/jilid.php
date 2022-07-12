@@ -30,9 +30,18 @@
                                     <th class="text-center"><?= $no++ ?></th>
                                     <td><?= $siswa->nama_siswa ?></td>
                                     <td>
-                                        <select class="form-select" name="jilid">
-                                            <option value="">--Pilih Jilid--</option>
-                                            
+                                        <select class="form-select" aria-label="Default select example" name="jilid[]">
+                                            <option selected value="">-- Pilih Guru--</option>
+                                            <?php
+                                            foreach ($jilid->result() as $key => $value) {
+                                                if ($siswa->id_jilid == $value->id_jilid) {
+                                                    echo '<option value="' . $value->id_jilid . '" selected>' . $value->nama_jilid . '</option>';
+                                                } else {
+
+                                                    echo '<option value="' . $value->id_jilid . '" >' . $value->nama_jilid . '</option>';
+                                                }
+                                            }
+                                            ?>
                                         </select>
                                         <input type="hidden" name="id_siswa" value="<?= $siswa->id_siswa ?>">
                                     </td>
