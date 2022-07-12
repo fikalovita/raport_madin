@@ -249,4 +249,9 @@ class M_admin extends CI_Model
         $this->db->join('kelas', 'kelas.id_guru = guru.id_guru');
         return $this->db->get();
     }
+
+    public function FunctionName()
+    {
+        # code...
+    }
 }
