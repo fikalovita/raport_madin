@@ -25,7 +25,7 @@
                             <td class="text-center">
                                 <?php if ($value->status == 0) {
                                     echo '<div class="btn-group">
-                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#tingkatan"><i class="fa-solid fa-sm fa-check-double"></i> Pilih Tingkat</button>
+                                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#tingkatan' . $value->id_siswa . '"><i class="fa-solid fa-sm fa-check-double"></i> Pilih Tingkat</button>
                                 </div>';
                                 } elseif ($value->status == 1) {
                                     echo '<span class="badge rounded-pill bg-success">Naik ' . $value->nama_jilid . '</span>';
@@ -35,11 +35,11 @@
                                     echo '<span class="badge rounded-pill bg-danger">Turun  ' . $value->nama_jilid . '</span>';
                                 }
                                 ?>
-                                <div class="modal fade" id="tingkatan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal fade" id="tingkatan<?= $value->id_siswa ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-sm">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdropLabel">Pilih Status</h5>
+                                                <h5 class="modal-title">Pilih Status</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <form action="<?= base_url('guru/aksi_tingkatan') ?>" method="post">
@@ -50,12 +50,6 @@
                                                         <option value="1">Naik</option>
                                                         <option value="2">Tetap</option>
                                                         <option value="3">Turun</option>
-                                                    </select>
-                                                    <select class="form-select" aria-label="Default select example" name="jilid">
-                                                        <option selected>--Pilih Jilid--</option>
-                                                        <?php foreach ($jilid_siswa as $key => $j) : ?>
-                                                            <option value="<?= $j->id_jilid ?>"><?= $j->nama_jilid ?></option>
-                                                        <?php endforeach; ?>
                                                     </select>
                                                 </div>
                                                 <div class="modal-footer">

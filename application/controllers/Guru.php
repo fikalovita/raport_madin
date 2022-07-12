@@ -300,6 +300,9 @@ class Guru extends CI_Controller
         $data = [
             'status' => $tingkat
         ];
+        // var_dump($data);
+        // var_dump($id_siswa);
+        // die();
 
         $this->M_guru->tingkatan($data, $id_siswa);
         $this->session->set_flashdata('pesan', 'disimpan');
@@ -335,15 +338,15 @@ class Guru extends CI_Controller
         $nama_file = $this->M_guru->get_mapel()->result();
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'NISN');
-        $sheet->setCellValue('B1', 'Nama Siswa');
-        $sheet->setCellValue('C1', 'Nilai');
-        $sheet->setCellValue('D1', 'Deskripsi');
+        $sheet->setCellValue('A1', 'ID Siswa');
+        $sheet->setCellValue('B1', 'NISN');
+        $sheet->setCellValue('C1', 'Nama Siswa');
+        $sheet->setCellValue('D1', 'Nilai');
         $start = 2;
         foreach ($nilai as $value) {
-            $sheet->setCellValue('A' . $start, $value['nisn']);
-            $sheet->setCellValue('B' . $start, $value['nama_siswa']);
-            $sheet->setCellValue('F' . $start, $value['id_siswa']);
+            $sheet->setCellValue('A' . $start, $value['id_siswa']);
+            $sheet->setCellValue('B' . $start, $value['nisn']);
+            $sheet->setCellValue('C' . $start, $value['nama_siswa']);
             $start++;
         };
         foreach ($nama_file as $key => $value) {
@@ -375,12 +378,11 @@ class Guru extends CI_Controller
             $sheet = $spreadsheet->getActiveSheet()->toArray();
             for ($i = 1; $i < count($sheet); $i++) {
                 $data[] = [
-                    'nilai' => $sheet[$i]['2'],
-                    'deskripsi' => $sheet[$i]['3'],
+                    'nilai' => $sheet[$i]['3'],
                     'id_pelajaran' => $this->input->post('id_pelajaran'),
                     'tanggal_diupdate' => date('Y-m-d'),
                     'id_guru' => $this->session->userdata('id_guru'),
-                    'id_siswa' => $sheet[$i]['5'],
+                    'id_siswa' => $sheet[$i]['0'],
                 ];
             }
             $this->M_guru->nilai_excel($data);
