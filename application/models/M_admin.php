@@ -250,8 +250,9 @@ class M_admin extends CI_Model
         return $this->db->get();
     }
 
-    public function FunctionName()
-    {
-        # code...
-    }
+   
 }
+ // public function FunctionName()
+    // {
+    //     # code...
+    // }
