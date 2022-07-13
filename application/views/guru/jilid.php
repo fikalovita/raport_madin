@@ -31,7 +31,7 @@
                                     <td><?= $siswa->nama_siswa ?></td>
                                     <td>
                                         <select class="form-select" aria-label="Default select example" name="jilid[]">
-                                            <option selected value="">-- Pilih Guru--</option>
+                                            <option selected value="">-- Pilih Jilid--</option>
                                             <?php
                                             foreach ($jilid->result() as $key => $value) {
                                                 if ($siswa->id_jilid == $value->id_jilid) {

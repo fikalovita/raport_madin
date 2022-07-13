@@ -15,10 +15,10 @@
                  <tbody>
                      <?php $no = 1 ?>
                      <?php foreach ($pelajaran as $key => $pelajaran) : ?>
-                         <tr class="text-center">
-                             <th scope="row"><?= $no++ ?></th>
+                         <tr>
+                             <th scope="row" class="text-center"><?= $no++ ?></th>
                              <td><?= $pelajaran->nama_pelajaran ?></td>
-                             <td> <a href="<?= base_url('guru/penilaian/' . $pelajaran->id_pelajaran) ?>" class="btn btn-primary btn-sm"> <i class="fa-solid fa-sm fa-pen"></i> Input Nilai</a></td>
+                             <td class="text-center"> <a href="<?= base_url('guru/penilaian/' . $pelajaran->id_pelajaran) ?>" class="btn btn-primary btn-sm"> <i class="fa-solid fa-sm fa-pen"></i> Input Nilai</a></td>
                          </tr>
                      <?php endforeach; ?>
                  </tbody>
