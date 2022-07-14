@@ -146,6 +146,7 @@ class Guru extends CI_Controller
 
         $this->M_guru->update_guru($id_guru, $data);
         $this->session->set_userdata($data);
+        redirect('guru/dashboard', 'refresh');
     }
     public function update_nilai()
     {
@@ -323,6 +324,7 @@ class Guru extends CI_Controller
         $id_siswa = $this->uri->segment(3);
         $data = [
             'nilai' => $this->M_guru->cetak_raport($id_siswa)->result(),
+            'catatan' => $this->M_guru->cetak_catatan($id_siswa)->result(),
             'siswa' => $this->M_guru->get_siswa_id($id_siswa)->result(),
             'total' => $this->M_guru->jumlah_nilai($id_siswa)->row()->total,
             'rata' => $this->M_guru->rata($id_siswa)->num_rows()

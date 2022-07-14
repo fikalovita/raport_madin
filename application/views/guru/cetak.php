@@ -208,7 +208,9 @@
             </div><br>
         <?php endforeach; ?>
         <div style="border:2px solid; padding:8%; width:40%; border-radius:20px; word-wrap: break-word;">
-            jhghgjhghjggjgjhgjhfhfhgfhgfhgfhgfhgfhgfhgfhgfhgfhg
+            <?php foreach ($catatan as $key => $value) : ?>
+                <?= $value->isi_catatan ?>
+            <?php endforeach; ?>
         </div>
         <table class="table table-borderless">
             <tbody>

@@ -228,4 +228,11 @@ class M_guru extends CI_Model
         $this->db->where('siswa.id_kelas', $this->db->session('id_kelas'));
         return $this->db->get();
     }
+    public function cetak_catatan($id_siswa)
+    {
+        $this->db->select('*');
+        $this->db->from('catatan');
+        $this->db->where('id_siswa', $id_siswa);
+        return $this->db->get();
+    }
 }

@@ -32,7 +32,7 @@
                                  <td>
                                      <div class="form-floating">
                                          <div class="form-floating">
-                                             <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="catatan"></textarea>
+                                             <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="catatan[]"></textarea>
                                              <label for="floatingTextarea2">catatan wali kelas</label>
                                          </div>
                                          <input type="hidden" name="id_siswa[]" value="<?= $value->id_siswa ?>">
