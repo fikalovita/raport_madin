@@ -101,7 +101,7 @@ class Guru extends CI_Controller
 
         $this->db->insert_batch('nilai', $data);
         $this->session->set_flashdata('pesan', 'disimpan');
-        redirect('guru/penilaian/' . $id_param, 'refresh');
+        redirect('guru/update_nilai/' . $id_param, 'refresh');
     }
 
     public function ubah_profile()
@@ -390,7 +390,7 @@ class Guru extends CI_Controller
             $this->M_guru->nilai_excel($data);
             unlink('./assets/uploads/' . $file);
             $this->session->set_flashdata('pesan', 'diupload');
-            redirect('guru/penilaian/' . $this->input->post('id_pelajaran'), 'refresh');
+            redirect('guru/update_nilai/' . $this->input->post('id_pelajaran'), 'refresh');
         }
     }
     public function jilid()

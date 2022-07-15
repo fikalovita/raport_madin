@@ -14,6 +14,7 @@
  <script>
      $(document).ready(function() {
          $('#tabel_guru').DataTable();
+         $('#tabel_data_siswa').DataTable();
          $('#tabel-kelas').DataTable();
          $('#tabel_pelajaran').DataTable();
          $('#tabel-nilai').DataTable();
