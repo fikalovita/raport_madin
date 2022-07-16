@@ -8,7 +8,7 @@
                      Catatan Wali Kelas
                  </div>
                  <div class="col-md-6 text-end">
-                     <a type="button" class="btn btn-success btn-sm" href="#"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                     <a type="button" class="btn btn-success btn-sm" href="<?= base_url('guru/edit_catatan') ?>"><i class="fa-solid fa-pen-to-square"></i> Edit Catatan</a>
 
                  </div>
              </div>

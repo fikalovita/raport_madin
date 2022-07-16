@@ -233,7 +233,7 @@ class Guru extends CI_Controller
 
         $this->db->insert_batch('presensi', $data);
         $this->session->set_flashdata('pesan', 'disimpan');
-        redirect('guru/presensi', 'refresh');
+        redirect('guru/view_presensi', 'refresh');
     }
     public function view_presensi()
     {
@@ -292,7 +292,7 @@ class Guru extends CI_Controller
 
         $this->M_guru->kunci_absensi($data);
         $this->session->set_flashdata('pesan', 'dikunci');
-        redirect('guru/presensi/' . 'refresh');
+        redirect('guru/lihat_presensi/' . 'refresh');
     }
     public function aksi_tingkatan()
     {
@@ -301,10 +301,6 @@ class Guru extends CI_Controller
         $data = [
             'status' => $tingkat
         ];
-        // var_dump($data);
-        // var_dump($id_siswa);
-        // die();
-
         $this->M_guru->tingkatan($data, $id_siswa);
         $this->session->set_flashdata('pesan', 'disimpan');
         redirect('guru/tingkatan_siswa', 'refresh');
@@ -515,7 +511,7 @@ class Guru extends CI_Controller
 
         $this->M_guru->tambah_catatan($data);
         $this->session->set_flashdata('pesan', 'disimpan');
-        redirect('guru/catatan/', 'refresh');
+        redirect('guru/edit_catatan/', 'refresh');
     }
 
     public function edit_catatan()
@@ -528,9 +524,18 @@ class Guru extends CI_Controller
         $this->load->view('guru/layout/footer');
     }
 
-    public function aksi_edit_catatan($id_catatan)
+    public function aksi_edit_catatan()
     {
-        $id_catatann = $this->input->post('catatan');
+        $id_catatan = $this->input->post('id_catatan');
+        $edit_catatan = $this->input->post('edit_catatan');
+
+        $data = [
+            'isi_catatan' => $edit_catatan
+        ];
+
+        $this->M_guru->edit_catatan($id_catatan, $data);
+        $this->session->set_flashdata('pesan', 'disimpan');
+        redirect('guru/edit_catatan/', 'refresh');
     }
     public function hapus_nilai($id_nilai)
     {
@@ -539,5 +544,11 @@ class Guru extends CI_Controller
         $this->M_guru->hapus_nilai($id_nilai);
         $this->session->set_flashdata('pesan', 'dihapus');
         redirect('guru/update_nilai/' . $param, 'refresh');
+    }
+    public function hapus_catatan($id_catatan)
+    {
+        $this->M_guru->hapus_catatan($id_catatan);
+        $this->session->set_flashdata('pesan', 'dihapus');
+        redirect('guru/edit_catatan', 'refresh');
     }
 }

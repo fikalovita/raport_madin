@@ -241,4 +241,15 @@ class M_guru extends CI_Model
         $this->db->where('id_nilai', $id_nilai);
         $this->db->delete('nilai');
     }
+
+    public function edit_catatan($id_catatan, $data)
+    {
+        $this->db->where('id_catatan', $id_catatan);
+        $this->db->update('catatan', $data);
+    }
+    public function hapus_catatan($id_catatan)
+    {
+        $this->db->where('id_catatan', $id_catatan);
+        $this->db->delete('catatan');
+    }
 }
