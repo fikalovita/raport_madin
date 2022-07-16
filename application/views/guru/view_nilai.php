@@ -32,7 +32,7 @@
                   </div>
               </div>
               <div class="card-body">
-                  <table class="table table-bordered table-hover align-middle" id="tabel_nilai">
+                  <table class="table table-bordered table-hover align-middle table-responsive-lg" id="tabel_nilai">
                       <thead class="text-center">
                           <tr>
                               <th>#</th>
@@ -107,9 +107,9 @@
                                                 if ($nilai >= 90) {
                                                     echo "Sangat baik dalam mentartilkan ayat al-qur’an";
                                                 } elseif ($nilai >= 80 && $nilai <= 89) {
-                                                    echo" Baik dalam mentartilkan ayat al-qur’an";
+                                                    echo " Baik dalam mentartilkan ayat al-qur’an";
                                                 } elseif ($nilai >= 70 && $nilai <= 79) {
-                                                    echo" Cukup baik dalam mentartilkan ayat al-qur’an" ;
+                                                    echo " Cukup baik dalam mentartilkan ayat al-qur’an";
                                                 } else {
                                                     echo "Kurang dalam mentartilkan ayat al-qur’an";
                                                 }
@@ -200,6 +200,9 @@
                                               <i class="fa-solid fa-sm fa-pen-to-square"></i> Ubah
                                           </button>
                                       </div>
+                                      <form action="' . base_url('guru/hapus_nilai/' . $value->id_nilai) . ' ?>" method="post">
+                                      <input type="hidden" name="id_pelajaran" value="' . $this->uri->segment(3) . '">
+                                      <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-solid fa-trash" disable></i> Hapus Nilai</button>
                                   </td>';
                                     } else {
                                         echo ' <td class="text-center">
@@ -208,9 +211,14 @@
                                               <i class="fa-solid fa-sm fa-pen-to-square"></i> Ubah
                                           </button>
                                       </div>
+                                      <form action="' . base_url('guru/hapus_nilai/' . $value->id_nilai) . ' ?>" method="post">
+                                      <input type="hidden" name="id_pelajaran" value="' . $this->uri->segment(3) . '">
+                                      <button class="btn btn-sm btn-danger"><i class="fa fa-solid fa-trash"></i> Hapus Nilai</button>
+                                  </form>
                                   </td>';
                                     }
                                     ?>
+
                               </tr>
                               <div class="modal fade" id="ubah-nilai<?= $value->id_nilai ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog">

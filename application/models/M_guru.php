@@ -235,4 +235,10 @@ class M_guru extends CI_Model
         $this->db->where('id_siswa', $id_siswa);
         return $this->db->get();
     }
+
+    public function hapus_nilai($id_nilai)
+    {
+        $this->db->where('id_nilai', $id_nilai);
+        $this->db->delete('nilai');
+    }
 }

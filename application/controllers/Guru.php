@@ -527,4 +527,17 @@ class Guru extends CI_Controller
         $this->load->view('guru/edit_catatan', $data);
         $this->load->view('guru/layout/footer');
     }
+
+    public function aksi_edit_catatan($id_catatan)
+    {
+        $id_catatann = $this->input->post('catatan');
+    }
+    public function hapus_nilai($id_nilai)
+    {
+
+        $param = $this->input->post('id_pelajaran');
+        $this->M_guru->hapus_nilai($id_nilai);
+        $this->session->set_flashdata('pesan', 'dihapus');
+        redirect('guru/update_nilai/' . $param, 'refresh');
+    }
 }
