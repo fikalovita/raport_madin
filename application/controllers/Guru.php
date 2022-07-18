@@ -326,7 +326,8 @@ class Guru extends CI_Controller
             'siswa' => $this->M_guru->get_siswa_id($id_siswa)->result(),
             'total' => $this->M_guru->jumlah_nilai($id_siswa)->row()->total,
             'rata' => $this->M_guru->rata($id_siswa)->num_rows(),
-            'presensi' => $this->M_guru->get_presensi_id($id_siswa)->result()
+            'presensi' => $this->M_guru->get_presensi_id($id_siswa)->result(),
+            'jilid' => $this->M_guru->get_siswa_id($id_siswa)->result(),
         ];
 
         // var_dump($total);

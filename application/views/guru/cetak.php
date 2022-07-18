@@ -11,18 +11,18 @@
 
 <body>
     <div class="container">
-        <img src="http://localhost:8080/madin/assets/kop.png" alt="">
+        <img src="<?= base_url('assets/kop.png') ?>" alt="">
         <div class="text-center mt-2">
             <h5>RAPORT TILAWATI DAN TAHFIDZ</h5>
         </div>
-        <div class="row">
-            <?php foreach ($siswa as $key => $value) : ?>
+        <div class="row mt-3">
+            <?php foreach ($siswa as $key => $siswa) : ?>
                 <div class="col-md-6">
-                    <p>Nama : <?= $value->nama_siswa ?> </p>
-                    <p>Kelas : <?= $value->nama_kelas ?></p>
+                    <p>Nama : <?= $siswa->nama_siswa ?> </p>
+                    <p>Kelas : <?= $siswa->nama_kelas ?></p>
                 </div>
                 <div class="col-md-6">
-                    <p>Guru : <?= $value->nama_guru ?></p>
+                    <p>Guru : <?= $siswa->nama_guru ?></p>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -203,8 +203,8 @@
             </tfoot>
         </table>
         <?php
-        foreach ($siswa as $key => $jilid) {
-            if ($jilid->status == 1) {
+        foreach ($jilid as $key => $jilid) {
+            if ($siswa->status == 1) {
                 echo '<b>Lanjut Ke : ' . $jilid->nama_jilid . ' </b>';
             } elseif ($jilid->status == 2) {
                 echo '<b>Tetap Di : ' . $jilid->nama_jilid . ' </b>';
@@ -213,30 +213,33 @@
             }
         }
 
-        ?><br><br>
-        <table class="table table-bordered">
+        ?><br>
+        <table class="table table-bordered"">
             <thead>
-                <tr class="text-center">
-                    <th>Catatan Tambahan</th>
-                    <th>Absensi</th>
-                </tr>
+                <tr class=" text-center">
+            <th>Absensi</th>
+            <th>Catatan Tambahan</th>
+            </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td class="col-6">
-                        <?php foreach ($catatan as $key => $value) : ?>
-                            <?= $value->isi_catatan ?>
-                        <?php endforeach; ?>
+                    <td>
+
+                        <div>
+                            <?php foreach ($presensi as $key => $value) : ?>
+                                <b> Sakit : <?= $value->sakit ?></b><br>
+                                <b>Izin : <?= $value->izin ?></b><br>
+                                <b>Alpha: <?= $value->alpha ?></b>
+
+                            <?php endforeach; ?>
+                        </div>
                     </td>
                     <td>
-                        <?php foreach ($presensi as $key => $value) : ?>
-                            <div>
-                                <b>Sakit : <?= $value->sakit ?></b><br>
-                                <b>Izin : <?= $value->izin ?></b><br>
-                                <b>Alpha : <?= $value->alpha ?></b>
-                            </div>
-
-                        <?php endforeach; ?>
+                        <div style="border:0px ; padding:3%; width:45%; overflow:hidden; word-wrap:break-word; margin-left:10%">
+                            <?php foreach ($catatan as $key => $value) : ?>
+                                <?= $value->isi_catatan ?>
+                            <?php endforeach; ?>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -257,7 +260,7 @@
         </table>
         <div class="text-center">
             <b>Mengetahui</b><br><br>
-            <b>Kepala Tarbiyatul Aulad</b><br><br><br><br>
+            <b>Kepala TPQ Tarbiyatul Aulad</b><br><br><br><br>
             <b>(Siti Chodijah,S.Pd.I)</b>
         </div>
 </body>
