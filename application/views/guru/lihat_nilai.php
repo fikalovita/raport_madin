@@ -68,17 +68,6 @@
                                                     echo 'Kurang  dalam melafalkan Makhorijul Huruf';
                                                 }
                                                 break;
-                                            case 'Tajwid':
-                                                if ($nilai >= 90) {
-                                                    echo 'Sangat baik dalam memahami bacaan Tajwid';
-                                                } elseif ($nilai >= 80 && $nilai <= 89) {
-                                                    echo 'Baik dalammemahami bacaan Tajwid';
-                                                } elseif ($nilai >= 70 && $nilai <= 79) {
-                                                    echo 'Cukup baik dalam memahami bacaan Tajwid';
-                                                } else {
-                                                    echo 'Kurang  dalam memahami bacaan Tajwid';
-                                                }
-                                                break;
                                             case 'Tartil':
                                                 if ($nilai >= 90) {
                                                     echo 'Sangat baik dalam mentartilkan ayat al-qur’an';
@@ -165,6 +154,17 @@
                                                     echo 'Cukup baik dalam penulisan huruf bahasa atau abjad dalam bahasa arab';
                                                 } else {
                                                     echo 'Kurang dalam penulisan huruf bahasa atau abjad dalam bahasa arab';
+                                                }
+                                                break;
+                                            case 'Tajwid':
+                                                if ($nilai >= 90) {
+                                                    echo 'Sangat baik dalam memahami bacaan Tajwid';
+                                                } elseif ($nilai >= 80 && $nilai <= 89) {
+                                                    echo 'Baik dalammemahami bacaan Tajwid';
+                                                } elseif ($nilai >= 70 && $nilai <= 79) {
+                                                    echo 'Cukup baik dalam memahami bacaan Tajwid';
+                                                } else {
+                                                    echo 'Kurang  dalam memahami bacaan Tajwid';
                                                 }
                                                 break;
                                         } ?>
