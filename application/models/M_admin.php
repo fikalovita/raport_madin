@@ -12,6 +12,7 @@ class M_admin extends CI_Model
         $this->db->from('siswa');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
         $this->db->join('guru', 'guru.id_guru = kelas.id_guru');
+        $this->db->join('jilid', 'jilid.id_jilid = siswa.id_jilid');
         return $this->db->get();
     }
     public function get_guru()

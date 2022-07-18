@@ -8,6 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title></title>
+    <link rel="shortcut icon" href="<?= base_url('assets/favicon.ico') ?>" type="image/x-icon">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet" />
@@ -21,7 +22,10 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-success bg-gradient bg-opacity-80">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">E-RAPORT</a>
+        <a class="navbar-brand" href="#">
+            <img src="<?= base_url('assets/brand.png') ?>" alt="" width="15%" height="auto" class="d-inline-block align-text-top">
+            TARBIYATUL AULAD
+        </a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
         <!-- Navbar Search-->

@@ -19,7 +19,7 @@
             <?php foreach ($siswa as $key => $value) : ?>
                 <div class="col-md-6">
                     <p>Nama : <?= $value->nama_siswa ?> </p>
-                    <p>Jilid : <?= $value->nama_kelas ?></p>
+                    <p>Kelas : <?= $value->nama_kelas ?></p>
                 </div>
                 <div class="col-md-6">
                     <p>Guru : <?= $value->nama_guru ?></p>
@@ -202,24 +202,54 @@
                 </tr>
             </tfoot>
         </table>
-        <?php foreach ($siswa as $key => $value) : ?>
-            <div>
-                <b>Status =</b>
-            </div><br>
-        <?php endforeach; ?>
-        <div style="border:2px solid; padding:8%; width:40%; border-radius:20px; word-wrap: break-word;">
-            <?php foreach ($catatan as $key => $value) : ?>
-                <?= $value->isi_catatan ?>
-            <?php endforeach; ?>
-        </div>
+        <?php
+        foreach ($siswa as $key => $jilid) {
+            if ($jilid->status == 1) {
+                echo '<b>Lanjut Ke : ' . $jilid->nama_jilid . ' </b>';
+            } elseif ($jilid->status == 2) {
+                echo '<b>Tetap Di : ' . $jilid->nama_jilid . ' </b>';
+            } elseif ($jilid->status === 3) {
+                echo '<b>Turun Ke : ' . $jilid->nama_jilid . ' </b>';
+            }
+        }
+
+        ?><br><br>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="text-center">
+                    <th>Catatan Tambahan</th>
+                    <th>Absensi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-6">
+                        <?php foreach ($catatan as $key => $value) : ?>
+                            <?= $value->isi_catatan ?>
+                        <?php endforeach; ?>
+                    </td>
+                    <td>
+                        <?php foreach ($presensi as $key => $value) : ?>
+                            <div>
+                                <b>Sakit : <?= $value->sakit ?></b><br>
+                                <b>Izin : <?= $value->izin ?></b><br>
+                                <b>Alpha : <?= $value->alpha ?></b>
+                            </div>
+
+                        <?php endforeach; ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
         <table class="table table-borderless">
             <tbody>
                 <tr>
                     <td class="text-center">
-                        <b>Orang Tua</b><br><br><br><br>
-                        <b>(........................)</b>
+                        <b>Orang Tua/Wali</b><br><br><br><br>
+                        <b>(..................................)</b>
                     <td class="text-center">
-                        <b>Wali Kelas</b><br><br><br><br>
+                        <b>Guru Kelas Tilawati</b><br><br><br><br>
                         <b>(<?= $this->session->userdata('nama_guru') ?>)</b>
                     </td><br>
                 </tr>
@@ -227,8 +257,8 @@
         </table>
         <div class="text-center">
             <b>Mengetahui</b><br><br>
-            <b>Kepala Madin</b><br><br><br><br>
-            <b>(...........................)</b>
+            <b>Kepala Tarbiyatul Aulad</b><br><br><br><br>
+            <b>(Siti Chodijah,S.Pd.I)</b>
         </div>
 </body>
 

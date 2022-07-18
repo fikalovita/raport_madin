@@ -28,8 +28,13 @@
                                               <td><?= $value->nama_guru ?></td>
                                               <td class="text-center">
                                                   <?php if ($value->status == 1) {
-                                                        echo ' <span class="badge rounded-pill bg-info text-dark">Naik Jilid</span>';
-                                                    } ?>
+                                                        echo ' <span class="badge rounded-pill bg-info text-dark">Naik ' . $value->nama_jilid . '</span>';
+                                                    } elseif ($value->status == 2) {
+                                                        echo ' <span class="badge rounded-pill bg-warning text-dark">Tetap ' . $value->nama_jilid . '</span>';
+                                                    } elseif ($value->status == 3) {
+                                                        echo ' <span class="badge rounded-pill bg-danger text-dark">Turun ' . $value->nama_jilid . '</span>';
+                                                    }
+                                                    ?>
 
                                               </td>
                                               <td class="text-center">

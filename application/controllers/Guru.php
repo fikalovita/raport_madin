@@ -276,8 +276,8 @@ class Guru extends CI_Controller
     {
         $data = [
             'siswa' => $this->M_guru->get_siswa()->result(),
-            'jilid' => $this->M_guru->Jilid()->result(),
-            'jilid_siswa' => $this->M_guru->siswa_jilid()->result()
+            'jilid' => $this->M_guru->jilid()->result(),
+            'jilid_siswa' => $this->M_guru->get_jilid()->result()
         ];
         $this->load->view('guru/layout/header');
         $this->load->view('guru/tingkat', $data);
@@ -298,8 +298,10 @@ class Guru extends CI_Controller
     {
         $id_siswa = $this->input->post('id_siswa');
         $tingkat = $this->input->post('tingkat');
+        $jilid = $this->input->post('jilid');
         $data = [
-            'status' => $tingkat
+            'status' => $tingkat,
+            'id_jilid' =>  $jilid
         ];
         $this->M_guru->tingkatan($data, $id_siswa);
         $this->session->set_flashdata('pesan', 'disimpan');
@@ -323,7 +325,8 @@ class Guru extends CI_Controller
             'catatan' => $this->M_guru->cetak_catatan($id_siswa)->result(),
             'siswa' => $this->M_guru->get_siswa_id($id_siswa)->result(),
             'total' => $this->M_guru->jumlah_nilai($id_siswa)->row()->total,
-            'rata' => $this->M_guru->rata($id_siswa)->num_rows()
+            'rata' => $this->M_guru->rata($id_siswa)->num_rows(),
+            'presensi' => $this->M_guru->get_presensi_id($id_siswa)->result()
         ];
 
         // var_dump($total);
@@ -393,7 +396,7 @@ class Guru extends CI_Controller
     {
         $data = [
             'siswa' => $this->M_guru->get_siswa(),
-            'jilid' => $this->M_guru->siswa_jilid()
+            'jilid' => $this->M_guru->get_jilid()
         ];
         $this->load->view('guru/layout/header');
         $this->load->view('guru/jilid', $data);

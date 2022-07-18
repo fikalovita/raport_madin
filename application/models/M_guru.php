@@ -161,6 +161,7 @@ class M_guru extends CI_Model
         $this->db->from('siswa');
         $this->db->join('kelas', 'kelas.id_kelas = siswa.id_kelas');
         $this->db->join('guru', 'kelas.id_guru = guru.id_guru');
+        $this->db->join('jilid', 'jilid.id_jilid = siswa.id_jilid');
         $this->db->where('id_siswa', $id_siswa);
         return $this->db->get();
     }
@@ -189,12 +190,6 @@ class M_guru extends CI_Model
         $this->db->select('*');
         $this->db->from('jilid');
 
-        return $this->db->get();
-    }
-    public function siswa_jilid()
-    {
-        $this->db->select('*');
-        $this->db->from('jilid');
         return $this->db->get();
     }
     public function jilid()
@@ -251,5 +246,12 @@ class M_guru extends CI_Model
     {
         $this->db->where('id_catatan', $id_catatan);
         $this->db->delete('catatan');
+    }
+    public function get_presensi_id($id_siswa)
+    {
+        $this->db->select('*');
+        $this->db->from('presensi');
+        $this->db->where('id_siswa', $id_siswa);
+        return $this->db->get();
     }
 }

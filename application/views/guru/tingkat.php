@@ -45,11 +45,17 @@
                                             <form action="<?= base_url('guru/aksi_tingkatan') ?>" method="post">
                                                 <div class="modal-body">
                                                     <input type="hidden" name="id_siswa" value="<?= $value->id_siswa ?>">
-                                                    <select class="form-select" name="tingkat">
+                                                    <select class="form-select" name="tingkat" required>
                                                         <option selected>--Pilih Tingkat--</option>
                                                         <option value="1">Naik</option>
                                                         <option value="2">Tetap</option>
                                                         <option value="3">Turun</option>
+                                                    </select>
+                                                    <select class="form-select" name="jilid" required>
+                                                        <option selected>--Pilih Jilid--</option>
+                                                        <?php foreach ($jilid_siswa as $key => $jilid) : ?>
+                                                            <option value="<?= $jilid->id_jilid ?>"><?= $jilid->nama_jilid ?></option>
+                                                        <?php endforeach; ?>
                                                     </select>
                                                 </div>
                                                 <div class="modal-footer">
