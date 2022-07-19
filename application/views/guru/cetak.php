@@ -218,8 +218,8 @@
         ?>
         <table class="table table-sm table-bordered">
             <thead>
-                <td colspan="2"></td>
                 <td>Absensi</td>
+                <td colspan="2"></td>
             </thead>
             <tbody>
                 <?php foreach ($presensi as $value) : ?>
