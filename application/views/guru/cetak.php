@@ -221,8 +221,7 @@
         <table class="table table-bordered table-sm"">
             <thead>
                 <tr class=" text-center">
-            <th>Absensi</th>
-            <th>Catatan Tambahan</th>
+            <td>Catatan Tambahan</td>
             </tr>
             </thead>
             <tbody>
