@@ -260,7 +260,7 @@
                 </td>
             </tr>
         </table>
-        <table class="table table-borderless">
+        <table class="table table-borderless table-sm">
             <tbody>
                 <tr>
                     <td class="text-center">
