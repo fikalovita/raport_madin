@@ -218,6 +218,20 @@
         }
 
         ?>
+        <table class="table table-sm table-bordered">
+            <thead>
+                <td>Absensi</td>
+            </thead>
+            <tbody>
+                <?php foreach ($presensi as $value) : ?>
+                    <tr>
+                        <td>Sakit : <?= $value->sakit ?></td>
+                        <td>Izin : <?= $value->izin ?></td>
+                        <td>Alpha : <?= $value->alpha ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
         <table class="table table-bordered table-sm"">
             <thead>
                 <tr class=" text-center">
