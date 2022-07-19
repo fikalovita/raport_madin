@@ -227,7 +227,11 @@
                             <?php foreach ($presensi as $value) : ?>
                                 <tr>
                                     <td>Sakit : <?= $value->sakit ?></td>
+                                </tr>
+                                <tr>
                                     <td>Izin : <?= $value->izin ?></td>
+                                </tr>
+                                <tr>
                                     <td>Alpha : <?= $value->alpha ?></td>
                                 </tr>
                             <?php endforeach ?>
