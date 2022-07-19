@@ -216,37 +216,45 @@
         }
 
         ?>
-        <table class="table table-sm table-bordered">
-            <thead>
-                <td colspan="3" class="text-center">Absensi</td>
-            </thead>
-            <tbody>
-                <?php foreach ($presensi as $value) : ?>
-                    <tr>
-                        <td>Sakit : <?= $value->sakit ?></td>
-                        <td>Izin : <?= $value->izin ?></td>
-                        <td>Alpha : <?= $value->alpha ?></td>
-                    </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
-        <table class="table table-bordered table-sm"">
-            <thead>
-                <tr class=" text-center">
-            <td>Catatan Tambahan</td>
+        <table class="table table-sm table-borderless">
+            <tr>
+                <td>
+                    <table class="table table-sm table-bordered">
+                        <thead>
+                            <td colspan="3" class="text-center">Absensi</td>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($presensi as $value) : ?>
+                                <tr>
+                                    <td>Sakit : <?= $value->sakit ?></td>
+                                    <td>Izin : <?= $value->izin ?></td>
+                                    <td>Alpha : <?= $value->alpha ?></td>
+                                </tr>
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr class=" text-center">
+                                <td>Catatan Tambahan</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div style="border:0px ; padding:0%; width:100%; overflow:hidden; word-wrap:break-word;">
+                                        <?php foreach ($catatan as $key => $value) : ?>
+                                            <?= $value->isi_catatan ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
             </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <div style="border:0px ; padding:0%; width:100%; overflow:hidden; word-wrap:break-word;">
-                            <?php foreach ($catatan as $key => $value) : ?>
-                                <?= $value->isi_catatan ?>
-                            <?php endforeach; ?>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
         </table>
         <table class="table table-borderless">
             <tbody>
