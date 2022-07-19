@@ -239,7 +239,7 @@
                         </div>
                     </td>
                     <td>
-                        <div style="border:0px ; padding:3%; width:85%; overflow:hidden; word-wrap:break-word;">
+                        <div style="border:0px ; padding:0%; width:85%; overflow:hidden; word-wrap:break-word;">
                             <?php foreach ($catatan as $key => $value) : ?>
                                 <?= $value->isi_catatan ?>
                             <?php endforeach; ?>
