@@ -32,7 +32,7 @@
             <thead class="table-secondary">
                 <tr>
                     <th rowspan="2" class="col-1 align-middle text-center">No</th>
-                    <th rowspan="2" class="col- align-middle text-center">Muatan Pelajaran</th>
+                    <th rowspan="2" class="col- align-middle text-center">Kriteria Penilaian</th>
                     <th colspan="3" class="col- text-center">Nilai</th>
                 </tr>
                 <tr class="text-center">
