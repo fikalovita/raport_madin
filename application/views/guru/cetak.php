@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <img src="<?= base_url('assets/kop.png') ?>" alt="">
-        <div class="text-center mt-2">
+        <div class="text-center mt-2 table-bordereless">
             <h5>RAPORT TILAWATI DAN TAHFIDZ</h5>
         </div>
         <div class="row mt-2">
