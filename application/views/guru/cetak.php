@@ -213,7 +213,7 @@
             }
         }
 
-        ?><br>
+        ?>
         <table class="table table-bordered"">
             <thead>
                 <tr class=" text-center">
