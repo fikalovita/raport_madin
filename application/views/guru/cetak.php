@@ -220,7 +220,9 @@
         ?>
         <table class="table table-sm table-bordered">
             <thead>
+                <td></td>
                 <td colspan="3">Absensi</td>
+                <td></td>
             </thead>
             <tbody>
                 <?php foreach ($presensi as $value) : ?>
