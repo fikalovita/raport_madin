@@ -16,7 +16,7 @@
             <h5>RAPORT TILAWATI DAN TAHFIDZ</h5>
         </div>
         <div class="row mt-2 mt-2 ">
-            <table class="table table-sm table-bordereless">
+            <table class="table table-sm table-borderless">
                 <?php foreach ($siswa as $key => $siswa) : ?>
                     <tr>
                         <td>
@@ -218,7 +218,7 @@
         }
 
         ?>
-        <table class="table table-bordered"">
+        <table class="table table-bordered table-sm"">
             <thead>
                 <tr class=" text-center">
             <th>Absensi</th>
@@ -244,7 +244,6 @@
                 </tr>
             </tbody>
         </table>
-
         <table class="table table-borderless">
             <tbody>
                 <tr>
@@ -252,7 +251,7 @@
                         <b>Orang Tua/Wali</b><br><br><br><br>
                         <b>(..................................)</b>
                     <td class="text-center">
-                        <b>Guru Kelas Tilawati</b><br><br>
+                        <b>Guru Kelas Tilawati</b><br><br><br>
                         <b>(<?= $this->session->userdata('nama_guru') ?>)</b>
                     </td><br>
                 </tr>
