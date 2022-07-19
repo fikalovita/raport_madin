@@ -228,13 +228,6 @@
             <tbody>
                 <tr>
                     <td>
-                        <?php foreach ($presensi as $key => $value) : ?>
-                            <b> Sakit : <?= $value->sakit ?></b><br>
-                            <b>Izin : <?= $value->izin ?></b><br>
-                            <b>Alpha: <?= $value->alpha ?></b>
-                        <?php endforeach; ?>
-                    </td>
-                    <td>
                         <div style="border:0px ; padding:0%; width:100%; overflow:hidden; word-wrap:break-word;">
                             <?php foreach ($catatan as $key => $value) : ?>
                                 <?= $value->isi_catatan ?>
