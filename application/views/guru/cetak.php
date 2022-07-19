@@ -220,7 +220,6 @@
             <thead>
                 <td colspan="2"></td>
                 <td>Absensi</td>
-                <td></td>
             </thead>
             <tbody>
                 <?php foreach ($presensi as $value) : ?>
