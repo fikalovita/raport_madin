@@ -9,7 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 
-<body>
+<body style="margin:0%; padding: 0;">
     <div class="container">
         <img src="<?= base_url('assets/kop.png') ?>" alt="">
         <div class="text-center ">
@@ -220,8 +220,8 @@
         ?>
         <table class="table table-sm table-bordered">
             <thead>
-                <td></td>
-                <td colspan="3">Absensi</td>
+                <td colspan="3"></td>
+                <td>Absensi</td>
                 <td></td>
             </thead>
             <tbody>
