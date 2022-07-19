@@ -16,15 +16,19 @@
             <h5>RAPORT TILAWATI DAN TAHFIDZ</h5>
         </div>
         <div class="row mt-2">
-            <?php foreach ($siswa as $key => $siswa) : ?>
-                <div class="col-md-6">
-                    <p>Nama : <?= $siswa->nama_siswa ?> </p>
-                    <p>Kelas : <?= $siswa->nama_kelas ?></p>
-                </div>
-                <div class="col-md-6">
-                    <p>Guru : <?= $siswa->nama_guru ?></p>
-                </div>
-            <?php endforeach; ?>
+            <table class="table table sm">
+                <?php foreach ($siswa as $key => $siswa) : ?>
+                    <tr>
+                        <td>
+                            <p>Nama : <?= $siswa->nama_siswa ?> </p>
+                            <p>Kelas : <?= $siswa->nama_kelas ?></p>
+                        </td>
+                        <td>
+                            <p>Guru : <?= $siswa->nama_guru ?></p>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
         </div>
         <table class="table table-bordered table-sm ">
             <thead class="table-secondary">
