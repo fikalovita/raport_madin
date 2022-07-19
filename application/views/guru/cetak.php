@@ -220,6 +220,7 @@
             <thead>
                 <td colspan="3" class="text-center">Absensi</td>
                 <td></td>
+                <td></td>
             </thead>
             <tbody>
                 <?php foreach ($presensi as $value) : ?>
