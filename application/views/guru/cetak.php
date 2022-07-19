@@ -15,7 +15,7 @@
         <div class="text-center mt-2">
             <h5>RAPORT TILAWATI DAN TAHFIDZ</h5>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-2">
             <?php foreach ($siswa as $key => $siswa) : ?>
                 <div class="col-md-6">
                     <p>Nama : <?= $siswa->nama_siswa ?> </p>
@@ -252,7 +252,7 @@
                         <b>Orang Tua/Wali</b><br><br><br><br>
                         <b>(..................................)</b>
                     <td class="text-center">
-                        <b>Guru Kelas Tilawati</b><br><br><br><br>
+                        <b>Guru Kelas Tilawati</b><br><br>
                         <b>(<?= $this->session->userdata('nama_guru') ?>)</b>
                     </td><br>
                 </tr>
@@ -260,7 +260,7 @@
         </table>
         <div class="text-center">
             <b>Mengetahui</b><br><br>
-            <b>Kepala TPQ Tarbiyatul Aulad</b><br><br><br><br>
+            <b>Kepala TPQ Tarbiyatul Aulad</b><br><br><br>
             <b>(Siti Chodijah,S.Pd.I)</b>
         </div>
 </body>
