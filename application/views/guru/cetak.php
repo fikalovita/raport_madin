@@ -10,26 +10,24 @@
 </head>
 
 <body style="margin:0%; padding: 0;">
-    <div class="container">
+    <div class="container-fluid">
         <img src="<?= base_url('assets/kop.png') ?>" alt="">
         <div class="text-center ">
             <h5>RAPORT TILAWATI DAN TAHFIDZ</h5>
         </div>
-        <div class="row mt-2 mt-2 ">
-            <table class="table table-sm table-borderless">
-                <?php foreach ($siswa as $key => $siswa) : ?>
-                    <tr>
-                        <td>
-                            <p>Nama : <?= $siswa->nama_siswa ?> </p>
-                            <p>Kelas : <?= $siswa->nama_kelas ?></p>
-                        </td>
-                        <td>
-                            <p>Guru : <?= $siswa->nama_guru ?></p>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
-        </div>
+        <table class="table table-sm table-borderless">
+            <?php foreach ($siswa as $key => $siswa) : ?>
+                <tr>
+                    <td>
+                        <p>Nama : <?= $siswa->nama_siswa ?> </p>
+                        <p>Kelas : <?= $siswa->nama_kelas ?></p>
+                    </td>
+                    <td>
+                        <p>Guru : <?= $siswa->nama_guru ?></p>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
         <table class="table table-bordered table-sm ">
             <thead class="table-secondary">
                 <tr>
@@ -256,7 +254,7 @@
             <tbody>
                 <tr>
                     <td class="text-center">
-                        <b>Orang Tua/Wali</b><br><br><br><br>
+                        <b>Orang Tua/Wali</b><br><br><br>
                         <b>(..................................)</b>
                     <td class="text-center">
                         <b>Guru Kelas Tilawati</b><br><br><br>
@@ -266,7 +264,7 @@
             </tbody>
         </table>
         <div class="text-center">
-            <b>Mengetahui</b><br><br>
+            <b>Mengetahui</b><br>
             <b>Kepala TPQ Tarbiyatul Aulad</b><br><br><br>
             <b>(Siti Chodijah,S.Pd.I)</b>
         </div>
