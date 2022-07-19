@@ -218,7 +218,7 @@
         ?>
         <table class="table table-sm table-bordered">
             <thead>
-                <td colspan="2">Absensi</td>
+                <td colspan="2" class="text-center">Absensi</td>
                 <td></td>
             </thead>
             <tbody>
