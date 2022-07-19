@@ -235,7 +235,7 @@
                         </div>
                     </td>
                     <td>
-                        <div style="border:0px ; padding:3%; width:45%; overflow:hidden; word-wrap:break-word; margin-left:10%">
+                        <div style="border:0px ; padding:3%; width:85%; overflow:hidden; word-wrap:break-word; margin-left:10%">
                             <?php foreach ($catatan as $key => $value) : ?>
                                 <?= $value->isi_catatan ?>
                             <?php endforeach; ?>
