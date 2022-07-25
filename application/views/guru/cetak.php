@@ -210,7 +210,7 @@
                 echo '<b>Lanjut Ke : ' . $jilid->nama_jilid . ' </b>';
             } elseif ($jilid->status == 2) {
                 echo '<b>Tetap Di : ' . $jilid->nama_jilid . ' </b>';
-            } elseif ($jilid->status === 3) {
+            } elseif ($jilid->status == 3) {
                 echo '<b>Turun Ke : ' . $jilid->nama_jilid . ' </b>';
             }
         }
